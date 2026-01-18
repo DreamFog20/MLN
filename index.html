@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="THE TRUTH LENS - Cyberpunk-styled news verification application">
+    <title>THE TRUTH LENS - Verify the Truth</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=VT323&family=Courier+Prime:wght@400;700&family=Inter:wght@300;400;500;600&family=Roboto+Mono:wght@300;400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Particles.js Background -->
+    <div id="particles-js"></div>
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1 class="glitch-title" data-text="THE TRUTH LENS">THE TRUTH LENS</h1>
+            <p class="hero-subtitle">Decoding Reality in the Digital Age</p>
+        </section>
+
+        <!-- Section 2: Sensory Perception Test -->
+        <section class="perception-section">
+            <h2 class="section-title">SENSORY PERCEPTION TEST</h2>
+            <p class="section-description">What you see isn't always the truth. Hover to reveal reality.</p>
+
+            <div class="flip-cards-container">
+                <!-- Flip Card 1 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <!-- Front of Card -->
+                        <div class="flip-card-front">
+                            <div class="card-image">
+                                <img src="kol_profile_one.webp" alt="Luxury Influencer Profile">
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-name">Alex Chen</h3>
+                                <p class="card-title">Crypto Investment Guru</p>
+                                <span class="badge badge-trusted">✓ TRUSTED</span>
+                            </div>
+                        </div>
+
+                        <!-- Back of Card -->
+                        <div class="flip-card-back">
+                            <div class="scam-alert">
+                                <h3 class="alert-title">⚠ SCAM ALERT</h3>
+                                <div class="alert-content">
+                                    <p><strong>Reality Check:</strong></p>
+                                    <ul>
+                                        <li>$2.3M in undisclosed debt</li>
+                                        <li>Rented luxury items for photos</li>
+                                        <li>Pyramid scheme promoter</li>
+                                        <li>Multiple fraud allegations</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Flip Card 2 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <!-- Front of Card -->
+                        <div class="flip-card-front">
+                            <div class="card-image">
+                                <img src="kol_profile_two.webp" alt="Success Coach Profile">
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-name">Jordan Rivers</h3>
+                                <p class="card-title">Success Coach & Mentor</p>
+                                <span class="badge badge-trusted">✓ TRUSTED</span>
+                            </div>
+                        </div>
+
+                        <!-- Back of Card -->
+                        <div class="flip-card-back">
+                            <div class="scam-alert">
+                                <h3 class="alert-title">⚠ SCAM ALERT</h3>
+                                <div class="alert-content">
+                                    <p><strong>Reality Check:</strong></p>
+                                    <ul>
+                                        <li>Fake testimonials & reviews</li>
+                                        <li>No verifiable credentials</li>
+                                        <li>Selling plagiarized content</li>
+                                        <li>Bankruptcy filed 2023</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: The Truth Calculator -->
+        <section class="calculator-section">
+            <h2 class="section-title">THE TRUTH CALCULATOR</h2>
+            <p class="section-description">Run the verification protocol. All criteria must pass.</p>
+
+            <div class="terminal-container">
+                <div class="terminal-header">
+                    <span class="terminal-dot red"></span>
+                    <span class="terminal-dot yellow"></span>
+                    <span class="terminal-dot green"></span>
+                    <span class="terminal-title">truth_verifier.exe</span>
+                </div>
+
+                <div class="terminal-body">
+                    <div class="terminal-prompt">
+                        <span class="prompt-symbol">$</span>
+                        <span class="prompt-text">Initialize verification protocol...</span>
+                    </div>
+
+                    <form id="truthForm" class="truth-form">
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="degree" name="degree" class="custom-checkbox">
+                                <span class="checkbox-text">
+                                    <span class="checkbox-icon">[ ]</span>
+                                    Has verified degree or credentials?
+                                </span>
+                            </label>
+
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="proof" name="proof" class="custom-checkbox">
+                                <span class="checkbox-text">
+                                    <span class="checkbox-icon">[ ]</span>
+                                    Has scientific proof or evidence?
+                                </span>
+                            </label>
+
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="conflict" name="conflict" class="custom-checkbox">
+                                <span class="checkbox-text">
+                                    <span class="checkbox-icon">[ ]</span>
+                                    No conflict of interest?
+                                </span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="verify-button">
+                            <span class="button-text">VERIFY TRUTH</span>
+                            <span class="button-glow"></span>
+                        </button>
+                    </form>
+
+                    <div id="resultMessage" class="result-message hidden">
+                        <div class="result-content"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Particles.js Library -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

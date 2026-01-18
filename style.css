@@ -1,0 +1,884 @@
+/* ===================================
+   THE TRUTH LENS - Cyberpunk Design System
+   =================================== */
+
+/* CSS Variables - Design Tokens */
+:root {
+    /* Colors */
+    --bg-deep-navy: #050a14;
+    --bg-dark-charcoal: #0a0a0a;
+    --primary-matrix-green: #00ff41;
+    --secondary-alert-red: #ff003c;
+    --text-off-white: #e0e0e0;
+    --text-dim: #8a8a8a;
+
+    /* Typography */
+    --font-heading: 'VT323', 'Courier Prime', monospace;
+    --font-body: 'Inter', 'Roboto Mono', sans-serif;
+
+    /* Spacing */
+    --container-max-width: 1200px;
+    --section-padding: 4rem 2rem;
+
+    /* Effects - Subtle Glow */
+    --glow-green: 0 0 5px rgba(0, 255, 65, 0.4),
+        0 0 10px rgba(0, 255, 65, 0.2);
+    --glow-red: 0 0 5px rgba(255, 0, 60, 0.4),
+        0 0 10px rgba(255, 0, 60, 0.2);
+}
+
+/* ===================================
+   Base Styles
+   =================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-deep-navy);
+    color: var(--text-off-white);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Animated background grid effect */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(rgba(0, 255, 65, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 65, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 0;
+    animation: gridScroll 20s linear infinite;
+}
+
+@keyframes gridScroll {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(50px);
+    }
+}
+
+/* Particles.js Container */
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* ===================================
+   Container
+   =================================== */
+
+.container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* ===================================
+   Hero Section
+   =================================== */
+
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: var(--section-padding);
+    position: relative;
+}
+
+/* Glitch Title Animation */
+.glitch-title {
+    font-family: var(--font-heading);
+    font-size: clamp(3rem, 10vw, 8rem);
+    font-weight: 700;
+    color: var(--primary-matrix-green);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    position: relative;
+    text-shadow: var(--glow-green);
+    animation: glitchPulse 3s ease-in-out infinite;
+    margin-bottom: 1rem;
+}
+
+/* Glitch effect using pseudo-elements */
+.glitch-title::before,
+.glitch-title::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-deep-navy);
+}
+
+.glitch-title::before {
+    left: 2px;
+    text-shadow: -2px 0 var(--secondary-alert-red);
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim-1 5s infinite linear alternate-reverse;
+}
+
+.glitch-title::after {
+    left: -2px;
+    text-shadow: -2px 0 var(--primary-matrix-green);
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim-2 5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim-1 {
+    0% {
+        clip: rect(31px, 9999px, 94px, 0);
+    }
+
+    20% {
+        clip: rect(85px, 9999px, 40px, 0);
+    }
+
+    40% {
+        clip: rect(12px, 9999px, 71px, 0);
+    }
+
+    60% {
+        clip: rect(68px, 9999px, 23px, 0);
+    }
+
+    80% {
+        clip: rect(45px, 9999px, 99px, 0);
+    }
+
+    100% {
+        clip: rect(76px, 9999px, 15px, 0);
+    }
+}
+
+@keyframes glitch-anim-2 {
+    0% {
+        clip: rect(65px, 9999px, 23px, 0);
+    }
+
+    20% {
+        clip: rect(10px, 9999px, 81px, 0);
+    }
+
+    40% {
+        clip: rect(91px, 9999px, 34px, 0);
+    }
+
+    60% {
+        clip: rect(28px, 9999px, 57px, 0);
+    }
+
+    80% {
+        clip: rect(52px, 9999px, 19px, 0);
+    }
+
+    100% {
+        clip: rect(38px, 9999px, 72px, 0);
+    }
+}
+
+@keyframes glitchPulse {
+
+    0%,
+    100% {
+        text-shadow: var(--glow-green);
+    }
+
+    50% {
+        text-shadow:
+            0 0 8px rgba(0, 255, 65, 0.5),
+            0 0 15px rgba(0, 255, 65, 0.3),
+            0 0 20px rgba(0, 255, 65, 0.2);
+    }
+}
+
+/* Hero Subtitle */
+.hero-subtitle {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    color: var(--text-dim);
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-top: 1rem;
+    animation: fadeInUp 1s ease-out 0.5s both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===================================
+   Typography Utilities
+   =================================== */
+
+h1,
+h2 {
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    color: var(--primary-matrix-green);
+    text-shadow: var(--glow-green);
+}
+
+p {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+/* ===================================
+   Section 2: Sensory Perception Test
+   =================================== */
+
+.perception-section {
+    padding: var(--section-padding);
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    color: var(--primary-matrix-green);
+    text-shadow: var(--glow-green);
+    text-align: center;
+    margin-bottom: 1rem;
+    letter-spacing: 0.1em;
+}
+
+.section-description {
+    text-align: center;
+    font-size: 1.125rem;
+    color: var(--text-dim);
+    margin-bottom: 4rem;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+}
+
+/* Flip Cards Container */
+.flip-cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+    perspective: 1000px;
+}
+
+/* Flip Card */
+.flip-card {
+    width: 100%;
+    max-width: 400px;
+    height: 550px;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Front and Back shared styles */
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 255, 65, 0.2);
+}
+
+/* Front of Card - Glassmorphism */
+.flip-card-front {
+    background: rgba(10, 20, 30, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow:
+        0 8px 32px 0 rgba(0, 255, 65, 0.1),
+        inset 0 0 20px rgba(0, 255, 65, 0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.card-image {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+}
+
+.card-image::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(to top, rgba(10, 20, 30, 0.9), transparent);
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.flip-card:hover .card-image img {
+    transform: scale(1.05);
+}
+
+.card-content {
+    padding: 2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.card-name {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--primary-matrix-green);
+    text-shadow: 0 0 5px rgba(0, 255, 65, 0.3);
+    margin: 0;
+    letter-spacing: 0.05em;
+}
+
+.card-title {
+    font-size: 1rem;
+    color: var(--text-dim);
+    margin: 0;
+    font-weight: 300;
+}
+
+/* Badge */
+.badge {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    margin-top: 1rem;
+}
+
+.badge-trusted {
+    background: rgba(0, 255, 65, 0.15);
+    color: var(--primary-matrix-green);
+    border: 1px solid var(--primary-matrix-green);
+    box-shadow: 0 0 8px rgba(0, 255, 65, 0.2);
+    animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 8px rgba(0, 255, 65, 0.2);
+    }
+
+    50% {
+        box-shadow: 0 0 12px rgba(0, 255, 65, 0.3);
+    }
+}
+
+/* Back of Card - Scam Alert */
+.flip-card-back {
+    background: rgba(20, 5, 10, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transform: rotateY(180deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    box-shadow:
+        0 8px 32px 0 rgba(255, 0, 60, 0.3),
+        inset 0 0 30px rgba(255, 0, 60, 0.1);
+    border: 1px solid rgba(255, 0, 60, 0.4);
+}
+
+.scam-alert {
+    text-align: left;
+}
+
+.alert-title {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    color: var(--secondary-alert-red);
+    text-shadow: var(--glow-red);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    letter-spacing: 0.05em;
+    animation: alertBlink 1.5s ease-in-out infinite;
+}
+
+@keyframes alertBlink {
+
+    0%,
+    100% {
+        opacity: 1;
+        text-shadow: var(--glow-red);
+    }
+
+    50% {
+        opacity: 0.7;
+        text-shadow:
+            0 0 15px var(--secondary-alert-red),
+            0 0 30px var(--secondary-alert-red);
+    }
+}
+
+.alert-content {
+    color: var(--text-off-white);
+}
+
+.alert-content p {
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+    color: var(--primary-matrix-green);
+}
+
+.alert-content strong {
+    color: var(--primary-matrix-green);
+    text-shadow: 0 0 5px var(--primary-matrix-green);
+}
+
+.alert-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.alert-content li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255, 0, 60, 0.2);
+    font-size: 1rem;
+    line-height: 1.6;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.alert-content li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--secondary-alert-red);
+    font-weight: bold;
+}
+
+.alert-content li:last-child {
+    border-bottom: none;
+}
+
+/* ===================================
+   Section 4: The Truth Calculator
+   =================================== */
+
+.calculator-section {
+    padding: var(--section-padding);
+    padding-top: 6rem;
+    padding-bottom: 8rem;
+}
+
+/* Terminal Container */
+.terminal-container {
+    max-width: 700px;
+    margin: 0 auto;
+    background: rgba(5, 10, 20, 0.8);
+    border: 1px solid var(--primary-matrix-green);
+    border-radius: 12px;
+    box-shadow:
+        0 0 30px rgba(0, 255, 65, 0.2),
+        inset 0 0 20px rgba(0, 255, 65, 0.05);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Terminal Header */
+.terminal-header {
+    background: rgba(0, 255, 65, 0.1);
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px solid rgba(0, 255, 65, 0.3);
+}
+
+.terminal-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.terminal-dot.red {
+    background: #ff5f56;
+    box-shadow: 0 0 5px #ff5f56;
+}
+
+.terminal-dot.yellow {
+    background: #ffbd2e;
+    box-shadow: 0 0 5px #ffbd2e;
+}
+
+.terminal-dot.green {
+    background: #27c93f;
+    box-shadow: 0 0 5px #27c93f;
+}
+
+.terminal-title {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: var(--primary-matrix-green);
+    margin-left: auto;
+    font-weight: 500;
+}
+
+/* Terminal Body */
+.terminal-body {
+    padding: 2rem;
+}
+
+.terminal-prompt {
+    font-family: var(--font-body);
+    color: var(--primary-matrix-green);
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.prompt-symbol {
+    font-size: 1.25rem;
+    font-weight: bold;
+    animation: cursorBlink 1s infinite;
+}
+
+@keyframes cursorBlink {
+
+    0%,
+    49% {
+        opacity: 1;
+    }
+
+    50%,
+    100% {
+        opacity: 0.3;
+    }
+}
+
+.prompt-text {
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+}
+
+/* Truth Form */
+.truth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Custom Checkbox */
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    cursor: pointer;
+    position: relative;
+    padding-left: 0;
+    user-select: none;
+}
+
+.custom-checkbox {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkbox-text {
+    font-family: var(--font-body);
+    font-size: 1.125rem;
+    color: var(--text-off-white);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+    line-height: 1.6;
+}
+
+.checkbox-icon {
+    font-family: 'Courier Prime', monospace;
+    font-size: 1.5rem;
+    color: var(--text-dim);
+    transition: all 0.3s ease;
+    min-width: 40px;
+}
+
+.custom-checkbox:checked~.checkbox-text .checkbox-icon {
+    color: var(--primary-matrix-green);
+    text-shadow: 0 0 5px rgba(0, 255, 65, 0.3);
+}
+
+.custom-checkbox:checked~.checkbox-text .checkbox-icon::before {
+    content: '[✓]';
+}
+
+.checkbox-label:hover .checkbox-text {
+    color: var(--primary-matrix-green);
+    transform: translateX(5px);
+}
+
+.checkbox-label:hover .checkbox-icon {
+    color: var(--primary-matrix-green);
+}
+
+/* Verify Button */
+.verify-button {
+    position: relative;
+    background: transparent;
+    border: 2px solid var(--primary-matrix-green);
+    color: var(--primary-matrix-green);
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    padding: 1rem 3rem;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.button-text {
+    position: relative;
+    z-index: 2;
+}
+
+.button-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: var(--primary-matrix-green);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.5s ease, height 0.5s ease;
+    z-index: 1;
+    opacity: 0;
+}
+
+.verify-button:hover {
+    box-shadow:
+        0 0 15px rgba(0, 255, 65, 0.4),
+        0 0 25px rgba(0, 255, 65, 0.2);
+    transform: translateY(-2px);
+}
+
+.verify-button:hover .button-glow {
+    width: 300px;
+    height: 300px;
+    opacity: 0.2;
+}
+
+.verify-button:active {
+    transform: translateY(0);
+}
+
+/* Result Message */
+.result-message {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-size: 1.125rem;
+    text-align: center;
+    animation: slideDown 0.4s ease-out;
+    border: 2px solid;
+}
+
+.result-message.hidden {
+    display: none;
+}
+
+.result-message.trusted {
+    background: rgba(0, 255, 65, 0.1);
+    border-color: var(--primary-matrix-green);
+    color: var(--primary-matrix-green);
+    box-shadow:
+        0 0 20px rgba(0, 255, 65, 0.3),
+        inset 0 0 20px rgba(0, 255, 65, 0.05);
+}
+
+.result-message.warning {
+    background: rgba(255, 0, 60, 0.1);
+    border-color: var(--secondary-alert-red);
+    color: var(--secondary-alert-red);
+    box-shadow:
+        0 0 20px rgba(255, 0, 60, 0.3),
+        inset 0 0 20px rgba(255, 0, 60, 0.05);
+    animation: slideDown 0.4s ease-out, glitchShake 0.5s ease-out;
+}
+
+.result-content {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes glitchShake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: translateX(-5px);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+        transform: translateX(5px);
+    }
+}
+
+/* ===================================
+   Responsive Design
+   =================================== */
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    .hero-section {
+        padding: 2rem 1rem;
+    }
+
+    .glitch-title {
+        font-size: 3rem;
+    }
+
+    .perception-section {
+        padding: 3rem 1rem;
+    }
+
+    .flip-cards-container {
+        gap: 2rem;
+    }
+
+    .flip-card {
+        max-width: 100%;
+        height: 500px;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+    }
+
+    .calculator-section {
+        padding: 3rem 1rem;
+    }
+
+    .terminal-body {
+        padding: 1.5rem;
+    }
+
+    .checkbox-text {
+        font-size: 1rem;
+    }
+
+    .verify-button {
+        font-size: 1.25rem;
+        padding: 0.875rem 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .glitch-title {
+        font-size: 2.5rem;
+        letter-spacing: 0.05em;
+    }
+
+    .hero-subtitle {
+        font-size: 0.875rem;
+    }
+}
