@@ -21,12 +21,93 @@
 <body>
     <!-- Particles.js Background -->
     <div id="particles-js"></div>
+
+    <!-- Library Button (Fixed) -->
+    <button id="libraryBtn" class="library-button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+        </svg>
+        <span>LIBRARY</span>
+    </button>
+
+    <!-- Library Sidebar -->
+    <div id="librarySidebar" class="library-sidebar">
+        <div class="sidebar-header">
+            <h2>CƠ SỞ LÝ LUẬN MÁC-LÊNIN</h2>
+            <button id="closeSidebar" class="sidebar-close">&times;</button>
+        </div>
+        <div class="sidebar-content">
+            <h3>Chương 2: Lý luận nhận thức Mác-Lênin</h3>
+
+            <section class="theory-section">
+                <h4>2.1. Khái niệm nhận thức</h4>
+                <p>Nhận thức là quá trình phản ánh thế giới khách quan vào ý thức con người. Nhận thức bao gồm hai giai
+                    đoạn:</p>
+                <ul>
+                    <li><strong>Nhận thức cảm tính:</strong> Phản ánh bề ngoài, hiện tượng của sự vật thông qua các giác
+                        quan (thị giác, thính giác, xúc giác...)</li>
+                    <li><strong>Nhận thức lý tính:</strong> Phản ánh bản chất, quy luật bên trong của sự vật thông qua
+                        tư duy trừu tượng.</li>
+                </ul>
+            </section>
+
+            <section class="theory-section">
+                <h4>2.2. Quan điểm triết học về nhận thức</h4>
+                <p><strong>Chủ nghĩa duy tâm:</strong> Cho rằng nhận thức xuất phát từ ý thức, tinh thần. Phủ nhận vai
+                    trò của thực tiễn.</p>
+                <p><strong>Chủ nghĩa siêu hình:</strong> Nhìn nhận sự vật một cách tĩnh, cô lập, không thấy được sự vận
+                    động, phát triển.</p>
+                <p><strong>Chủ nghĩa duy vật biện chứng:</strong> Nhận thức là quá trình phản ánh năng động, sáng tạo
+                    thế giới khách quan vào ý thức con người trên cơ sở thực tiễn.</p>
+            </section>
+
+            <section class="theory-section">
+                <h4>2.3. Thực tiễn và vai trò của thực tiễn</h4>
+                <p><strong>Thực tiễn</strong> là toàn bộ hoạt động vật chất, có mục đích, mang tính lịch sử - xã hội của
+                    con người nhằm cải tạo tự nhiên và xã hội.</p>
+                <p><strong>Vai trò:</strong></p>
+                <ul>
+                    <li>Thực tiễn là cơ sở, động lực của nhận thức</li>
+                    <li>Thực tiễn là mục đích của nhận thức</li>
+                    <li>Thực tiễn là tiêu chuẩn của chân lý</li>
+                </ul>
+            </section>
+
+            <section class="theory-section">
+                <h4>2.4. Ứng dụng vào thực tế</h4>
+                <p>Trong thời đại thông tin, việc áp dụng lý luận nhận thức Mác-Lênin giúp chúng ta:</p>
+                <ul>
+                    <li>Phân biệt thông tin chân thực và giả mạo</li>
+                    <li>Không tin mù quáng vào KOL, influencer</li>
+                    <li>Kiểm chứng thông tin qua thực tiễn (bằng cấp, kết quả, chứng minh khoa học)</li>
+                    <li>Tư duy phản biện, phân tích đa chiều</li>
+                </ul>
+            </section>
+        </div>
+    </div>
+
     <!-- Main Container -->
     <div class="container">
         <!-- Hero Section -->
         <section class="hero-section">
             <h1 class="glitch-title" data-text="THE TRUTH LENS">THE TRUTH LENS</h1>
             <p class="hero-subtitle">Decoding Reality in the Digital Age</p>
+
+            <!-- Breaking News Ticker -->
+            <div class="news-ticker">
+                <div class="ticker-label">⚠ BREAKING NEWS</div>
+                <div class="ticker-content">
+                    <div class="ticker-text">
+                        BREAKING: Sinh viên mất trắng 50 triệu vì tin KOL tài chính... | CẢNH BÁO: Nhập viện vì thuốc
+                        giảm cân online... | TIN NÓNG: Làn sóng FOMO đầu tư ảo đang càn quét Gen Z... | KHẨN CẤP: 70%
+                        thông tin trên mạng xã hội chưa được kiểm chứng... | BREAKING: Sinh viên mất trắng 50 triệu vì
+                        tin KOL tài chính... | CẢNH BÁO: Nhập viện vì thuốc giảm cân online... | TIN NÓNG: Làn sóng FOMO
+                        đầu tư ảo đang càn quét Gen Z... | KHẨN CẤP: 70% thông tin trên mạng xã hội chưa được kiểm
+                        chứng...
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Section 2: Sensory Perception Test -->
@@ -103,10 +184,118 @@
             </div>
         </section>
 
+        <!-- Section 3: Rational Perception & Philosophy -->
+        <section class="philosophy-section">
+            <h2 class="section-title">RATIONAL PERCEPTION & PHILOSOPHY</h2>
+            <p class="section-description">Understanding reality requires <span class="tooltip"
+                    data-text="Tư duy logic, phân tích bản chất">rational thinking</span> and <span class="tooltip"
+                    data-text="Phương pháp nhận thức toàn diện, vận động">dialectical analysis</span>.</p>
+
+            <!-- Part A: Antigravity Icons -->
+            <div class="antigravity-container">
+                <div class="floating-icon" data-concept="rationality" style="--delay: 0s; --duration: 4s;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z" />
+                        <path
+                            d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z" />
+                    </svg>
+                    <span>Brain</span>
+                </div>
+
+                <div class="floating-icon" data-concept="observation" style="--delay: 0.5s; --duration: 5s;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                        <circle cx="12" cy="12" r="3" />
+                    </svg>
+                    <span>Eye</span>
+                </div>
+
+                <div class="floating-icon" data-concept="logic" style="--delay: 1s; --duration: 4.5s;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3" />
+                        <path
+                            d="M12 1v6m0 6v6m5.2-13.2-4.2 4.2m0 6 4.2 4.2M1 12h6m6 0h6m-13.2 5.2 4.2-4.2m0-6-4.2-4.2" />
+                    </svg>
+                    <span>Gear</span>
+                </div>
+
+                <div class="floating-icon" data-concept="connection" style="--delay: 1.5s; --duration: 5.5s;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="18" cy="5" r="3" />
+                        <circle cx="6" cy="12" r="3" />
+                        <circle cx="18" cy="19" r="3" />
+                        <path d="m8.59 13.51 6.83 3.98m-.01-10.98-6.82 3.98" />
+                    </svg>
+                    <span>Network</span>
+                </div>
+
+                <div class="floating-icon" data-concept="security" style="--delay: 2s; --duration: 4.8s;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                    </svg>
+                    <span>Lock</span>
+                </div>
+            </div>
+
+            <!-- Part B: The 3 Philosophical Gates -->
+            <div class="philosophy-gates">
+                <div class="gate gate-idealism">
+                    <div class="gate-header">
+                        <h3>DUY TÂM</h3>
+                        <div class="gate-icon">💭</div>
+                    </div>
+                    <div class="gate-body">
+                        <p class="gate-description">Tin mù quáng vào Idol</p>
+                        <p class="gate-detail">(Chủ quan, cảm tính)</p>
+                    </div>
+                    <div class="gate-status">❌ Sai lầm</div>
+                </div>
+
+                <div class="gate gate-metaphysics">
+                    <div class="gate-header">
+                        <h3>SIÊU HÌNH</h3>
+                        <div class="gate-icon">🔍</div>
+                    </div>
+                    <div class="gate-body">
+                        <p class="gate-description">Chỉ nhìn thấy bề ngoài</p>
+                        <p class="gate-detail">(Một chiều, tĩnh)</p>
+                    </div>
+                    <div class="gate-status">⚠️ Hạn chế</div>
+                </div>
+
+                <div class="gate gate-dialectics">
+                    <div class="gate-header">
+                        <h3>BIỆN CHỨNG</h3>
+                        <div class="gate-icon">⚡</div>
+                    </div>
+                    <div class="gate-body">
+                        <p class="gate-description">Kiểm chứng thực tiễn</p>
+                        <p class="gate-detail">(Phân tích đa chiều)</p>
+                    </div>
+                    <div class="gate-status">✓ Chính xác</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal Popup for Icons -->
+        <div id="conceptModal" class="modal hidden">
+            <div class="modal-content">
+                <button class="modal-close">&times;</button>
+                <h3 class="modal-title">NHẬN THỨC LÝ TÍNH</h3>
+                <div class="modal-body">
+                    <p>Phản ánh bản chất, quy luật bên trong.</p>
+                    <p>Không bị đánh lừa bởi hào nhoáng bên ngoài.</p>
+                </div>
+            </div>
+        </div>
+
         <!-- Section 4: The Truth Calculator -->
         <section class="calculator-section">
             <h2 class="section-title">THE TRUTH CALCULATOR</h2>
-            <p class="section-description">Run the verification protocol. All criteria must pass.</p>
+            <p class="section-description">Run the verification protocol. <span class="tooltip"
+                    data-text="Là tiêu chuẩn của chân lý">Thực tiễn</span> is the criterion of truth.</p>
 
             <div class="terminal-container">
                 <div class="terminal-header">
@@ -161,6 +350,17 @@
                 </div>
             </div>
         </section>
+
+        <!-- Footer Section -->
+        <footer class="footer-section">
+            <div class="footer-content">
+                <button class="download-button">
+                    <span class="download-text" data-text="DOWNLOAD BỘ CÔNG CỤ CHECKLIST">DOWNLOAD BỘ CÔNG CỤ
+                        CHECKLIST</span>
+                </button>
+                <p class="copyright">NHÓM THUYẾT TRÌNH TRIẾT HỌC | FPT UNIVERSITY</p>
+            </div>
+        </footer>
 
     </div>
 

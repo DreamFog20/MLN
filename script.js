@@ -95,6 +95,65 @@ document.addEventListener('DOMContentLoaded', () => {
         retina_detect: true
     });
 
+    // Floating Icons Modal Interaction
+    const modal = document.getElementById('conceptModal');
+    const floatingIcons = document.querySelectorAll('.floating-icon');
+    const modalClose = document.querySelector('.modal-close');
+
+    // Open modal when clicking any floating icon
+    floatingIcons.forEach(icon => {
+        icon.addEventListener('click', () => {
+            modal.classList.remove('hidden');
+        });
+    });
+
+    // Close modal when clicking close button
+    if (modalClose) {
+        modalClose.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+    }
+
+    // Close modal when clicking outside the modal content
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.add('hidden');
+        }
+    });
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+            modal.classList.add('hidden');
+        }
+    });
+
+    // Library Sidebar Toggle
+    const libraryBtn = document.getElementById('libraryBtn');
+    const librarySidebar = document.getElementById('librarySidebar');
+    const closeSidebar = document.getElementById('closeSidebar');
+
+    if (libraryBtn && librarySidebar) {
+        libraryBtn.addEventListener('click', () => {
+            librarySidebar.classList.add('active');
+        });
+    }
+
+    if (closeSidebar) {
+        closeSidebar.addEventListener('click', () => {
+            librarySidebar.classList.remove('active');
+        });
+    }
+
+    // Close sidebar when clicking outside
+    document.addEventListener('click', (e) => {
+        if (librarySidebar.classList.contains('active') &&
+            !librarySidebar.contains(e.target) &&
+            !libraryBtn.contains(e.target)) {
+            librarySidebar.classList.remove('active');
+        }
+    });
+
     // Truth Calculator Form Logic
     const truthForm = document.getElementById('truthForm');
     const resultMessage = document.getElementById('resultMessage');

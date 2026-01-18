@@ -242,6 +242,77 @@ body::before {
     }
 }
 
+/* Breaking News Ticker */
+.news-ticker {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.8);
+    border-top: 2px solid var(--secondary-alert-red);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    box-shadow: 0 -5px 20px rgba(255, 0, 60, 0.3);
+}
+
+.ticker-label {
+    background: var(--secondary-alert-red);
+    color: #000;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0 1.5rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    z-index: 2;
+    letter-spacing: 0.1em;
+    animation: labelPulse 2s ease-in-out infinite;
+}
+
+@keyframes labelPulse {
+
+    0%,
+    100% {
+        background: var(--secondary-alert-red);
+    }
+
+    50% {
+        background: #ff1a4d;
+    }
+}
+
+.ticker-content {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+}
+
+.ticker-text {
+    font-family: 'VT323', monospace;
+    font-size: 1.25rem;
+    color: var(--secondary-alert-red);
+    text-transform: uppercase;
+    white-space: nowrap;
+    display: inline-block;
+    padding-left: 100%;
+    animation: scroll-left 60s linear infinite;
+    letter-spacing: 0.05em;
+}
+
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
 /* ===================================
    Typography Utilities
    =================================== */
@@ -837,6 +908,19 @@ p {
         font-size: 3rem;
     }
 
+    .news-ticker {
+        height: 40px;
+    }
+
+    .ticker-label {
+        font-size: 0.875rem;
+        padding: 0 1rem;
+    }
+
+    .ticker-text {
+        font-size: 1rem;
+    }
+
     .perception-section {
         padding: 3rem 1rem;
     }
@@ -880,5 +964,731 @@ p {
 
     .hero-subtitle {
         font-size: 0.875rem;
+    }
+}/* ===================================
+   Section 3: Rational Perception & Philosophy
+   =================================== */
+
+.philosophy-section {
+    padding: var(--section-padding);
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Part A: Antigravity Icons */
+.antigravity-container {
+    position: relative;
+    height: 400px;
+    margin: 4rem 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.floating-icon {
+    width: 100px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: float var(--duration, 4s) ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+}
+
+.floating-icon svg {
+    width: 60px;
+    height: 60px;
+    color: var(--primary-matrix-green);
+    filter: drop-shadow(0 0 8px rgba(0, 255, 65, 0.3));
+    transition: all 0.3s ease;
+}
+
+.floating-icon span {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.floating-icon:hover {
+    transform: scale(1.1);
+}
+
+.floating-icon:hover svg {
+    color: var(--primary-matrix-green);
+    filter: drop-shadow(0 0 15px rgba(0, 255, 65, 0.6));
+    transform: rotate(10deg);
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Modal Popup */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-content {
+    background: rgba(10, 20, 30, 0.95);
+    border: 2px solid var(--primary-matrix-green);
+    border-radius: 15px;
+    padding: 2.5rem;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    box-shadow:
+        0 0 30px rgba(0, 255, 65, 0.3),
+        inset 0 0 20px rgba(0, 255, 65, 0.05);
+    backdrop-filter: blur(10px);
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: var(--secondary-alert-red);
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    color: #fff;
+    transform: rotate(90deg);
+}
+
+.modal-title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--primary-matrix-green);
+    text-shadow: var(--glow-green);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.1em;
+}
+
+.modal-body {
+    font-family: var(--font-body);
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--text-off-white);
+}
+
+.modal-body p {
+    margin-bottom: 1rem;
+}
+
+/* Part B: The 3 Philosophical Gates */
+.philosophy-gates {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 4rem;
+}
+
+.gate {
+    background: rgba(10, 20, 30, 0.6);
+    border: 2px solid;
+    border-radius: 15px;
+    padding: 2rem;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.gate::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.gate:hover::before {
+    opacity: 1;
+}
+
+/* Gate 1: Idealism (Purple) */
+.gate-idealism {
+    border-color: rgba(147, 51, 234, 0.5);
+}
+
+.gate-idealism:hover {
+    border-color: #9333ea;
+    box-shadow: 0 0 20px rgba(147, 51, 234, 0.4);
+    transform: translateY(-5px);
+}
+
+/* Gate 2: Metaphysics (Blue) */
+.gate-metaphysics {
+    border-color: rgba(59, 130, 246, 0.5);
+}
+
+.gate-metaphysics:hover {
+    border-color: #3b82f6;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+    transform: translateY(-5px);
+}
+
+/* Gate 3: Dialectics (Green - Correct) */
+.gate-dialectics {
+    border-color: var(--primary-matrix-green);
+    animation: dialecticsPulse 2s ease-in-out infinite;
+}
+
+.gate-dialectics:hover {
+    box-shadow: 0 0 30px rgba(0, 255, 65, 0.5);
+    transform: translateY(-5px);
+}
+
+@keyframes dialecticsPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+    }
+}
+
+.gate-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.gate-header h3 {
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    margin: 0;
+    letter-spacing: 0.1em;
+}
+
+.gate-idealism h3 {
+    color: #9333ea;
+}
+
+.gate-metaphysics h3 {
+    color: #3b82f6;
+}
+
+.gate-dialectics h3 {
+    color: var(--primary-matrix-green);
+    text-shadow: 0 0 5px rgba(0, 255, 65, 0.3);
+}
+
+.gate-icon {
+    font-size: 2rem;
+}
+
+.gate-body {
+    margin-bottom: 1.5rem;
+}
+
+.gate-description {
+    font-family: var(--font-body);
+    font-size: 1.125rem;
+    color: var(--text-off-white);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.gate-detail {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: var(--text-dim);
+    font-style: italic;
+}
+
+.gate-status {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    padding: 0.75rem;
+    border-radius: 8px;
+    text-align: center;
+    letter-spacing: 0.1em;
+}
+
+.gate-idealism .gate-status {
+    background: rgba(147, 51, 234, 0.2);
+    color: #9333ea;
+}
+
+.gate-metaphysics .gate-status {
+    background: rgba(59, 130, 246, 0.2);
+    color: #3b82f6;
+}
+
+.gate-dialectics .gate-status {
+    background: rgba(0, 255, 65, 0.2);
+    color: var(--primary-matrix-green);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .antigravity-container {
+        height: auto;
+        gap: 2rem;
+    }
+
+    .floating-icon {
+        width: 80px;
+        height: 100px;
+    }
+
+    .floating-icon svg {
+        width: 50px;
+        height: 50px;
+    }
+
+    .philosophy-gates {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .modal-content {
+        padding: 2rem;
+    }
+
+    .modal-title {
+        font-size: 1.5rem;
+    }
+}
+/* ===================================
+   Library Button & Sidebar
+   =================================== */
+
+.library-button {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    background: rgba(0, 255, 65, 0.1);
+    border: 2px solid var(--primary-matrix-green);
+    color: var(--primary-matrix-green);
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-size: 1.125rem;
+    letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 999;
+    transition: all 0.3s ease;
+}
+
+.library-button svg {
+    width: 20px;
+    height: 20px;
+}
+
+.library-button:hover {
+    background: rgba(0, 255, 65, 0.2);
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.4);
+    transform: translateY(-2px);
+}
+
+.library-sidebar {
+    position: fixed;
+    top: 0;
+    right: -450px;
+    width: 450px;
+    height: 100vh;
+    background: rgba(5, 10, 20, 0.98);
+    border-left: 2px solid var(--primary-matrix-green);
+    box-shadow: -5px 0 30px rgba(0, 255, 65, 0.2);
+    z-index: 1000;
+    transition: right 0.4s ease;
+    overflow-y: auto;
+}
+
+.library-sidebar.active {
+    right: 0;
+}
+
+.sidebar-header {
+    background: rgba(0, 255, 65, 0.1);
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--primary-matrix-green);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.sidebar-header h2 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--primary-matrix-green);
+    margin: 0;
+    letter-spacing: 0.05em;
+}
+
+.sidebar-close {
+    background: none;
+    border: none;
+    color: var(--secondary-alert-red);
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: all 0.3s ease;
+}
+
+.sidebar-close:hover {
+    color: #fff;
+    transform: rotate(90deg);
+}
+
+.sidebar-content {
+    padding: 2rem;
+}
+
+.sidebar-content h3 {
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    color: var(--primary-matrix-green);
+    margin-bottom: 2rem;
+    text-shadow: 0 0 5px rgba(0, 255, 65, 0.3);
+}
+
+.theory-section {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+}
+
+.theory-section:last-child {
+    border-bottom: none;
+}
+
+.theory-section h4 {
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    color: var(--primary-matrix-green);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.theory-section p {
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    color: var(--text-off-white);
+}
+
+.theory-section ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.theory-section li {
+    padding: 0.5rem 0 0.5rem 1.5rem;
+    position: relative;
+    line-height: 1.6;
+}
+
+.theory-section li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--primary-matrix-green);
+}
+
+.theory-section strong {
+    color: var(--primary-matrix-green);
+}
+
+/* ===================================
+   Smart Tooltips
+   =================================== */
+
+.tooltip {
+    position: relative;
+    cursor: help;
+    border-bottom: 1px dotted var(--primary-matrix-green);
+    color: var(--primary-matrix-green);
+    transition: all 0.3s ease;
+}
+
+.tooltip::before {
+    content: attr(data-text);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+    background: rgba(0, 255, 65, 0.95);
+    color: #000;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 5px 15px rgba(0, 255, 65, 0.4);
+    font-family: var(--font-body);
+    font-weight: 500;
+}
+
+.tooltip::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: rgba(0, 255, 65, 0.95);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.tooltip:hover::before {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-5px);
+}
+
+.tooltip:hover::after {
+    opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .library-button {
+        top: 1rem;
+        right: 1rem;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+    }
+    
+    .library-sidebar {
+        width: 100%;
+        right: -100%;
+    }
+    
+    .tooltip::before {
+        white-space: normal;
+        max-width: 200px;
+    }
+}
+/* ===================================
+   Footer Section
+   =================================== */
+
+.footer-section {
+    padding: 6rem 2rem 4rem;
+    text-align: center;
+    position: relative;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Download Button with Aggressive Glitch */
+.download-button {
+    position: relative;
+    background: transparent;
+    border: 3px solid var(--primary-matrix-green);
+    color: var(--primary-matrix-green);
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    padding: 1.5rem 3rem;
+    border-radius: 10px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 3rem;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.download-text {
+    position: relative;
+    display: inline-block;
+}
+
+.download-button:hover {
+    background: rgba(0, 255, 65, 0.1);
+    box-shadow: 0 0 30px rgba(0, 255, 65, 0.5);
+    animation: buttonShake 0.3s infinite;
+}
+
+@keyframes buttonShake {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    10% { transform: translate(-2px, -2px) rotate(-1deg); }
+    20% { transform: translate(2px, 2px) rotate(1deg); }
+    30% { transform: translate(-2px, 2px) rotate(-1deg); }
+    40% { transform: translate(2px, -2px) rotate(1deg); }
+    50% { transform: translate(-2px, -2px) rotate(-1deg); }
+    60% { transform: translate(2px, 2px) rotate(1deg); }
+    70% { transform: translate(-2px, 2px) rotate(-1deg); }
+    80% { transform: translate(2px, -2px) rotate(1deg); }
+    90% { transform: translate(-2px, -2px) rotate(-1deg); }
+}
+
+/* Aggressive Glitch Effect on Hover */
+.download-button:hover .download-text::before,
+.download-button:hover .download-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.download-button:hover .download-text::before {
+    animation: glitchTop 0.3s infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+    transform: translate(-3px, -3px);
+    opacity: 0.8;
+}
+
+.download-button:hover .download-text::after {
+    animation: glitchBottom 0.4s infinite;
+    clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+    transform: translate(3px, 3px);
+    opacity: 0.8;
+}
+
+@keyframes glitchTop {
+    0% {
+        transform: translate(-2px, -2px);
+        color: var(--secondary-alert-red);
+    }
+    25% {
+        transform: translate(2px, -3px);
+        color: #00ffff;
+    }
+    50% {
+        transform: translate(-3px, -1px);
+        color: var(--secondary-alert-red);
+    }
+    75% {
+        transform: translate(1px, -2px);
+        color: #00ffff;
+    }
+    100% {
+        transform: translate(-2px, -3px);
+        color: var(--secondary-alert-red);
+    }
+}
+
+@keyframes glitchBottom {
+    0% {
+        transform: translate(2px, 2px);
+        color: #00ffff;
+    }
+    25% {
+        transform: translate(-2px, 3px);
+        color: var(--secondary-alert-red);
+    }
+    50% {
+        transform: translate(3px, 1px);
+        color: #00ffff;
+    }
+    75% {
+        transform: translate(-1px, 2px);
+        color: var(--secondary-alert-red);
+    }
+    100% {
+        transform: translate(2px, 3px);
+        color: #00ffff;
+    }
+}
+
+/* Copyright Text */
+.copyright {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: var(--text-dim);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 2rem 0;
+    border-top: 1px solid rgba(0, 255, 65, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .download-button {
+        font-size: 1.25rem;
+        padding: 1rem 2rem;
+    }
+    
+    .copyright {
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
     }
 }
