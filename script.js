@@ -105,73 +105,95 @@ document.addEventListener('DOMContentLoaded', () => {
     // Content for each concept
     const conceptContent = {
         rationality: {
-            title: 'NÃO BỘ - TƯ DUY LÝ TÍNH',
+            title: '🧠 NÃO BỘ - TƯ DUY LÝ TÍNH',
             content: `
-                <p><strong>Tư duy lý tính</strong> là khả năng phân tích, suy luận logic để hiểu bản chất sự vật.</p>
-                <p><strong>Đặc điểm:</strong></p>
-                <ul>
-                    <li>Phản ánh bản chất, quy luật bên trong</li>
-                    <li>Sử dụng logic, phân tích, tổng hợp</li>
-                    <li>Vượt qua cảm nhận bề ngoài</li>
-                    <li>Tạo ra khái niệm, phán đoán, suy lý</li>
-                </ul>
-                <p><em>Ví dụ:</em> Phân tích lý do tại sao KOL quảng cáo sản phẩm (có hoa hồng? có kiểm chứng?)</p>
+                <div class="concept-detail">
+                    <p class="highlight-text">"Nhận thức lý tính là giai đoạn cao của quá trình nhận thức, đi sâu vào bản chất bên trong."</p>
+                    
+                    <h4>📍 Đặc điểm chính:</h4>
+                    <ul>
+                        <li><strong>Trừu tượng hóa:</strong> Gạt bỏ cái ngẫu nhiên, bề ngoài, chỉ giữ lại cái cốt lõi.</li>
+                        <li><strong>Khái quát hóa:</strong> Tìm ra nguyên lý chung cho nhiều sự việc.</li>
+                        <li><strong>Gián tiếp:</strong> Không cần tiếp xúc trực tiếp vẫn hiểu được (VD: Hiểu lõi Trái Đất dù chưa đến đó).</li>
+                    </ul>
+
+                    <h4>💡 Ứng dụng thực tế:</h4>
+                    <p>Khi thấy một KOL khoe xe sang, nhà lầu (Cảm tính), tư duy lý tính sẽ đặt câu hỏi: <em>"Nguồn tiền từ đâu? Có hợp lý với thu nhập không? Hay chỉ là phông bạt để lùa gà?"</em></p>
+                </div>
             `
         },
         observation: {
-            title: 'MẮT - QUAN SÁT THỰC TẾ',
+            title: '👁️ MẮT - QUAN SÁT THỰC TẾ',
             content: `
-                <p><strong>Quan sát</strong> là bước đầu tiên của nhận thức - thu thập thông tin qua giác quan.</p>
-                <p><strong>Nguyên tắc quan sát đúng:</strong></p>
-                <ul>
-                    <li>Quan sát toàn diện, không chỉ nhìn bề ngoài</li>
-                    <li>Ghi nhận chi tiết, dấu hiệu bất thường</li>
-                    <li>So sánh với thực tế đã biết</li>
-                    <li>Không vội kết luận từ ấn tượng ban đầu</li>
-                </ul>
-                <p><em>Ví dụ:</em> Nhìn KOL đăng ảnh xe sang → Quan sát kỹ: Có biển số? Có giấy tờ? Hay chỉ thuê chụp?</p>
+                <div class="concept-detail">
+                    <p class="highlight-text">"Trực quan sinh động là nguồn gốc của mọi hiểu biết, nhưng chưa đủ để thấy chân lý."</p>
+                    
+                    <h4>📍 Vai trò & Hạn chế:</h4>
+                    <ul>
+                        <li><strong>Vai trò:</strong> Cung cấp dữ liệu thô (hình ảnh, âm thanh) cho não bộ xử lý.</li>
+                        <li><strong>Hạn chế:</strong> Chỉ phản ánh cái bên ngoài, cái riêng lẻ, dễ bị méo mó do ảo giác hoặc ngụy tạo.</li>
+                    </ul>
+
+                    <h4>💡 Ứng dụng thực tế:</h4>
+                    <p>Mắt thấy "Ảnh chụp màn hình chuyển khoản 10 tỷ".<br>
+                    <strong>Cảnh báo:</strong> Ảnh có thể photoshop. Mắt thấy chưa chắc là sự thật. Cần kiểm chứng lại bằng sao kê ngân hàng (Thực tiễn).</p>
+                </div>
             `
         },
         logic: {
-            title: 'BÁNH RĂNG - CƠ CHẾ PHÂN TÍCH',
+            title: '⚙️ BÁNH RĂNG - CƠ CHẾ PHÂN TÍCH',
             content: `
-                <p><strong>Phân tích</strong> là quá trình tách nhỏ vấn đề để hiểu từng bộ phận.</p>
-                <p><strong>Các bước phân tích:</strong></p>
-                <ul>
-                    <li><strong>Phân tích:</strong> Tách thông tin thành các yếu tố nhỏ</li>
-                    <li><strong>Tổng hợp:</strong> Kết nối các yếu tố để thấy toàn cảnh</li>
-                    <li><strong>So sánh:</strong> Đối chiếu với các trường hợp tương tự</li>
-                    <li><strong>Khái quát hóa:</strong> Rút ra quy luật chung</li>
-                </ul>
-                <p><em>Ví dụ:</em> Phân tích lời quảng cáo → Tách ra: Lời hứa, bằng chứng, nguồn gốc → Đối chiếu thực tế</p>
+                <div class="concept-detail">
+                    <p class="highlight-text">"Tư duy không phải là một khối hỗn độn, mà là cỗ máy vận hành theo quy luật logic."</p>
+                    
+                    <h4>📍 Các thao tác tư duy:</h4>
+                    <ul>
+                        <li><strong>Phân tích:</strong> Mổ xẻ đối tượng thành các bộ phận (Mổ xẻ profile của KOL).</li>
+                        <li><strong>Tổng hợp:</strong> Liên kết các bộ phận đã phân tích để nhìn toàn cảnh.</li>
+                        <li><strong>So sánh:</strong> Đối chiếu cái này với cái khác để tìm sự khác biệt (So sánh giá trị thật vs giá ảo).</li>
+                    </ul>
+
+                    <h4>💡 Ứng dụng thực tế:</h4>
+                    <p>KOL nói: "Đầu tư cái này lãi 50%/tháng".<br>
+                    <strong>Phân tích:</strong> Lãi suất ngân hàng 6%/năm. Warren Buffett giỏi nhất cũng chỉ 20%/năm. -> <strong>Kết luận:</strong> 50%/tháng là phi lý -> Lừa đảo.</p>
+                </div>
             `
         },
         connection: {
-            title: 'MẠNG LƯỚI - KẾT NỐI THÔNG TIN',
+            title: '🔗 MẠNG LƯỚI - MỐI LIÊN HỆ PHỔ BIẾN',
             content: `
-                <p><strong>Kết nối thông tin</strong> giúp nhìn thấy mối quan hệ giữa các sự kiện.</p>
-                <p><strong>Cách kết nối hiệu quả:</strong></p>
-                <ul>
-                    <li>Tìm mối liên hệ giữa các nguồn tin</li>
-                    <li>Xác định ai hưởng lợi từ thông tin này</li>
-                    <li>Kiểm tra tính nhất quán của câu chuyện</li>
-                    <li>So sánh với nhiều nguồn độc lập</li>
-                </ul>
-                <p><em>Ví dụ:</em> KOL A quảng cáo sản phẩm X → Kiểm tra: KOL B, C, D có quảng cáo không? Họ có liên quan gì?</p>
+                <div class="concept-detail">
+                    <p class="highlight-text">"Không sự vật nào tồn tại cô lập. Mọi thứ đều nằm trong mạng lưới liên hệ chằng chịt."</p>
+                    
+                    <h4>📍 Nguyên lý liên hệ:</h4>
+                    <ul>
+                        <li>Sự vật này tác động qua lại với sự vật kia.</li>
+                        <li>Muốn hiểu một người, hãy xem các mối quan hệ của họ.</li>
+                        <li>Đặt thông tin vào bối cảnh cụ thể (Thời gian, không gian, điều kiện).</li>
+                    </ul>
+
+                    <h4>💡 Ứng dụng thực tế:</h4>
+                    <p>Tại sao KOL A, B, C cùng lúc PR cho một loại tiền ảo?<br>
+                    -> Có một "Mạng lưới lợi ích" đứng sau thuê họ. Đây là chiến dịch marketing, không phải lời khuyên chân thật.</p>
+                </div>
             `
         },
         security: {
-            title: 'KHÓA - KIỂM CHỨNG BẢO MẬT',
+            title: '🔒 KHÓA - THỰC TIỄN KIỂM CHỨNG',
             content: `
-                <p><strong>Kiểm chứng</strong> là bước cuối cùng - xác minh tính đúng đắn của thông tin.</p>
-                <p><strong>Tiêu chí kiểm chứng:</strong></p>
-                <ul>
-                    <li>✅ Có bằng cấp/chứng chỉ chính thức?</li>
-                    <li>✅ Có bằng chứng khoa học được công bố?</li>
-                    <li>✅ Có xung đột lợi ích không?</li>
-                    <li>✅ Thông tin có thể tái hiện được không?</li>
-                </ul>
-                <p><em>Ví dụ:</em> Kiểm tra giấy phép kinh doanh, chứng nhận FDA, đánh giá từ tổ chức độc lập</p>
+                <div class="concept-detail">
+                    <p class="highlight-text">"Thực tiễn là tiêu chuẩn duy nhất của chân lý. Lý thuyết màu xám, còn cây đời mãi xanh."</p>
+                    
+                    <h4>📍 Tiêu chuẩn kiểm tra:</h4>
+                    <ul>
+                        <li><strong>Kết quả vật chất:</strong> Có làm ra sản phẩm thật không? Hay chỉ nói mồm?</li>
+                        <li><strong>Tính lặp lại:</strong> Người khác làm theo có thành công không? Hay chỉ mình họ may mắn?</li>
+                        <li><strong>Tính pháp lý:</strong> Giấy tờ, chứng chỉ, sự công nhận của xã hội.</li>
+                    </ul>
+
+                    <h4>💡 Ứng dụng thực tế:</h4>
+                    <p>Đừng tin lời hứa "Bao lời". Hãy yêu cầu xem Báo cáo tài chính, Giấy phép hoạt động, Cam kết pháp lý. Nếu không có -> 🚩 Cờ đỏ ngay lập tức.</p>
+                </div>
             `
         }
     };
@@ -441,32 +463,32 @@ document.addEventListener('keydown', (e) => {
    AI DISCLOSURE MODAL LOGIC
    =================================== */
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const aiModal = document.getElementById('aiDisclosureModal');
     const aiBtn = document.getElementById('aiDisclosureBtn');
     const aiClose = document.querySelector('.ai-close');
 
     if (aiModal && aiBtn) {
         // Open Modal
-        aiBtn.addEventListener('click', function() {
+        aiBtn.addEventListener('click', function () {
             aiModal.style.display = 'block';
             playSound('success'); // Reusing existing sound function
         });
 
         // Close Modal
-        aiClose.addEventListener('click', function() {
+        aiClose.addEventListener('click', function () {
             aiModal.style.display = 'none';
         });
 
         // Click outside to close
-        window.addEventListener('click', function(event) {
+        window.addEventListener('click', function (event) {
             if (event.target == aiModal) {
                 aiModal.style.display = 'none';
             }
         });
 
         // ESC key to close
-        document.addEventListener('keydown', function(event) {
+        document.addEventListener('keydown', function (event) {
             if (event.key === 'Escape' && aiModal.style.display === 'block') {
                 aiModal.style.display = 'none';
             }
