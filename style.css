@@ -2665,3 +2665,159 @@ p {
         font-size: 1.25rem;
     }
 }
+
+/* ===================================
+   UI/UX PRO MAX ENHANCEMENTS
+   =================================== */
+
+/* Cursor pointers for interactive elements */
+.flip-card {
+    cursor: pointer;
+}
+
+.floating-icon {
+    cursor: pointer;
+}
+
+.gate {
+    cursor: pointer;
+}
+
+.float-icon {
+    cursor: pointer;
+}
+
+.card {
+    cursor: pointer;
+}
+
+/* Focus states for keyboard navigation */
+.flip-card:focus,
+.floating-icon:focus,
+.gate:focus,
+.float-icon:focus,
+.card:focus,
+.ai-disclosure-button:focus,
+.library-button:focus {
+    outline: 2px solid var(--primary-matrix-green);
+    outline-offset: 4px;
+}
+
+/* Make interactive elements keyboard accessible */
+.flip-card,
+.floating-icon,
+.gate,
+.float-icon {
+    -webkit-tap-highlight-color: rgba(0, 255, 65, 0.2);
+}
+
+/* SVG icon sizing for Pudding floating icons */
+.float-icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Reduced motion support for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .text-box,
+    .modal-content,
+    .ai-modal-content {
+        border-width: 3px;
+    }
+    
+    .tooltip::before {
+        border-width: 2px;
+        border-style: solid;
+    }
+}
+
+/* ===================================
+   ENHANCED LIBRARY SIDEBAR STYLING
+   =================================== */
+
+/* Highlight sections for important content */
+.highlight-section {
+    background: linear-gradient(135deg, rgba(0, 255, 65, 0.08), rgba(0, 255, 65, 0.03)) !important;
+    border-left: 3px solid var(--primary-matrix-green) !important;
+    padding: 1.5rem !important;
+    margin: 1.5rem 0 !important;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 255, 65, 0.1);
+}
+
+.highlight-section h4 {
+    color: var(--primary-matrix-green) !important;
+    font-size: 1.1rem !important;
+    margin-bottom: 1rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.highlight-section ol,
+.highlight-section ul {
+    margin-left: 1.5rem;
+}
+
+.highlight-section li {
+    margin-bottom: 0.8rem;
+    line-height: 1.6;
+}
+
+/* Improved theory section spacing */
+.theory-section {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.theory-section:last-child {
+    border-bottom: none;
+}
+
+.theory-section h4 {
+    color: #00ff41;
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+}
+
+/* Better list styling in sidebar */
+.sidebar-content ul li,
+.sidebar-content ol li {
+    margin-bottom: 0.6rem;
+    line-height: 1.5;
+}
+
+.sidebar-content strong {
+    color: var(--primary-matrix-green);
+}
+
+/* Scrollbar styling for sidebar */
+.sidebar-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.sidebar-content::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-content::-webkit-scrollbar-thumb {
+    background: var(--primary-matrix-green);
+    border-radius: 4px;
+}
+
+.sidebar-content::-webkit-scrollbar-thumb:hover {
+    background: #00cc34;
+}
