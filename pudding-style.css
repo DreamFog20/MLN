@@ -1,0 +1,467 @@
+/* ===================================
+   PUDDING-STYLE SCROLLYTELLING CSS
+   Add this to style.css
+   =================================== */
+
+/* --- CẤU TRÚC SCROLLYTELLING --- */
+#scrolly-container {
+    position: relative;
+    /* Không set height, để nó tự dài theo nội dung text */
+}
+
+/* Sân khấu dính chặt (Sticky Graphic Background) */
+#sticky-graphic {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    /* Full màn hình */
+    z-index: 1;
+    /* Nằm dưới chữ */
+    background: radial-gradient(circle at center, #1a1a1a 0%, #050a14 70%);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Các cảnh Visual (Mặc định ẩn) */
+.scene {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    transform: scale(0.9);
+    pointer-events: none;
+    /* Để chuột xuyên qua bấm được text nếu cần */
+}
+
+/* Khi cảnh được kích hoạt */
+.scene.active {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: all;
+    /* Cho phép tương tác (lật thẻ, bấm nút) */
+}
+
+/* Lớp chữ trôi (Story Overlay) */
+#scrolly-text {
+    position: relative;
+    z-index: 2;
+    /* Nằm trên hình */
+    margin-top: -100vh;
+    /* Kéo ngược lên để bắt đầu cùng lúc với graphic */
+    padding-bottom: 20vh;
+}
+
+/* Hộp thoại kể chuyện */
+.step {
+    min-height: 100vh;
+    /* Mỗi bước dài bằng 1 màn hình để có chỗ scroll */
+    display: flex;
+    align-items: center;
+    /* Căn giữa dọc */
+    justify-content: flex-start;
+    /* Căn trái (Style The Pudding hay dùng) */
+    padding-left: 10%;
+    padding-right: 10%;
+    pointer-events: none;
+    /* Để chuột xuyên qua */
+}
+
+.text-box {
+    background: rgba(0, 0, 0, 0.85);
+    /* Kính đen mờ */
+    border-left: 4px solid var(--primary-matrix-green);
+    padding: 2.5rem;
+    max-width: 500px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    color: var(--text-off-white);
+    pointer-events: auto;
+    /* Cho phép bôi đen chữ */
+    transform: translateY(30px);
+    opacity: 0;
+    transition: all 0.6s ease;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Khi text trôi vào vùng nhìn thấy */
+.step.active .text-box {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.text-box h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    color: var(--primary-matrix-green);
+    text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+}
+
+.text-box p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+.text-box p:last-child {
+    margin-bottom: 0;
+}
+
+.text-box .hint {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    margin-top: 1.5rem;
+}
+
+/* ===================================
+   SCENE 1: FLIP CARD
+   =================================== */
+
+.card-container {
+    perspective: 1000px;
+}
+
+.card {
+    width: 320px;
+    height: 480px;
+    cursor: pointer;
+    position: relative;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.card-front {
+    background: rgba(10, 20, 30, 0.9);
+    border: 2px solid var(--primary-matrix-green);
+    box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
+}
+
+.card-front img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+}
+
+.card-front h3 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--primary-matrix-green);
+    text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+    margin: 0;
+}
+
+.card-subtitle {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+}
+
+.card-back {
+    background: rgba(20, 5, 10, 0.95);
+    border: 2px solid var(--secondary-alert-red);
+    box-shadow: 0 0 30px rgba(255, 0, 60, 0.4);
+    transform: rotateY(180deg);
+}
+
+.card-back h3 {
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    color: var(--secondary-alert-red);
+    text-shadow: 0 0 10px rgba(255, 0, 60, 0.5);
+    margin-bottom: 1.5rem;
+    animation: alertBlink 1.5s ease-in-out infinite;
+}
+
+.card-back ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.card-back li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255, 0, 60, 0.2);
+    font-size: 1.05rem;
+    color: var(--text-off-white);
+}
+
+.card-back li:last-child {
+    border-bottom: none;
+}
+
+/* ===================================
+   SCENE 2: FLOATING ICONS
+   =================================== */
+
+.floating-icons-pudding {
+    display: flex;
+    gap: 4rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+.float-icon {
+    font-size: 5rem;
+    animation: floatPudding calc(3s + var(--i) * 0.5s) ease-in-out infinite;
+    animation-delay: calc(var(--i) * 0.2s);
+    filter: drop-shadow(0 0 20px rgba(0, 255, 65, 0.4));
+}
+
+@keyframes floatPudding {
+
+    0%,
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-30px) rotate(10deg);
+    }
+}
+
+.neon-text-small {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 6vw, 4rem);
+    color: var(--primary-matrix-green);
+    text-shadow:
+        0 0 10px rgba(0, 255, 65, 0.8),
+        0 0 20px rgba(0, 255, 65, 0.5),
+        0 0 30px rgba(0, 255, 65, 0.3);
+    letter-spacing: 0.1em;
+    text-align: center;
+}
+
+/* ===================================
+   SCENE 3: CALCULATOR
+   =================================== */
+
+.calc-container-pudding {
+    background: rgba(0, 20, 0, 0.7);
+    border: 2px solid var(--primary-matrix-green);
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow:
+        0 0 40px rgba(0, 255, 65, 0.2),
+        inset 0 0 30px rgba(0, 255, 65, 0.05);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    width: 450px;
+    max-width: 90%;
+}
+
+.calc-title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--primary-matrix-green);
+    text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+    text-align: center;
+    margin-bottom: 2rem;
+    letter-spacing: 0.1em;
+}
+
+.calc-options-pudding {
+    margin-bottom: 2rem;
+}
+
+.calc-options-pudding label {
+    display: flex;
+    align-items: center;
+    margin: 1.25rem 0;
+    font-size: 1.125rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    padding: 1rem;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    position: relative;
+}
+
+.calc-options-pudding label:hover {
+    background: rgba(0, 255, 65, 0.1);
+    border-left: 3px solid var(--primary-matrix-green);
+    padding-left: 1.5rem;
+}
+
+.calc-options-pudding input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkbox-custom {
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--primary-matrix-green);
+    border-radius: 4px;
+    margin-right: 1rem;
+    position: relative;
+    transition: all 0.3s;
+    flex-shrink: 0;
+}
+
+.calc-options-pudding input[type="checkbox"]:checked~.checkbox-custom {
+    background: var(--primary-matrix-green);
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+}
+
+.calc-options-pudding input[type="checkbox"]:checked~.checkbox-custom::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #000;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.neon-btn-pudding {
+    width: 100%;
+    padding: 1.25rem;
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    background: transparent;
+    color: var(--primary-matrix-green);
+    border: 3px solid var(--primary-matrix-green);
+    border-radius: 8px;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+    transition: all 0.3s;
+    letter-spacing: 0.15em;
+}
+
+.neon-btn-pudding:hover {
+    background: var(--primary-matrix-green);
+    color: #000;
+    box-shadow: 0 0 40px rgba(0, 255, 65, 0.6);
+    letter-spacing: 0.25em;
+    transform: translateY(-2px);
+}
+
+.neon-btn-pudding:active {
+    transform: translateY(0);
+}
+
+#result-pudding {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border-radius: 8px;
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    text-align: center;
+    letter-spacing: 0.1em;
+    animation: slideDown 0.4s ease-out;
+    display: none;
+}
+
+#result-pudding.show {
+    display: block;
+}
+
+#result-pudding.trusted {
+    background: rgba(0, 255, 65, 0.15);
+    border: 2px solid var(--primary-matrix-green);
+    color: var(--primary-matrix-green);
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+}
+
+#result-pudding.warning {
+    background: rgba(255, 0, 60, 0.15);
+    border: 2px solid var(--secondary-alert-red);
+    color: var(--secondary-alert-red);
+    box-shadow: 0 0 20px rgba(255, 0, 60, 0.3);
+    animation: slideDown 0.4s ease-out, glitchShake 0.5s ease-out;
+}
+
+/* ===================================
+   RESPONSIVE DESIGN
+   =================================== */
+
+@media (max-width: 768px) {
+    .step {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .text-box {
+        max-width: 100%;
+        padding: 2rem;
+    }
+
+    .card {
+        width: 280px;
+        height: 420px;
+    }
+
+    .float-icon {
+        font-size: 3.5rem;
+    }
+
+    .floating-icons-pudding {
+        gap: 2rem;
+    }
+
+    .calc-container-pudding {
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .text-box h2 {
+        font-size: 1.5rem;
+    }
+
+    .text-box p {
+        font-size: 1rem;
+    }
+
+    .card {
+        width: 240px;
+        height: 360px;
+    }
+
+    .float-icon {
+        font-size: 2.5rem;
+    }
+}
