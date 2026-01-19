@@ -3017,3 +3017,42 @@ p {
         font-size: 0.9rem;
     }
 }
+
+/* ===================================
+   FIX: UNCLICKABLE FLOATING ICONS
+   =================================== */
+
+/* 1. Cho phép click xuyên qua lớp step (văn bản) để trúng layer hình bên dưới */
+.scrollytelling-steps, 
+.step {
+    pointer-events: none;
+}
+
+/* 2. Nhưng vẫn cho phép tương tác với hộp văn bản (nếu cần copy text) */
+.step-content, .text-box {
+    pointer-events: auto;
+}
+
+/* 3. Đưa graphic lên layer tích cực để nhận click */
+#sticky-graphic {
+    z-index: 1 !important; /* Đè lên background nhưng dưới navbar/modal */
+    pointer-events: auto;
+}
+
+/* 4. Đảm bảo icons nhận click và nằm trên cùng trong scene */
+.floating-icons {
+    z-index: 100;
+    position: relative;
+    pointer-events: auto;
+}
+
+.floating-icon {
+    cursor: pointer;
+    pointer-events: auto;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.floating-icon:hover {
+    transform: scale(1.2) translateY(-10px);
+    filter: drop-shadow(0 0 15px var(--primary-matrix-green));
+}
