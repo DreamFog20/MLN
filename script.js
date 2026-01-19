@@ -436,3 +436,40 @@ document.addEventListener('keydown', (e) => {
         document.body.style.overflow = 'auto';
     }
 });
+
+/* ===================================
+   AI DISCLOSURE MODAL LOGIC
+   =================================== */
+
+document.addEventListener('DOMContentLoaded', function() {
+    const aiModal = document.getElementById('aiDisclosureModal');
+    const aiBtn = document.getElementById('aiDisclosureBtn');
+    const aiClose = document.querySelector('.ai-close');
+
+    if (aiModal && aiBtn) {
+        // Open Modal
+        aiBtn.addEventListener('click', function() {
+            aiModal.style.display = 'block';
+            playSound('success'); // Reusing existing sound function
+        });
+
+        // Close Modal
+        aiClose.addEventListener('click', function() {
+            aiModal.style.display = 'none';
+        });
+
+        // Click outside to close
+        window.addEventListener('click', function(event) {
+            if (event.target == aiModal) {
+                aiModal.style.display = 'none';
+            }
+        });
+
+        // ESC key to close
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && aiModal.style.display === 'block') {
+                aiModal.style.display = 'none';
+            }
+        });
+    }
+});
