@@ -29,6 +29,8 @@
             background: #0a0a0a;
             color: #00ff41;
             overflow-x: hidden;
+            font-size: 16px;
+            line-height: 1.6;
         }
 
         /* Matrix Rain Background */
@@ -226,6 +228,19 @@
         .truth-text {
             color: #00ff41;
             text-shadow: 0 0 10px #00ff41;
+        }
+
+        /* Improved text readability */
+        p, li, td {
+            color: #d0d0d0;
+        }
+
+        .text-gray-300 {
+            color: #e0e0e0 !important;
+        }
+
+        .text-gray-400 {
+            color: #b0b0b0 !important;
         }
 
         /* Section Divider */
@@ -1045,61 +1060,63 @@
             </div>
 
             <!-- Process Comparison -->
-            <div class="max-w-5xl mx-auto mb-20" data-aos="fade-up">
-                <div class="grid md:grid-cols-2 gap-8">
-                    <!-- Wrong Process -->
-                    <div class="bg-red-900 bg-opacity-20 border-2 border-red-500 rounded-lg p-6">
-                        <h4 class="text-2xl font-bold warning-text text-center mb-6" style="font-family: 'Orbitron', sans-serif;">
-                            ❌ KHÔNG NÊN
-                        </h4>
-                        <div class="space-y-4">
-                            <div class="flex items-center">
-                                <div class="text-red-500 text-2xl mr-4">1</div>
-                                <p class="text-gray-300">Nghe lời khuyên</p>
-                            </div>
-                            <div class="text-red-500 text-center text-2xl">↓</div>
-                            <div class="flex items-center">
-                                <div class="text-red-500 text-2xl mr-4">2</div>
-                                <p class="text-gray-300">Tin ngay</p>
-                            </div>
-                            <div class="text-red-500 text-center text-2xl">↓</div>
-                            <div class="flex items-center">
-                                <div class="text-red-500 text-2xl mr-4">3</div>
-                                <p class="text-gray-300">Áp dụng mù quáng</p>
-                            </div>
+            <div class="max-w-7xl mx-auto mb-20" data-aos="fade-up">
+                <h3 class="text-3xl font-bold text-center truth-text mb-8" style="font-family: 'Orbitron', sans-serif;">
+                    SO SÁNH QUY TRÌNH
+                </h3>
+                
+                <!-- Wrong Process (Horizontal) -->
+                <div class="bg-red-900 bg-opacity-20 border-2 border-red-500 rounded-lg p-6 mb-6">
+                    <h4 class="text-2xl font-bold warning-text text-center mb-4" style="font-family: 'Orbitron', sans-serif;">
+                        ❌ KHÔNG NÊN
+                    </h4>
+                    <div class="flex items-center justify-center gap-4">
+                        <div class="text-center flex-1">
+                            <div class="text-red-500 text-3xl font-bold mb-1">1</div>
+                            <p class="text-gray-300 text-base font-medium">Nghe lời khuyên</p>
+                        </div>
+                        <div class="text-red-500 text-3xl font-bold">→</div>
+                        <div class="text-center flex-1">
+                            <div class="text-red-500 text-3xl font-bold mb-1">2</div>
+                            <p class="text-gray-300 text-base font-medium">Tin ngay</p>
+                        </div>
+                        <div class="text-red-500 text-3xl font-bold">→</div>
+                        <div class="text-center flex-1">
+                            <div class="text-red-500 text-3xl font-bold mb-1">3</div>
+                            <p class="text-gray-300 text-base font-medium">Áp dụng mù quáng</p>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Right Process -->
-                    <div class="bg-green-900 bg-opacity-20 border-2 border-green-500 rounded-lg p-6">
-                        <h4 class="text-2xl font-bold truth-text text-center mb-6" style="font-family: 'Orbitron', sans-serif;">
-                            ✅ NÊN
-                        </h4>
-                        <div class="space-y-3">
-                            <div class="flex items-center">
-                                <div class="text-green-500 text-2xl mr-4">1</div>
-                                <p class="text-gray-300">Nghe lời khuyên</p>
-                            </div>
-                            <div class="text-green-500 text-center text-xl">↓</div>
-                            <div class="flex items-center">
-                                <div class="text-green-500 text-2xl mr-4">2</div>
-                                <p class="text-gray-300">Tìm hiểu từ nhiều nguồn</p>
-                            </div>
-                            <div class="text-green-500 text-center text-xl">↓</div>
-                            <div class="flex items-center">
-                                <div class="text-green-500 text-2xl mr-4">3</div>
-                                <p class="text-gray-300">Thử nghiệm nhỏ</p>
-                            </div>
-                            <div class="text-green-500 text-center text-xl">↓</div>
-                            <div class="flex items-center">
-                                <div class="text-green-500 text-2xl mr-4">4</div>
-                                <p class="text-gray-300">Đánh giá kết quả</p>
-                            </div>
-                            <div class="text-green-500 text-center text-xl">↓</div>
-                            <div class="flex items-center">
-                                <div class="text-green-500 text-2xl mr-4">5</div>
-                                <p class="text-gray-300">Điều chỉnh & Áp dụng</p>
-                            </div>
+                <!-- Right Process (Horizontal) -->
+                <div class="bg-green-900 bg-opacity-20 border-2 border-green-500 rounded-lg p-6">
+                    <h4 class="text-2xl font-bold truth-text text-center mb-4" style="font-family: 'Orbitron', sans-serif;">
+                        ✅ NÊN
+                    </h4>
+                    <div class="flex items-center justify-center gap-3">
+                        <div class="text-center flex-1">
+                            <div class="text-green-500 text-3xl font-bold mb-1">1</div>
+                            <p class="text-gray-300 text-base font-medium">Nghe lời khuyên</p>
+                        </div>
+                        <div class="text-green-500 text-2xl font-bold">→</div>
+                        <div class="text-center flex-1">
+                            <div class="text-green-500 text-3xl font-bold mb-1">2</div>
+                            <p class="text-gray-300 text-base font-medium">Tìm hiểu từ nhiều nguồn</p>
+                        </div>
+                        <div class="text-green-500 text-2xl font-bold">→</div>
+                        <div class="text-center flex-1">
+                            <div class="text-green-500 text-3xl font-bold mb-1">3</div>
+                            <p class="text-gray-300 text-base font-medium">Thử nghiệm nhỏ</p>
+                        </div>
+                        <div class="text-green-500 text-2xl font-bold">→</div>
+                        <div class="text-center flex-1">
+                            <div class="text-green-500 text-3xl font-bold mb-1">4</div>
+                            <p class="text-gray-300 text-base font-medium">Đánh giá kết quả</p>
+                        </div>
+                        <div class="text-green-500 text-2xl font-bold">→</div>
+                        <div class="text-center flex-1">
+                            <div class="text-green-500 text-3xl font-bold mb-1">5</div>
+                            <p class="text-gray-300 text-base font-medium">Điều chỉnh & Áp dụng</p>
                         </div>
                     </div>
                 </div>
