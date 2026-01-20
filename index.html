@@ -272,26 +272,7 @@
             }
         }
 
-        /* Scan Line Effect */
-        .scan-line {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: rgba(0, 255, 65, 0.5);
-            animation: scan 4s linear infinite;
-            z-index: 10;
-        }
-
-        @keyframes scan {
-            0% {
-                top: 0;
-            }
-            100% {
-                top: 100%;
-            }
-        }
+        /* Scan Line Effect removed */
 
         /* Responsive */
         @media (max-width: 768px) {
@@ -375,7 +356,6 @@
     <div class="content-wrapper">
         <!-- SECTION 1: THE HOOK -->
         <section id="hook" class="min-h-screen flex flex-col justify-center items-center px-4 relative">
-            <div class="scan-line"></div>
             
             <!-- Main Title with Glitch Effect -->
             <div class="text-center mb-12" data-aos="fade-down" data-aos-duration="1000">
@@ -459,7 +439,7 @@
                 </div>
 
                 <!-- Three Philosophical Questions -->
-                <div class="mt-12 bg-black bg-opacity-70 border border-green-500 rounded-lg p-8" data-aos="fade-up" data-aos-delay="700">
+                <div id="philosophical-questions" class="mt-12 bg-black bg-opacity-70 border border-green-500 rounded-lg p-8" data-aos="fade-up" data-aos-delay="500">
                     <h3 class="text-2xl font-bold truth-text mb-6 text-center" style="font-family: 'Orbitron', sans-serif;">
                         BA CÂU HỎI TRIẾT HỌC
                     </h3>
@@ -481,23 +461,15 @@
             </div>
 
             <!-- Enter Button -->
-            <button class="neon-button" onclick="scrollToHistory()" data-aos="zoom-in" data-aos-delay="900">
+            <button class="neon-button" onclick="scrollToHistory()" data-aos="zoom-in" data-aos-delay="600" data-aos-anchor="#philosophical-questions" data-aos-anchor-placement="bottom-bottom">
                 ENTER THE TRUTH
             </button>
-
-            <!-- Scroll Indicator -->
-            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2" data-aos="fade-up" data-aos-delay="1100">
-                <div class="text-green-500 text-3xl animate-bounce">
-                    ↓
-                </div>
-            </div>
         </section>
 
         <div class="section-divider"></div>
 
         <!-- SECTION 2: HISTORY OF PHILOSOPHY -->
         <section id="history" class="min-h-screen py-20 px-4 relative">
-            <div class="scan-line"></div>
             
             <!-- Section Title -->
             <div class="text-center mb-16" data-aos="fade-down">
@@ -549,10 +521,7 @@
                                 </p>
                             </div>
                         </div>
-                        
-                        <div class="text-center mt-6">
-                            <span class="text-xs text-gray-500">[ Nhấn để xem chi tiết ]</span>
-                        </div>
+
                     </div>
                 </div>
 
@@ -586,10 +555,7 @@
                                 </p>
                             </div>
                         </div>
-                        
-                        <div class="text-center mt-6">
-                            <span class="text-xs text-gray-500">[ Nhấn để xem chi tiết ]</span>
-                        </div>
+
                     </div>
                 </div>
 
@@ -632,16 +598,13 @@
                                 </p>
                             </div>
                         </div>
-                        
-                        <div class="text-center mt-6">
-                            <span class="text-xs text-gray-500">[ Nhấn để xem chi tiết ]</span>
-                        </div>
+
                     </div>
                 </div>
             </div>
 
             <!-- Key Takeaway -->
-            <div class="max-w-4xl mx-auto mt-16" data-aos="fade-up" data-aos-delay="800">
+            <div id="key-takeaway" class="max-w-4xl mx-auto mt-16" data-aos="fade-up" data-aos-delay="500">
                 <div class="bg-green-900 bg-opacity-20 border-2 border-green-500 rounded-lg p-6 text-center">
                     <p class="text-xl text-gray-300 leading-relaxed">
                         <span class="truth-text font-bold text-2xl">✓</span> 
@@ -650,13 +613,19 @@
                     </p>
                 </div>
             </div>
+
+            <!-- Continue Button -->
+            <div class="text-center mt-12">
+                <button class="neon-button" onclick="scrollToScanner()" data-aos="zoom-in" data-aos-delay="700" data-aos-anchor="#key-takeaway" data-aos-anchor-placement="bottom-bottom">
+                    CONTINUE EXPLORING
+                </button>
+            </div>
         </section>
 
         <div class="section-divider"></div>
 
         <!-- SECTION 3: THE SCANNER / TRUTH LENS -->
         <section id="scanner" class="min-h-screen py-20 px-4 relative">
-            <div class="scan-line"></div>
             
             <!-- Section Title -->
             <div class="text-center mb-16" data-aos="fade-down">
@@ -951,7 +920,7 @@
                     </div>
 
                     <!-- Factor 4 -->
-                    <div class="hologram-card" data-aos="fade-left" data-aos-delay="400">
+                    <div id="scanner-end" class="hologram-card" data-aos="fade-left" data-aos-delay="400">
                         <div class="relative z-10">
                             <div class="flex items-center mb-4">
                                 <div class="text-5xl mr-4">🎯</div>
@@ -973,57 +942,11 @@
                     </div>
                 </div>
 
-                <!-- Statistics with Animated Progress Bars -->
-                <div class="bg-black bg-opacity-70 border-2 border-red-500 rounded-lg p-8" data-aos="fade-up">
-                    <h4 class="text-2xl font-bold warning-text text-center mb-8" style="font-family: 'Orbitron', sans-serif;">
-                        📊 SỐ LIỆU ĐÁNG LO NGẠI
-                    </h4>
-                    
-                    <!-- Stat 1 -->
-                    <div class="mb-8">
-                        <div class="flex justify-between items-center mb-2">
-                            <p class="text-gray-300 text-lg">
-                                <span class="font-bold">73%</span> sinh viên Gen Z tin vào lời khuyên của influencers hơn quảng cáo truyền thống
-                            </p>
-                            <span class="text-red-500 font-bold text-xl">73%</span>
-                        </div>
-                        <div class="w-full bg-gray-800 rounded-full h-4 overflow-hidden">
-                            <div class="stat-bar bg-gradient-to-r from-red-600 to-red-400 h-4 rounded-full shadow-lg shadow-red-500/50" 
-                                 data-width="73" style="width: 0%"></div>
-                        </div>
-                    </div>
-
-                    <!-- Stat 2 -->
-                    <div class="mb-8">
-                        <div class="flex justify-between items-center mb-2">
-                            <p class="text-gray-300 text-lg">
-                                <span class="font-bold">61%</span> đưa ra quyết định mua hàng dựa trên recommendation của KOLs
-                            </p>
-                            <span class="text-red-500 font-bold text-xl">61%</span>
-                        </div>
-                        <div class="w-full bg-gray-800 rounded-full h-4 overflow-hidden">
-                            <div class="stat-bar bg-gradient-to-r from-orange-600 to-orange-400 h-4 rounded-full shadow-lg shadow-orange-500/50" 
-                                 data-width="61" style="width: 0%"></div>
-                        </div>
-                    </div>
-
-                    <!-- Stat 3 -->
-                    <div class="mb-4">
-                        <div class="flex justify-between items-center mb-2">
-                            <p class="text-gray-300 text-lg">
-                                <span class="font-bold">49%</span> không kiểm chứng thông tin trước khi tin theo
-                            </p>
-                            <span class="text-red-500 font-bold text-xl">49%</span>
-                        </div>
-                        <div class="w-full bg-gray-800 rounded-full h-4 overflow-hidden">
-                            <div class="stat-bar bg-gradient-to-r from-yellow-600 to-yellow-400 h-4 rounded-full shadow-lg shadow-yellow-500/50" 
-                                 data-width="49" style="width: 0%"></div>
-                        </div>
-                    </div>
-
-                    <p class="text-center text-red-400 mt-8 text-lg font-bold animate-pulse">
-                        ⚠️ Đây là những con số đáng báo động về tình trạng nhận thức của giới trẻ
-                    </p>
+                <!-- Continue Button -->
+                <div class="text-center mt-20">
+                    <button class="neon-button" onclick="scrollToRealityCheck()" data-aos="zoom-in" data-aos-delay="700" data-aos-anchor="#scanner-end" data-aos-anchor-placement="bottom-bottom">
+                        CONTINUE EXPLORING
+                    </button>
                 </div>
             </div>
         </section>
@@ -1032,7 +955,6 @@
 
         <!-- SECTION 4: THE REALITY CHECK -->
         <section id="reality-check" class="min-h-screen py-20 px-4 relative">
-            <div class="scan-line"></div>
             
             <!-- Section Title -->
             <div class="text-center mb-16" data-aos="fade-down">
@@ -1298,7 +1220,7 @@
                 </div>
 
                 <!-- Example Warning -->
-                <div class="mt-8 bg-red-900 bg-opacity-20 border border-red-500 rounded-lg p-6" data-aos="fade-up">
+                <div id="reality-check-end" class="mt-8 bg-red-900 bg-opacity-20 border border-red-500 rounded-lg p-6" data-aos="fade-up">
                     <h4 class="text-xl font-bold warning-text mb-4 flex items-center">
                         <span class="mr-3">⚠️</span> VÍ DỤ VỀ THÔNG TIN SAI LỆCH
                     </h4>
@@ -1309,13 +1231,19 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Continue Button -->
+            <div class="text-center mt-12">
+                <button class="neon-button" onclick="scrollToSolution()" data-aos="zoom-in" data-aos-delay="700" data-aos-anchor="#reality-check-end" data-aos-anchor-placement="bottom-bottom">
+                    CONTINUE EXPLORING
+                </button>
+            </div>
         </section>
 
         <div class="section-divider"></div>
 
         <!-- SECTION 5: SOLUTION & CONCLUSION -->
         <section id="solution" class="min-h-screen py-20 px-4 relative">
-            <div class="scan-line"></div>
             
             <!-- Section Title -->
             <div class="text-center mb-16" data-aos="fade-down">
@@ -1555,57 +1483,48 @@
         </section>
 
         <div class="section-divider"></div>
-
-        <!-- Footer with QR Code -->
-        <footer class="py-12 px-4">
-            <div class="max-w-6xl mx-auto">
-                <div class="grid md:grid-cols-3 gap-8 items-center">
-                    <!-- Info -->
-                    <div class="text-center md:text-left">
-                        <h3 class="text-xl font-bold truth-text mb-2" style="font-family: 'Orbitron', sans-serif;">
-                            THE TRUTH LENS
-                        </h3>
-                        <p class="text-gray-400 text-sm">Thấu Kính Sự Thật</p>
-                        <p class="text-gray-500 text-xs mt-2">Triết học Mác-Lênin</p>
-                        <p class="text-gray-500 text-xs">Nhận thức trong Thời đại Mạng Xã Hội</p>
-                    </div>
-
-                    <!-- QR Code -->
-                    <div class="text-center">
-                        <div class="inline-block bg-white p-4 rounded-lg border-2 border-green-500">
-                            <div class="w-32 h-32 bg-gray-200 flex items-center justify-center">
-                                <div class="text-center">
-                                    <div class="text-4xl mb-2">📱</div>
-                                    <p class="text-xs text-gray-600">QR CODE</p>
-                                    <p class="text-xs text-gray-500">Scan để xem</p>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="text-gray-400 text-sm mt-3">Truy cập web này</p>
-                    </div>
-
-                    <!-- Copyright -->
-                    <div class="text-center md:text-right">
-                        <p class="text-gray-400 text-sm mb-2">© 2026 THE TRUTH LENS</p>
-                        <p class="text-gray-500 text-xs">Made with 💚 for Philosophy</p>
-                        <div class="mt-4 flex justify-center md:justify-end gap-4">
-                            <span class="text-green-500 text-2xl cursor-pointer hover:text-green-400 transition-all">🌐</span>
-                            <span class="text-green-500 text-2xl cursor-pointer hover:text-green-400 transition-all">📧</span>
-                            <span class="text-green-500 text-2xl cursor-pointer hover:text-green-400 transition-all">💬</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="border-t border-gray-700 mt-8 pt-6 text-center">
-                    <p class="text-gray-500 text-xs">
-                        "Practice is the criterion of truth" | "Thực tiễn là tiêu chuẩn của chân lý"
-                    </p>
-                </div>
-            </div>
-        </footer>
     </div>
 
     <script>
+        // Lock scrolling initially - user must click button first
+        let scrollUnlocked = false;
+        let historyUnlocked = false;
+        let scannerUnlocked = false;
+        let realityCheckUnlocked = false;
+        
+        // Prevent scrolling past first section and history section
+        window.addEventListener('scroll', function(e) {
+            if (!scrollUnlocked) {
+                const firstSection = document.getElementById('hook');
+                const firstSectionBottom = firstSection.offsetHeight;
+                
+                if (window.scrollY > firstSectionBottom - window.innerHeight) {
+                    window.scrollTo(0, firstSectionBottom - window.innerHeight);
+                }
+            } else if (!historyUnlocked) {
+                const historySection = document.getElementById('history');
+                const historySectionBottom = historySection.offsetTop + historySection.offsetHeight;
+                
+                if (window.scrollY > historySectionBottom - window.innerHeight) {
+                    window.scrollTo(0, historySectionBottom - window.innerHeight);
+                }
+            } else if (!scannerUnlocked) {
+                const scannerSection = document.getElementById('scanner');
+                const scannerSectionBottom = scannerSection.offsetTop + scannerSection.offsetHeight;
+                
+                if (window.scrollY > scannerSectionBottom - window.innerHeight) {
+                    window.scrollTo(0, scannerSectionBottom - window.innerHeight);
+                }
+            } else if (!realityCheckUnlocked) {
+                const realityCheckSection = document.getElementById('reality-check');
+                const realityCheckSectionBottom = realityCheckSection.offsetTop + realityCheckSection.offsetHeight;
+                
+                if (window.scrollY > realityCheckSectionBottom - window.innerHeight) {
+                    window.scrollTo(0, realityCheckSectionBottom - window.innerHeight);
+                }
+            }
+        }, { passive: false });
+        
         // Initialize AOS
         AOS.init({
             duration: 1000,
@@ -1657,7 +1576,40 @@
 
         // Smooth scroll to history section
         function scrollToHistory() {
+            // Unlock scrolling from first section
+            scrollUnlocked = true;
+            
             document.getElementById('history').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+
+        // Smooth scroll to scanner section
+        function scrollToScanner() {
+            // Unlock scrolling from history section
+            historyUnlocked = true;
+            
+            document.getElementById('scanner').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+
+        // Smooth scroll to reality-check section
+        function scrollToRealityCheck() {
+            // Unlock scrolling from scanner section
+            scannerUnlocked = true;
+            
+            document.getElementById('reality-check').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+
+        // Smooth scroll to solution section
+        function scrollToSolution() {
+            // Unlock scrolling from reality-check section
+            realityCheckUnlocked = true;
+            
+            document.getElementById('solution').scrollIntoView({ 
                 behavior: 'smooth' 
             });
         }
@@ -1682,14 +1634,7 @@
             }
         });
 
-        // Parallax effect for scan lines
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const scanLines = document.querySelectorAll('.scan-line');
-            scanLines.forEach((line, index) => {
-                line.style.transform = `translateY(${scrolled * 0.5}px)`;
-            });
-        });
+        // Parallax for scan lines removed
 
         // Interactive Truth Lens Slider
         const sliderLine = document.getElementById('slider-line');
