@@ -1,597 +1,2002 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="THE TRUTH LENS - Ứng dụng kiểm chứng tin tức phong cách Cyberpunk">
-    <title>THE TRUTH LENS - Kiểm chứng Sự thật</title>
-
+    <title>THE TRUTH LENS - THẤU KÍNH SỰ THẬT</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=VT323&family=Courier+Prime:wght@400;700&family=Inter:wght@300;400;500;600&family=Roboto+Mono:wght@300;400;500&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background: #0a0a0a;
+            color: #00ff41;
+            overflow-x: hidden;
+        }
+
+        /* Matrix Rain Background */
+        #matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.15;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #00ff41;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00cc33;
+        }
+
+        /* Glitch Text Effect */
+        .glitch {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            position: relative;
+            text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
+                0.025em 0.04em 0 #fffc00;
+            animation: glitch 725ms infinite;
+        }
+
+        .glitch span {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .glitch span:first-child {
+            animation: glitch 500ms infinite;
+            clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+            transform: translate(-0.04em, -0.03em);
+            opacity: 0.75;
+        }
+
+        .glitch span:last-child {
+            animation: glitch 375ms infinite;
+            clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+            transform: translate(0.04em, 0.03em);
+            opacity: 0.75;
+        }
+
+        @keyframes glitch {
+            0% {
+                text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
+                    0.025em 0.04em 0 #fffc00;
+            }
+            15% {
+                text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
+                    0.025em 0.04em 0 #fffc00;
+            }
+            16% {
+                text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.035em 0 #fc00ff,
+                    -0.05em -0.05em 0 #fffc00;
+            }
+            49% {
+                text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.035em 0 #fc00ff,
+                    -0.05em -0.05em 0 #fffc00;
+            }
+            50% {
+                text-shadow: 0.05em 0.035em 0 #00fffc, 0.03em 0 0 #fc00ff,
+                    0 -0.04em 0 #fffc00;
+            }
+            99% {
+                text-shadow: 0.05em 0.035em 0 #00fffc, 0.03em 0 0 #fc00ff,
+                    0 -0.04em 0 #fffc00;
+            }
+            100% {
+                text-shadow: -0.05em 0 0 #00fffc, -0.025em -0.04em 0 #fc00ff,
+                    -0.04em -0.025em 0 #fffc00;
+            }
+        }
+
+        /* Neon Button */
+        .neon-button {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            padding: 1rem 3rem;
+            border: 3px solid #00ff41;
+            background: transparent;
+            color: #00ff41;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .neon-button:hover {
+            background: #00ff41;
+            color: #0a0a0a;
+            box-shadow: 0 0 20px #00ff41, 0 0 40px #00ff41, 0 0 60px #00ff41;
+            transform: scale(1.05);
+        }
+
+        .neon-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, #00ff41, transparent);
+            transition: left 0.5s;
+        }
+
+        .neon-button:hover::before {
+            left: 100%;
+        }
+
+        /* Hologram Card */
+        .hologram-card {
+            background: rgba(0, 255, 65, 0.05);
+            border: 2px solid #00ff41;
+            border-radius: 10px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .hologram-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(0, 255, 65, 0.1),
+                transparent
+            );
+            transform: rotate(45deg);
+            animation: hologram-shine 3s infinite;
+        }
+
+        @keyframes hologram-shine {
+            0% {
+                transform: translateX(-100%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(100%) rotate(45deg);
+            }
+        }
+
+        .hologram-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.5);
+            border-color: #00fffc;
+        }
+
+        .hologram-card.active {
+            background: rgba(0, 255, 65, 0.15);
+            box-shadow: 0 0 40px rgba(0, 255, 65, 0.7);
+        }
+
+        /* Warning Style */
+        .warning-text {
+            color: #ff0040;
+            text-shadow: 0 0 10px #ff0040;
+        }
+
+        /* Truth Style */
+        .truth-text {
+            color: #00ff41;
+            text-shadow: 0 0 10px #00ff41;
+        }
+
+        /* Section Divider */
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ff41, transparent);
+            margin: 4rem 0;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        /* Typing Effect */
+        .typing {
+            overflow: hidden;
+            border-right: 3px solid #00ff41;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+            display: inline-block;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink-caret {
+            from, to {
+                border-color: transparent;
+            }
+            50% {
+                border-color: #00ff41;
+            }
+        }
+
+        /* Scan Line Effect */
+        .scan-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(0, 255, 65, 0.5);
+            animation: scan 4s linear infinite;
+            z-index: 10;
+        }
+
+        @keyframes scan {
+            0% {
+                top: 0;
+            }
+            100% {
+                top: 100%;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .glitch {
+                font-size: 2rem;
+            }
+            
+            .neon-button {
+                font-size: 1rem;
+                padding: 0.75rem 2rem;
+            }
+
+            table {
+                font-size: 0.875rem;
+            }
+
+            .hologram-card {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Solution Cards Animation */
+        .solution-card {
+            transition: all 0.3s ease;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        /* Checklist Progress Animation */
+        @keyframes checkboxPulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(0, 255, 65, 0.7);
+            }
+            50% {
+                box-shadow: 0 0 0 10px rgba(0, 255, 65, 0);
+            }
+        }
+
+        .checklist-item:checked {
+            animation: checkboxPulse 0.5s ease;
+        }
+
+        /* Trust Result Animations */
+        @keyframes slideInFromLeft {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInFromRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .slide-in-left {
+            animation: slideInFromLeft 0.5s ease;
+        }
+
+        .slide-in-right {
+            animation: slideInFromRight 0.5s ease;
+        }
+    </style>
 </head>
-
 <body>
-    <!-- Particles.js Background -->
-    <div id="particles-js"></div>
+    <!-- Matrix Rain Canvas -->
+    <canvas id="matrix-canvas"></canvas>
 
-    <!-- Library Button (Fixed) -->
-    <button id="libraryBtn" class="library-button">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-        </svg>
-        <span>THƯ VIỆN</span>
-    </button>
+    <div class="content-wrapper">
+        <!-- SECTION 1: THE HOOK -->
+        <section id="hook" class="min-h-screen flex flex-col justify-center items-center px-4 relative">
+            <div class="scan-line"></div>
+            
+            <!-- Main Title with Glitch Effect -->
+            <div class="text-center mb-12" data-aos="fade-down" data-aos-duration="1000">
+                <h1 class="glitch mb-4" data-text="THE TRUTH LENS">
+                    THE TRUTH LENS
+                    <span aria-hidden="true">THE TRUTH LENS</span>
+                    <span aria-hidden="true">THE TRUTH LENS</span>
+                </h1>
+                <h2 class="text-3xl md:text-4xl font-bold truth-text" style="font-family: 'Orbitron', sans-serif;">
+                    THẤU KÍNH SỰ THẬT
+                </h2>
+                <div class="mt-4 text-xl text-gray-400">
+                    <p>Triết học Mác-Lênin</p>
+                    <p class="text-lg mt-2">Nhận thức trong Thời đại Mạng Xã Hội</p>
+                </div>
+            </div>
 
-    <!-- Library Sidebar -->
-    <div id="librarySidebar" class="library-sidebar">
-        <div class="sidebar-header">
-            <h2>CƠ SỞ LÝ LUẬN MÁC-LÊNIN</h2>
-            <button id="closeSidebar" class="sidebar-close">&times;</button>
-        </div>
-        <div class="sidebar-content">
-            <h3>Chương 2: Lý luận nhận thức Mác-Lênin</h3>
+            <!-- Problem Statement -->
+            <div class="max-w-4xl mx-auto mb-12" data-aos="fade-up" data-aos-delay="300">
+                <div class="bg-black bg-opacity-70 border border-red-500 rounded-lg p-8 mb-8">
+                    <h3 class="text-2xl font-bold warning-text mb-6 text-center" style="font-family: 'Orbitron', sans-serif;">
+                        ⚠️ HIỆN TƯỢNG ĐÁNG LO NGẠI ⚠️
+                    </h3>
+                    <p class="text-gray-300 text-lg leading-relaxed mb-4">
+                        Trong thời đại số hiện nay, chúng ta đang chứng kiến một hiện tượng đáng lo ngại: 
+                        <span class="warning-text font-bold">nhiều sinh viên, đặc biệt là Gen Z, có xu hướng tin tưởng mù quáng</span> 
+                        vào lời khuyên của các KOLs, influencers về mọi lĩnh vực từ tài chính, sức khỏe, học tập đến tình yêu.
+                    </p>
+                    <p class="text-gray-300 text-lg leading-relaxed">
+                        Một số người nổi tiếng thậm chí được xem như <span class="warning-text font-bold">'nguồn chân lý' tuyệt đối</span>.
+                    </p>
+                </div>
 
-            <section class="theory-section">
-                <h4>2.1. Khái niệm nhận thức</h4>
-                <p><strong>Định nghĩa:</strong> Nhận thức là sự phản ánh tích cực, sáng tạo của hiện thực khách quan vào
-                    đầu óc con người trên cơ sở thực tiễn và gắn liền với hoạt động cải tạo thế giới.</p>
-                <p>Nhận thức bao gồm hai giai đoạn:</p>
-                <ul>
-                    <li><strong>Nhận thức cảm tính:</strong> Phản ánh bề ngoài, hiện tượng của sự vật thông qua các giác
-                        quan (thị giác, thính giác, xúc giác, vị giác, khứu giác)</li>
-                    <li><strong>Nhận thức lý tính:</strong> Phản ánh bản chất, quy luật bên trong của sự vật thông qua
-                        tư duy trừu tượng (phân tích, tổng hợp, khái quát hóa)</li>
-                </ul>
-            </section>
-
-            <section class="theory-section">
-                <h4>2.2. Quan điểm triết học về nhận thức</h4>
-                <p><strong>Chủ nghĩa duy tâm:</strong> Cho rằng nhận thức xuất phát từ ý thức, tinh thần. Phủ nhận vai
-                    trò của thực tiễn. Thực tại là sản phẩm của tư duy.</p>
-                <p><strong>Ví dụ:</strong> "KOL nói gì thì tôi tin đó" - hoàn toàn chủ quan, không cần kiểm chứng.</p>
-
-                <p><strong>Chủ nghĩa siêu hình:</strong> Nhìn nhận sự vật một cách tĩnh, cô lập, không thấy được sự vận
-                    động, phát triển. Tiếp nhận thông tin một chiều, không có tư duy phê phán.</p>
-                <p><strong>Ví dụ:</strong> Chỉ nghe và tin mà không hỏi "tại sao".</p>
-
-                <p><strong>Chủ nghĩa duy vật biện chứng (Mác-Lênin):</strong> Nhận thức là quá trình phản ánh năng động,
-                    sáng tạo thế giới khách quan vào ý thức con người trên cơ sở thực tiễn.</p>
-                <p><strong>Ví dụ:</strong> Kiểm chứng, phê phán, so sánh thông tin với thực tế trước khi tin.</p>
-            </section>
-
-            <section class="theory-section">
-                <h4>2.3. So sánh Nhận thức Cảm tính và Lý tính</h4>
-                <p><strong>Nhận thức Cảm tính:</strong></p>
-                <ul>
-                    <li>Phương thức: Trực tiếp qua giác quan</li>
-                    <li>Nội dung: Phản ánh hình thức, hiện tượng bề ngoài</li>
-                    <li>Tính chất: Cụ thể, sinh động, trực quan</li>
-                    <li>Hạn chế: Dễ bị lừa bởi hình thức bên ngoài</li>
-                </ul>
-
-                <p><strong>Nhận thức Lý tính:</strong></p>
-                <ul>
-                    <li>Phương thức: Gián tiếp qua tư duy</li>
-                    <li>Nội dung: Phản ánh bản chất, quy luật bên trong</li>
-                    <li>Tính chất: Trừu tượng, khái quát, sâu sắc</li>
-                    <li>Hạn chế: Cần thời gian và công sức nghiên cứu</li>
-                </ul>
-
-                <p><strong>Mối quan hệ:</strong> Nhận thức cảm tính là cơ sở, điểm xuất phát. Nhận thức lý tính là sự
-                    phát triển, nâng cao. Hai hình thức gắn bó, thống nhất, không thể tách rời.</p>
-            </section>
-
-            <section class="theory-section">
-                <h4>2.4. Thực tiễn và vai trò của thực tiễn</h4>
-                <p><strong>Thực tiễn</strong> là toàn bộ hoạt động vật chất, có mục đích, mang tính lịch sử - xã hội của
-                    con người nhằm cải tạo tự nhiên và xã hội.</p>
-
-                <p><strong>4 vai trò của thực tiễn:</strong></p>
-                <ul>
-                    <li><strong>Nguồn gốc:</strong> Mọi kiến thức đều xuất phát từ thực tiễn</li>
-                    <li><strong>Động lực:</strong> Thúc đẩy nhận thức phát triển</li>
-                    <li><strong>Mục đích:</strong> Nhận thức để áp dụng vào cuộc sống</li>
-                    <li><strong>Tiêu chuẩn chân lý:</strong> Chỉ thực tiễn mới chứng minh đúng/sai</li>
-                </ul>
-            </section>
-
-            <section class="theory-section">
-                <h4>2.5. Chân lý và tiêu chuẩn chân lý</h4>
-                <p><strong>Chân lý</strong> là sự phù hợp giữa nhận thức với hiện thực khách quan được thực tiễn kiểm
-                    nghiệm.</p>
-
-                <p><strong>Đặc điểm của chân lý:</strong></p>
-                <ul>
-                    <li>Tính khách quan: Không phụ thuộc ý chí chủ quan</li>
-                    <li>Tính cụ thể: Đúng trong điều kiện, hoàn cảnh cụ thể</li>
-                    <li>Tính tương đối và tuyệt đối: Luôn phát triển, hoàn thiện</li>
-                </ul>
-            </section>
-
-            <section class="theory-section">
-                <h4>2.6. Yếu tố tâm lý - xã hội ảnh hưởng nhận thức</h4>
-                <ul>
-                    <li><strong>Tâm lý đám đông (Herd mentality):</strong> "Mọi người làm thì mình cũng làm theo"</li>
-                    <li><strong>Hiệu ứng hào quang (Halo effect):</strong> "Người đẹp/giàu = Giỏi mọi lĩnh vực"</li>
-                    <li><strong>Áp lực xã hội (Social pressure):</strong> "Không theo trend = Lỗi thời"</li>
-                    <li><strong>Xác nhận thiên vị (Confirmation bias):</strong> "Chỉ tin thông tin phù hợp với suy nghĩ
-                        mình"</li>
-                </ul>
-
-                <p><strong>Số liệu thống kê:</strong></p>
-                <ul>
-                    <li>73% sinh viên Gen Z tin influencers hơn quảng cáo</li>
-                    <li>61% quyết định mua hàng dựa trên KOLs</li>
-                    <li>49% không kiểm chứng thông tin trước khi tin</li>
-                </ul>
-            </section>
-
-            <section class="theory-section">
-                <h4>2.7. Ứng dụng vào thực tế</h4>
-                <p>Trong thời đại thông tin, việc áp dụng lý luận nhận thức Mác-Lênin giúp chúng ta:</p>
-                <ul>
-                    <li>Phân biệt thông tin chân thực và giả mạo</li>
-                    <li>Không tin mù quáng vào KOL, influencer</li>
-                    <li>Kiểm chứng thông tin qua thực tiễn (bằng cấp, kết quả, chứng minh khoa học)</li>
-                    <li>Tư duy phản biện, phân tích đa chiều</li>
-                    <li>Rèn luyện tư duy độc lập, không bị ảnh hưởng bởi cảm xúc tập thể</li>
-                </ul>
-
-                <p><strong>Quy trình nhận thức đúng đắn:</strong></p>
-                <ul>
-                    <li>Bước 1: Tiếp nhận thông tin (Nhận thức cảm tính)</li>
-                    <li>Bước 2: Phân tích, so sánh (Nhận thức lý tính)</li>
-                    <li>Bước 3: Kiểm chứng qua thực tiễn</li>
-                    <li>Bước 4: Đánh giá kết quả</li>
-                    <li>Bước 5: Điều chỉnh, hoàn thiện</li>
-                </ul>
-            </section>
-
-            <section class="theory-section highlight-section">
-                <h4>🎯 3 CÂU HỎI TRIẾT HỌC CẦN TRẢ LỜI</h4>
-                <ol style="line-height: 1.8;">
-                    <li><strong>Tại sao</strong> con người lại dễ dàng tin vào lời khuyên của người nổi tiếng?</li>
-                    <li><strong>Vai trò</strong> của cảm xúc và niềm tin xã hội trong quá trình nhận thức là gì?</li>
-                    <li><strong>Làm thế nào</strong> để có được nhận thức đúng đắn trong thời đại thông tin quá tải?
-                    </li>
-                </ol>
-            </section>
-
-            <section class="theory-section highlight-section">
-                <h4>✅ CHECKLIST 4 BƯỚC KIỂM CHỨNG THÔNG TIN</h4>
-                <p><strong>Bước 1: Kiểm tra chuyên môn</strong></p>
-                <ul>
-                    <li>KOL có bằng cấp, chứng chỉ liên quan không?</li>
-                    <li>Kinh nghiệm thực tế là gì?</li>
-                    <li>Có thành tích cụ thể, kiểm chứng được không?</li>
-                </ul>
-
-                <p><strong>Bước 2: Đánh giá tính khách quan</strong></p>
-                <ul>
-                    <li>Có lợi ích riêng trong việc quảng bá không?</li>
-                    <li>Được tài trợ bởi ai? (Affiliate, PR có trả tiền)</li>
-                    <li>Có bằng chứng khoa học ủng hộ không?</li>
-                </ul>
-
-                <p><strong>Bước 3: Kiểm chứng nguồn</strong></p>
-                <ul>
-                    <li>Nguồn trích dẫn có rõ ràng không?</li>
-                    <li>Có nghiên cứu, số liệu thực tế không?</li>
-                    <li>Kết quả khi người khác áp dụng ra sao?</li>
-                </ul>
-
-                <p><strong>Bước 4: So sánh đa dạng nguồn</strong></p>
-                <ul>
-                    <li>So sánh ý kiến từ nhiều người khác nhau</li>
-                    <li>Tham khảo chuyên gia thực sự</li>
-                    <li>Tìm kiếm ý kiến phản biện, phê phán</li>
-                </ul>
-            </section>
-
-            <section class="theory-section">
-                <h4>2.8. Giải pháp cho cá nhân</h4>
-                <ul>
-                    <li><strong>Rèn luyện tư duy phản biện:</strong> Luôn đặt câu hỏi "Tại sao?", "Bằng chứng là gì?"
-                    </li>
-                    <li><strong>Kiểm chứng đa chiều:</strong> So sánh từ nhiều nguồn khác nhau</li>
-                    <li><strong>Thực tiễn hóa kiến thức:</strong> Thử nghiệm nhỏ trước khi áp dụng rộng</li>
-                    <li><strong>Học tập liên tục:</strong> Nâng cao kiến thức chuyên môn</li>
-                    <li><strong>Quản lý cảm xúc:</strong> Tránh quyết định khi bị ảnh hưởng bởi cảm xúc tập thể</li>
-                </ul>
-            </section>
-
-            <section class="theory-section">
-                <h4>2.9. Giải pháp cho xã hội</h4>
-                <ul>
-                    <li><strong>Giáo dục tư duy phản biện:</strong> Đưa vào chương trình từ cấp phổ thông</li>
-                    <li><strong>Quản lý thông tin:</strong> Xác minh thông tin từ KOLs, xử lý thông tin sai lệch</li>
-                    <li><strong>Nâng cao nhận thức cộng đồng:</strong> Chiến dịch về cách kiểm chứng thông tin</li>
-                    <li><strong>Bảo vệ người tiêu dùng:</strong> Quy định rõ trách nhiệm của influencers/KOLs</li>
-                </ul>
-            </section>
-
-            <section class="theory-section highlight-section">
-                <h4>💡 5 BÀI HỌC QUAN TRỌNG</h4>
-                <ol style="line-height: 1.8;">
-                    <li><strong>Nhận thức cảm tính</strong> giúp tiếp cận thông tin nhanh nhưng dễ dẫn đến sai lầm</li>
-                    <li><strong>Nhận thức lý tính</strong> giúp phân tích sâu, tìm ra bản chất vấn đề</li>
-                    <li><strong>Thực tiễn</strong> là tiêu chuẩn duy nhất để kiểm nghiệm chân lý</li>
-                    <li><strong>Niềm tin xã hội</strong> và cảm xúc tập thể có thể sai lệch nghiêm trọng nhận thức</li>
-                    <li>Cần kết hợp <strong>tư duy độc lập + phản biện + kiểm chứng thực tiễn</strong></li>
-                </ol>
-            </section>
-
-
-        </div>
-    </div>
-
-    <!-- Main Container -->
-    <div class="container">
-        <!-- Hero Section -->
-        <section class="hero-section">
-            <h1 class="glitch-title" data-text="THE TRUTH LENS">THE TRUTH LENS</h1>
-            <p class="hero-subtitle">Giải mã Thực tại trong Kỷ nguyên Số</p>
-
-            <!-- Breaking News Ticker -->
-            <div class="news-ticker">
-                <div class="ticker-label">⚠ BREAKING NEWS</div>
-                <div class="ticker-content">
-                    <div class="ticker-text">
-                        BREAKING: Sinh viên mất trắng 50 triệu vì tin KOL tài chính... | CẢNH BÁO: Nhập viện vì thuốc
-                        giảm cân online... | TIN NÓNG: Làn sóng FOMO đầu tư ảo đang càn quét Gen Z... | KHẨN CẤP: 70%
-                        thông tin trên mạng xã hội chưa được kiểm chứng... | BREAKING: Sinh viên mất trắng 50 triệu vì
-                        tin KOL tài chính... | CẢNH BÁO: Nhập viện vì thuốc giảm cân online... | TIN NÓNG: Làn sóng FOMO
-                        đầu tư ảo đang càn quét Gen Z... | KHẨN CẤP: 70% thông tin trên mạng xã hội chưa được kiểm
-                        chứng...
+                <!-- Real World Examples -->
+                <div class="grid md:grid-cols-3 gap-6" data-aos="fade-up" data-aos-delay="500">
+                    <!-- Example 1: KOL Tài chính -->
+                    <div class="hologram-card">
+                        <div class="relative z-10">
+                            <div class="text-4xl mb-4 text-center">💰</div>
+                            <h4 class="text-xl font-bold truth-text mb-3 text-center" style="font-family: 'Orbitron', sans-serif;">
+                                KOL TÀI CHÍNH
+                            </h4>
+                            <p class="text-gray-300 text-sm leading-relaxed">
+                                Năm vừa qua, hàng loạt vụ việc các KOL tài chính khuyên đầu tư vào cryptocurrency, 
+                                với những lời hứa <span class="warning-text">'giàu nhanh trong 3 tháng'</span>. 
+                                Kết quả: <span class="warning-text font-bold">hàng nghìn bạn trẻ đã mất tiền</span>, 
+                                thậm chí mất cả vốn lẫn lãi.
+                            </p>
+                        </div>
                     </div>
+
+                    <!-- Example 2: Influencer Sức khỏe -->
+                    <div class="hologram-card">
+                        <div class="relative z-10">
+                            <div class="text-4xl mb-4 text-center">🏥</div>
+                            <h4 class="text-xl font-bold truth-text mb-3 text-center" style="font-family: 'Orbitron', sans-serif;">
+                                INFLUENCER SỨC KHỎE
+                            </h4>
+                            <p class="text-gray-300 text-sm leading-relaxed">
+                                Trào lưu <span class="warning-text">'bỏ bữa sáng để giảm cân'</span> được nhiều influencer 
+                                quảng bá đã dẫn đến tình trạng nhiều người gặp vấn đề về sức khỏe, 
+                                đặc biệt là <span class="warning-text font-bold">dạ dày và trao đổi chất</span>.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Example 3: Guru Học tập -->
+                    <div class="hologram-card">
+                        <div class="relative z-10">
+                            <div class="text-4xl mb-4 text-center">📚</div>
+                            <h4 class="text-xl font-bold truth-text mb-3 text-center" style="font-family: 'Orbitron', sans-serif;">
+                                GURU HỌC TẬP
+                            </h4>
+                            <p class="text-gray-300 text-sm leading-relaxed">
+                                Các phương pháp 'thần kỳ' như <span class="warning-text">'học 15 phút mỗi ngày vẫn đỗ đại học top'</span> 
+                                tạo ra kỳ vọng không thực tế và khiến nhiều bạn học sinh 
+                                <span class="warning-text font-bold">thất vọng khi áp dụng</span>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Three Philosophical Questions -->
+                <div class="mt-12 bg-black bg-opacity-70 border border-green-500 rounded-lg p-8" data-aos="fade-up" data-aos-delay="700">
+                    <h3 class="text-2xl font-bold truth-text mb-6 text-center" style="font-family: 'Orbitron', sans-serif;">
+                        BA CÂU HỎI TRIẾT HỌC
+                    </h3>
+                    <div class="space-y-4 text-gray-300 text-lg">
+                        <div class="flex items-start">
+                            <span class="truth-text font-bold mr-4">1.</span>
+                            <p><span class="font-bold">Tại sao</span> con người lại dễ dàng tin vào lời khuyên của người nổi tiếng?</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="truth-text font-bold mr-4">2.</span>
+                            <p><span class="font-bold">Vai trò</span> của cảm xúc và niềm tin xã hội trong quá trình nhận thức là gì?</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="truth-text font-bold mr-4">3.</span>
+                            <p><span class="font-bold">Làm thế nào</span> để có được nhận thức đúng đắn trong thời đại thông tin quá tải?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enter Button -->
+            <button class="neon-button" onclick="scrollToHistory()" data-aos="zoom-in" data-aos-delay="900">
+                ENTER THE TRUTH
+            </button>
+
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2" data-aos="fade-up" data-aos-delay="1100">
+                <div class="text-green-500 text-3xl animate-bounce">
+                    ↓
                 </div>
             </div>
         </section>
 
-        <!-- Section 2: Sensory Perception Test -->
-        <section class="perception-section">
-            <h2 class="section-title">KIỂM TRA NHẬN THỨC CẢM TÍNH</h2>
-            <p class="section-description">Những gì bạn thấy chưa chắc là sự thật. <span class="tooltip"
-                    data-text="Hiện tượng - Bề ngoài của sự vật">Di chuột để xem</span> <span class="tooltip"
-                    data-text="Bản chất - Quy luật bên trong">bản chất</span>.</p>
+        <div class="section-divider"></div>
 
-            <div class="flip-cards-container">
-                <!-- Flip Card 1 -->
-                <div class="flip-card">
-                    <div class="flip-card-inner">
-                        <!-- Front of Card -->
-                        <div class="flip-card-front">
-                            <div class="card-image">
-                                <img src="kol_profile_one.webp" alt="Luxury Influencer Profile">
+        <!-- SECTION 2: HISTORY OF PHILOSOPHY -->
+        <section id="history" class="min-h-screen py-20 px-4 relative">
+            <div class="scan-line"></div>
+            
+            <!-- Section Title -->
+            <div class="text-center mb-16" data-aos="fade-down">
+                <h2 class="text-4xl md:text-5xl font-bold truth-text mb-4" style="font-family: 'Orbitron', sans-serif;">
+                    QUAN NIỆM VỀ NHẬN THỨC
+                </h2>
+                <p class="text-2xl text-gray-400">Trong Lịch Sử Triết Học</p>
+                <div class="w-32 h-1 bg-green-500 mx-auto mt-4"></div>
+            </div>
+
+            <!-- Introduction Text -->
+            <div class="max-w-4xl mx-auto mb-16" data-aos="fade-up">
+                <p class="text-gray-300 text-lg text-center leading-relaxed">
+                    Trong lịch sử triết học, có <span class="truth-text font-bold">3 quan điểm chính</span> về nhận thức. 
+                    Mỗi quan điểm đại diện cho một cách hiểu khác nhau về cách con người tiếp cận và xử lý thông tin.
+                </p>
+            </div>
+
+            <!-- Three Philosophy Cards -->
+            <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
+                
+                <!-- Card 1: Duy tâm chủ nghĩa -->
+                <div class="hologram-card philosophy-card" data-aos="fade-right" data-aos-delay="200" onclick="toggleCard(this)">
+                    <div class="relative z-10">
+                        <div class="text-center mb-6">
+                            <div class="text-5xl mb-4">🧠</div>
+                            <h3 class="text-2xl font-bold truth-text mb-2" style="font-family: 'Orbitron', sans-serif;">
+                                DUY TÂM CHỦ NGHĨA
+                            </h3>
+                            <p class="text-sm text-gray-500 italic">Idealism</p>
+                        </div>
+                        
+                        <div class="card-content">
+                            <div class="mb-4">
+                                <p class="text-gray-300 leading-relaxed mb-4">
+                                    Cho rằng nhận thức <span class="warning-text font-bold">hoàn toàn phụ thuộc vào ý thức chủ quan</span> 
+                                    của con người.
+                                </p>
+                                <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                                    Theo quan điểm này, thực tại là sản phẩm của tư duy.
+                                </p>
                             </div>
-                            <div class="card-content">
-                                <h3 class="card-name">Alex Chen</h3>
-                                <p class="card-title">Chuyên gia Đầu tư Crypto</p>
-                                <span class="badge badge-trusted">✓ UY TÍN</span>
+                            
+                            <div class="border-t border-green-500 pt-4 mt-4">
+                                <h4 class="text-sm font-bold text-green-400 mb-2">ÁP DỤNG VỚI KOLs:</h4>
+                                <p class="text-gray-400 text-sm leading-relaxed">
+                                    Đây chính là tư duy: <span class="warning-text">'KOL nói gì thì tôi tin đó'</span> - 
+                                    hoàn toàn chủ quan, không cần kiểm chứng.
+                                </p>
                             </div>
                         </div>
+                        
+                        <div class="text-center mt-6">
+                            <span class="text-xs text-gray-500">[ Nhấn để xem chi tiết ]</span>
+                        </div>
+                    </div>
+                </div>
 
-                        <!-- Back of Card -->
-                        <div class="flip-card-back">
-                            <div class="scam-alert">
-                                <h3 class="alert-title">⚠ CẢNH BÁO LỪA ĐẢO</h3>
-                                <div class="alert-content">
-                                    <p><strong>Sự thật là:</strong></p>
-                                    <ul>
-                                        <li>Nợ xấu 2.3 triệu đô chưa công bố</li>
-                                        <li>Thuê đồ hiệu chỉ để chụp ảnh</li>
-                                        <li>Quảng bá mô hình đa cấp</li>
-                                        <li>Nhiều cáo buộc lừa đảo</li>
-                                    </ul>
+                <!-- Card 2: Duy vật siêu hình -->
+                <div class="hologram-card philosophy-card" data-aos="fade-up" data-aos-delay="400" onclick="toggleCard(this)">
+                    <div class="relative z-10">
+                        <div class="text-center mb-6">
+                            <div class="text-5xl mb-4">📐</div>
+                            <h3 class="text-2xl font-bold truth-text mb-2" style="font-family: 'Orbitron', sans-serif;">
+                                DUY VẬT SIÊU HÌNH
+                            </h3>
+                            <p class="text-sm text-gray-500 italic">Metaphysical Materialism</p>
+                        </div>
+                        
+                        <div class="card-content">
+                            <div class="mb-4">
+                                <p class="text-gray-300 leading-relaxed mb-4">
+                                    Cho rằng nhận thức là sự <span class="warning-text font-bold">phản ánh thụ động, máy móc</span> 
+                                    của thực tại vào đầu óc con người.
+                                </p>
+                                <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                                    Điều này dẫn đến việc tiếp nhận thông tin một chiều, không có tư duy phê phán.
+                                </p>
+                            </div>
+                            
+                            <div class="border-t border-green-500 pt-4 mt-4">
+                                <h4 class="text-sm font-bold text-green-400 mb-2">ÁP DỤNG VỚI KOLs:</h4>
+                                <p class="text-gray-400 text-sm leading-relaxed">
+                                    Người ta <span class="warning-text">chỉ nghe và tin mà không hỏi 'tại sao'</span>. 
+                                    Tiếp nhận thông tin một chiều, thiếu tư duy phản biện.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-6">
+                            <span class="text-xs text-gray-500">[ Nhấn để xem chi tiết ]</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Duy vật biện chứng -->
+                <div class="hologram-card philosophy-card" data-aos="fade-left" data-aos-delay="600" onclick="toggleCard(this)">
+                    <div class="relative z-10">
+                        <div class="text-center mb-6">
+                            <div class="text-5xl mb-4">⚡</div>
+                            <h3 class="text-2xl font-bold truth-text mb-2" style="font-family: 'Orbitron', sans-serif;">
+                                DUY VẬT BIỆN CHỨNG
+                            </h3>
+                            <p class="text-sm text-gray-500 italic">Dialectical Materialism</p>
+                        </div>
+                        
+                        <div class="card-content">
+                            <div class="mb-4">
+                                <p class="text-gray-300 leading-relaxed mb-4">
+                                    Khẳng định nhận thức là quá trình <span class="truth-text font-bold">tích cực, sáng tạo, biện chứng</span>, 
+                                    xuất phát từ thực tiễn.
+                                </p>
+                                <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                                    Chúng ta phải kiểm chứng, phê phán, so sánh thông tin với thực tế trước khi tin.
+                                </p>
+                            </div>
+                            
+                            <div class="border-t border-green-500 pt-4 mt-4">
+                                <h4 class="text-sm font-bold text-green-400 mb-2">ĐỊNH NGHĨA MÁC-XÍT:</h4>
+                                <p class="text-gray-300 text-sm leading-relaxed italic">
+                                    "Nhận thức là sự <span class="truth-text">phản ánh tích cực, sáng tạo</span> của hiện thực khách quan 
+                                    vào đầu óc con người trên cơ sở <span class="truth-text">thực tiễn</span> và gắn liền với hoạt động 
+                                    cải tạo thế giới."
+                                </p>
+                            </div>
+                            
+                            <div class="border-t border-green-500 pt-4 mt-4">
+                                <h4 class="text-sm font-bold text-green-400 mb-2">ÁP DỤNG VỚI KOLs:</h4>
+                                <p class="text-gray-400 text-sm leading-relaxed">
+                                    Đây chính là <span class="truth-text">phương pháp luận</span> mà chúng ta cần áp dụng 
+                                    khi tiếp nhận thông tin từ KOLs.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-6">
+                            <span class="text-xs text-gray-500">[ Nhấn để xem chi tiết ]</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Takeaway -->
+            <div class="max-w-4xl mx-auto mt-16" data-aos="fade-up" data-aos-delay="800">
+                <div class="bg-green-900 bg-opacity-20 border-2 border-green-500 rounded-lg p-6 text-center">
+                    <p class="text-xl text-gray-300 leading-relaxed">
+                        <span class="truth-text font-bold text-2xl">✓</span> 
+                        Triết học Mác-Lênin chọn <span class="truth-text font-bold">Duy vật biện chứng</span> 
+                        làm nền tảng cho lý luận nhận thức
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- SECTION 3: THE SCANNER / TRUTH LENS -->
+        <section id="scanner" class="min-h-screen py-20 px-4 relative">
+            <div class="scan-line"></div>
+            
+            <!-- Section Title -->
+            <div class="text-center mb-16" data-aos="fade-down">
+                <h2 class="text-4xl md:text-5xl font-bold truth-text mb-4" style="font-family: 'Orbitron', sans-serif;">
+                    HAI HÌNH THỨC NHẬN THỨC
+                </h2>
+                <p class="text-2xl text-gray-400">Cảm Tính vs Lý Tính</p>
+                <div class="w-32 h-1 bg-green-500 mx-auto mt-4"></div>
+            </div>
+
+            <!-- Interactive Truth Lens -->
+            <div class="max-w-6xl mx-auto mb-20" data-aos="fade-up">
+                <h3 class="text-3xl font-bold text-center truth-text mb-8" style="font-family: 'Orbitron', sans-serif;">
+                    🔍 THE TRUTH LENS
+                </h3>
+                <p class="text-center text-gray-400 mb-8 text-lg">
+                    Kéo thanh trượt để so sánh Nhận Thức Cảm Tính và Nhận Thức Lý Tính
+                </p>
+                
+                <div class="relative bg-black border-2 border-green-500 rounded-lg overflow-hidden" style="height: 500px;">
+                    <!-- Sensory Layer (Left/Default) -->
+                    <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-purple-900 to-pink-900" id="sensory-layer">
+                        <div class="text-center p-8">
+                            <h4 class="text-3xl font-bold text-pink-400 mb-8" style="font-family: 'Orbitron', sans-serif;">
+                                NHẬN THỨC CẢM TÍNH
+                            </h4>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+                                <div class="text-center">
+                                    <div class="text-6xl mb-2">✨</div>
+                                    <p class="text-pink-300 font-bold">Ngoại Hình Đẹp</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-6xl mb-2">❤️</div>
+                                    <p class="text-pink-300 font-bold">Triệu Likes</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-6xl mb-2">💎</div>
+                                    <p class="text-pink-300 font-bold">Sống Sang</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-6xl mb-2">🎤</div>
+                                    <p class="text-pink-300 font-bold">Nói Hay</p>
                                 </div>
                             </div>
+                            <div class="bg-pink-900 bg-opacity-40 border border-pink-500 rounded-lg p-6">
+                                <p class="text-xl text-pink-200 mb-4 font-bold">Những gì BẠN THẤY:</p>
+                                <ul class="text-left text-pink-300 space-y-2">
+                                    <li>→ KOL này đẹp, giàu có</li>
+                                    <li>→ Nhiều người follow nên tin được</li>
+                                    <li>→ Nói chuyện tự tin nên đúng</li>
+                                    <li>→ Thành công rõ ràng</li>
+                                </ul>
+                            </div>
+                            <p class="text-pink-500 font-bold mt-6 text-lg animate-pulse">
+                                ⚠️ TRỰC TIẾP - SINH ĐỘNG - BỀ NGOÀI
+                            </p>
                         </div>
                     </div>
-                </div>
 
-                <!-- Flip Card 2 -->
-                <div class="flip-card">
-                    <div class="flip-card-inner">
-                        <!-- Front of Card -->
-                        <div class="flip-card-front">
-                            <div class="card-image">
-                                <img src="kol_profile_two.webp" alt="Success Coach Profile">
-                            </div>
-                            <div class="card-content">
-                                <h3 class="card-name">Jordan Rivers</h3>
-                                <p class="card-title">Diễn giả Thành công & Mentor</p>
-                                <span class="badge badge-trusted">✓ UY TÍN</span>
-                            </div>
-                        </div>
-
-                        <!-- Back of Card -->
-                        <div class="flip-card-back">
-                            <div class="scam-alert">
-                                <h3 class="alert-title">⚠ CẢNH BÁO LỪA ĐẢO</h3>
-                                <div class="alert-content">
-                                    <p><strong>Sự thật là:</strong></p>
-                                    <ul>
-                                        <li>Đánh giá & Review giả mạo</li>
-                                        <li>Không có bằng cấp kiểm chứng</li>
-                                        <li>Bán khóa học "xào nấu" lại</li>
-                                        <li>Đã nộp đơn phá sản 2023</li>
-                                    </ul>
+                    <!-- Rational Layer (Right/Revealed) -->
+                    <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-green-900 to-cyan-900" id="rational-layer" style="clip-path: inset(0 50% 0 0);">
+                        <div class="text-center p-8">
+                            <h4 class="text-3xl font-bold text-green-400 mb-8" style="font-family: 'Orbitron', sans-serif;">
+                                NHẬN THỨC LÝ TÍNH
+                            </h4>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+                                <div class="text-center">
+                                    <div class="text-6xl mb-2">🎭</div>
+                                    <p class="text-green-300 font-bold">Hiệu Ứng Hào Quang</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-6xl mb-2">🐑</div>
+                                    <p class="text-green-300 font-bold">Tâm Lý Đám Đông</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-6xl mb-2">💰</div>
+                                    <p class="text-green-300 font-bold">Được Tài Trợ</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-6xl mb-2">❌</div>
+                                    <p class="text-green-300 font-bold">Thiếu Chuyên Môn</p>
                                 </div>
                             </div>
+                            <div class="bg-green-900 bg-opacity-40 border border-green-500 rounded-lg p-6">
+                                <p class="text-xl text-green-200 mb-4 font-bold">Sự THẬT ẨN GIẤU:</p>
+                                <ul class="text-left text-green-300 space-y-2">
+                                    <li>→ Không có bằng cấp chuyên môn</li>
+                                    <li>→ Được trả tiền để quảng cáo</li>
+                                    <li>→ Chỉ nói về trường hợp thành công</li>
+                                    <li>→ Survivorship bias</li>
+                                </ul>
+                            </div>
+                            <p class="text-green-500 font-bold mt-6 text-lg animate-pulse">
+                                ✓ PHÂN TÍCH - SÂU SẮC - BẢN CHẤT
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Slider Control -->
+                    <div class="absolute inset-y-0 left-1/2 transform -translate-x-1/2 w-1 bg-green-500 z-20 cursor-ew-resize" id="slider-line">
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg shadow-green-500/50">
+                            <span class="text-2xl">🔍</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-6 text-gray-400">
+                    <p class="text-sm">💡 Hãy kéo thấu kính để khám phá sự thật</p>
+                </div>
+            </div>
+
+            <!-- Comparison Table -->
+            <div class="max-w-6xl mx-auto mb-20" data-aos="fade-up">
+                <h3 class="text-3xl font-bold text-center truth-text mb-8" style="font-family: 'Orbitron', sans-serif;">
+                    SO SÁNH CHI TIẾT
+                </h3>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full border-2 border-green-500 rounded-lg overflow-hidden">
+                        <thead class="bg-green-900 bg-opacity-40">
+                            <tr>
+                                <th class="border border-green-500 p-4 text-green-400 font-bold text-left" style="font-family: 'Orbitron', sans-serif;">
+                                    TIÊU CHÍ
+                                </th>
+                                <th class="border border-green-500 p-4 text-pink-400 font-bold text-left" style="font-family: 'Orbitron', sans-serif;">
+                                    NHẬN THỨC CẢM TÍNH
+                                </th>
+                                <th class="border border-green-500 p-4 text-green-400 font-bold text-left" style="font-family: 'Orbitron', sans-serif;">
+                                    NHẬN THỨC LÝ TÍNH
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-300">
+                            <tr class="hover:bg-green-900 hover:bg-opacity-20 transition-all">
+                                <td class="border border-green-500 p-4 font-bold text-green-400">
+                                    📍 Phương Thức
+                                </td>
+                                <td class="border border-green-500 p-4">
+                                    <span class="text-pink-400">Trực tiếp</span> qua giác quan: nhìn, nghe, sờ, nếm, ngửi
+                                </td>
+                                <td class="border border-green-500 p-4">
+                                    <span class="text-green-400">Gián tiếp</span> thông qua tư duy: phân tích, tổng hợp, trừu tượng hóa
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-green-900 hover:bg-opacity-20 transition-all">
+                                <td class="border border-green-500 p-4 font-bold text-green-400">
+                                    📦 Nội Dung
+                                </td>
+                                <td class="border border-green-500 p-4">
+                                    Phản ánh <span class="text-pink-400">hình thức, hiện tượng bề ngoài</span> của sự vật
+                                </td>
+                                <td class="border border-green-500 p-4">
+                                    Phản ánh <span class="text-green-400">bản chất, quy luật bên trong</span> của sự vật
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-green-900 hover:bg-opacity-20 transition-all">
+                                <td class="border border-green-500 p-4 font-bold text-green-400">
+                                    🎨 Tính Chất
+                                </td>
+                                <td class="border border-green-500 p-4">
+                                    <span class="text-pink-400">Cụ thể, sinh động, trực quan</span>, dễ tiếp cận
+                                </td>
+                                <td class="border border-green-500 p-4">
+                                    <span class="text-green-400">Trừu tượng, khái quát</span> nhưng sâu sắc hơn
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-green-900 hover:bg-opacity-20 transition-all">
+                                <td class="border border-green-500 p-4 font-bold text-green-400">
+                                    💼 Ví Dụ với KOLs
+                                </td>
+                                <td class="border border-green-500 p-4">
+                                    <span class="text-pink-400">"KOL này đẹp, nói hay"</span> nên tin ngay
+                                </td>
+                                <td class="border border-green-500 p-4">
+                                    Kiểm tra <span class="text-green-400">bằng cấp, kinh nghiệm, tỷ lệ thành công</span> của phương pháp
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-green-900 hover:bg-opacity-20 transition-all">
+                                <td class="border border-green-500 p-4 font-bold text-green-400">
+                                    ⚠️ Hạn Chế
+                                </td>
+                                <td class="border border-green-500 p-4">
+                                    Dễ bị lừa bởi <span class="text-pink-400">hình thức bên ngoài</span>
+                                </td>
+                                <td class="border border-green-500 p-4">
+                                    Cần <span class="text-green-400">thời gian và công sức</span> nghiên cứu
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Relationship -->
+                <div class="mt-8 bg-black bg-opacity-70 border-2 border-green-500 rounded-lg p-6" data-aos="fade-up">
+                    <h4 class="text-xl font-bold truth-text mb-4 text-center" style="font-family: 'Orbitron', sans-serif;">
+                        🔗 MỐI QUAN HỆ GIỮA HAI HÌNH THỨC
+                    </h4>
+                    <div class="grid md:grid-cols-3 gap-4 text-center text-gray-300">
+                        <div class="bg-green-900 bg-opacity-20 p-4 rounded">
+                            <div class="text-3xl mb-2">🌱</div>
+                            <p class="font-bold text-green-400 mb-2">Cơ Sở</p>
+                            <p class="text-sm">Nhận thức cảm tính là điểm xuất phát</p>
+                        </div>
+                        <div class="bg-green-900 bg-opacity-20 p-4 rounded">
+                            <div class="text-3xl mb-2">🚀</div>
+                            <p class="font-bold text-green-400 mb-2">Phát Triển</p>
+                            <p class="text-sm">Nhận thức lý tính là sự nâng cao</p>
+                        </div>
+                        <div class="bg-green-900 bg-opacity-20 p-4 rounded">
+                            <div class="text-3xl mb-2">🔄</div>
+                            <p class="font-bold text-green-400 mb-2">Thống Nhất</p>
+                            <p class="text-sm">Hai hình thức gắn bó, không thể tách rời</p>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Social Influence Section -->
+            <div class="max-w-6xl mx-auto mb-20" data-aos="fade-up">
+                <h3 class="text-3xl font-bold text-center truth-text mb-4" style="font-family: 'Orbitron', sans-serif;">
+                    ẢNH HƯỞNG CỦA NIỀM TIN XÃ HỘI VÀ CẢM XÚC TẬP THỂ
+                </h3>
+                <p class="text-center text-xl text-gray-400 mb-12">
+                    Tại sao nhiều người dừng lại ở nhận thức cảm tính?
+                </p>
+
+                <!-- Four Psychological Factors -->
+                <div class="grid md:grid-cols-2 gap-8 mb-16">
+                    <!-- Factor 1 -->
+                    <div class="hologram-card" data-aos="fade-right" data-aos-delay="100">
+                        <div class="relative z-10">
+                            <div class="flex items-center mb-4">
+                                <div class="text-5xl mr-4">🐑</div>
+                                <div>
+                                    <h4 class="text-2xl font-bold truth-text" style="font-family: 'Orbitron', sans-serif;">
+                                        TÂM LÝ ĐÁM ĐÔNG
+                                    </h4>
+                                    <p class="text-sm text-gray-500 italic">Herd Mentality</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 mb-4">
+                                <span class="warning-text font-bold">"Mọi người làm thì mình cũng làm theo"</span>
+                            </p>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                Khi thấy hàng nghìn người follow, like, comment tích cực, chúng ta có xu hướng tin theo mà không cần suy nghĩ. 
+                                Điều này dẫn đến mất đi tư duy độc lập.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Factor 2 -->
+                    <div class="hologram-card" data-aos="fade-left" data-aos-delay="200">
+                        <div class="relative z-10">
+                            <div class="flex items-center mb-4">
+                                <div class="text-5xl mr-4">✨</div>
+                                <div>
+                                    <h4 class="text-2xl font-bold truth-text" style="font-family: 'Orbitron', sans-serif;">
+                                        HIỆU ỨNG HÀO QUANG
+                                    </h4>
+                                    <p class="text-sm text-gray-500 italic">Halo Effect</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 mb-4">
+                                <span class="warning-text font-bold">"Người đẹp/giàu = Giỏi mọi lĩnh vực"</span>
+                            </p>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                Chúng ta có xu hướng tin rằng nếu ai đó thành công trong một lĩnh vực (như làm giàu, nổi tiếng) 
+                                thì họ cũng giỏi các lĩnh vực khác. Đây là sai lầm trong đánh giá.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Factor 3 -->
+                    <div class="hologram-card" data-aos="fade-right" data-aos-delay="300">
+                        <div class="relative z-10">
+                            <div class="flex items-center mb-4">
+                                <div class="text-5xl mr-4">👥</div>
+                                <div>
+                                    <h4 class="text-2xl font-bold truth-text" style="font-family: 'Orbitron', sans-serif;">
+                                        ÁP LỰC XÃ HỘI
+                                    </h4>
+                                    <p class="text-sm text-gray-500 italic">Social Pressure</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 mb-4">
+                                <span class="warning-text font-bold">"Không theo trend = Lỗi thời"</span>
+                            </p>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                Áp lực từ bạn bè, cộng đồng khiến chúng ta làm theo để hòa nhập, dù biết có thể không đúng.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Factor 4 -->
+                    <div class="hologram-card" data-aos="fade-left" data-aos-delay="400">
+                        <div class="relative z-10">
+                            <div class="flex items-center mb-4">
+                                <div class="text-5xl mr-4">🎯</div>
+                                <div>
+                                    <h4 class="text-2xl font-bold truth-text" style="font-family: 'Orbitron', sans-serif;">
+                                        XÁC NHẬN THIÊN VỊ
+                                    </h4>
+                                    <p class="text-sm text-gray-500 italic">Confirmation Bias</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 mb-4">
+                                <span class="warning-text font-bold">"Chỉ tin thông tin phù hợp với suy nghĩ mình"</span>
+                            </p>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                Chúng ta có xu hướng tìm kiếm và tin vào thông tin khẳng định niềm tin sẵn có, 
+                                và bỏ qua những ý kiến phản biện.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Statistics with Animated Progress Bars -->
+                <div class="bg-black bg-opacity-70 border-2 border-red-500 rounded-lg p-8" data-aos="fade-up">
+                    <h4 class="text-2xl font-bold warning-text text-center mb-8" style="font-family: 'Orbitron', sans-serif;">
+                        📊 SỐ LIỆU ĐÁNG LO NGẠI
+                    </h4>
+                    
+                    <!-- Stat 1 -->
+                    <div class="mb-8">
+                        <div class="flex justify-between items-center mb-2">
+                            <p class="text-gray-300 text-lg">
+                                <span class="font-bold">73%</span> sinh viên Gen Z tin vào lời khuyên của influencers hơn quảng cáo truyền thống
+                            </p>
+                            <span class="text-red-500 font-bold text-xl">73%</span>
+                        </div>
+                        <div class="w-full bg-gray-800 rounded-full h-4 overflow-hidden">
+                            <div class="stat-bar bg-gradient-to-r from-red-600 to-red-400 h-4 rounded-full shadow-lg shadow-red-500/50" 
+                                 data-width="73" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Stat 2 -->
+                    <div class="mb-8">
+                        <div class="flex justify-between items-center mb-2">
+                            <p class="text-gray-300 text-lg">
+                                <span class="font-bold">61%</span> đưa ra quyết định mua hàng dựa trên recommendation của KOLs
+                            </p>
+                            <span class="text-red-500 font-bold text-xl">61%</span>
+                        </div>
+                        <div class="w-full bg-gray-800 rounded-full h-4 overflow-hidden">
+                            <div class="stat-bar bg-gradient-to-r from-orange-600 to-orange-400 h-4 rounded-full shadow-lg shadow-orange-500/50" 
+                                 data-width="61" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Stat 3 -->
+                    <div class="mb-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <p class="text-gray-300 text-lg">
+                                <span class="font-bold">49%</span> không kiểm chứng thông tin trước khi tin theo
+                            </p>
+                            <span class="text-red-500 font-bold text-xl">49%</span>
+                        </div>
+                        <div class="w-full bg-gray-800 rounded-full h-4 overflow-hidden">
+                            <div class="stat-bar bg-gradient-to-r from-yellow-600 to-yellow-400 h-4 rounded-full shadow-lg shadow-yellow-500/50" 
+                                 data-width="49" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <p class="text-center text-red-400 mt-8 text-lg font-bold animate-pulse">
+                        ⚠️ Đây là những con số đáng báo động về tình trạng nhận thức của giới trẻ
+                    </p>
+                </div>
+            </div>
         </section>
 
-        <!-- Section 3: Rational Perception & Philosophy -->
-        <section class="philosophy-section">
-            <h2 class="section-title">NHẬN THỨC LÝ TÍNH & TRIẾT HỌC</h2>
-            <p class="section-description">Hiểu bản chất cần <span class="tooltip"
-                    data-text="Tư duy logic, phân tích bản chất">tư duy lý tính</span> và <span class="tooltip"
-                    data-text="Phương pháp nhận thức toàn diện, vận động">phân tích biện chứng</span>.</p>
+        <div class="section-divider"></div>
 
-            <!-- Part A: Antigravity Icons -->
-            <div class="antigravity-container">
-                <div class="floating-icon" data-concept="rationality" style="--delay: 0s; --duration: 4s;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path
-                            d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z" />
-                        <path
-                            d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z" />
-                    </svg>
-                    <span>Tư duy</span>
+        <!-- SECTION 4: THE REALITY CHECK -->
+        <section id="reality-check" class="min-h-screen py-20 px-4 relative">
+            <div class="scan-line"></div>
+            
+            <!-- Section Title -->
+            <div class="text-center mb-16" data-aos="fade-down">
+                <h2 class="text-4xl md:text-5xl font-bold truth-text mb-4" style="font-family: 'Orbitron', sans-serif;">
+                    VAI TRÒ CỦA THỰC TIỄN
+                </h2>
+                <p class="text-2xl text-gray-400">Tiêu Chuẩn Của Chân Lý</p>
+                <div class="w-32 h-1 bg-green-500 mx-auto mt-4"></div>
+            </div>
+
+            <!-- Four Roles of Practice -->
+            <div class="max-w-6xl mx-auto mb-20" data-aos="fade-up">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl font-bold truth-text mb-4" style="font-family: 'Orbitron', sans-serif;">
+                        🔬 THỰC TIỄN LÀ GÌ?
+                    </h3>
+                    <p class="text-gray-300 text-lg max-w-4xl mx-auto leading-relaxed">
+                        Thực tiễn là <span class="truth-text font-bold">toàn bộ hoạt động vật chất, có mục đích, mang tính lịch sử - xã hội</span> 
+                        của con người nhằm cải tạo tự nhiên và xã hội.
+                    </p>
                 </div>
 
-                <div class="floating-icon" data-concept="observation" style="--delay: 0.5s; --duration: 5s;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-                        <circle cx="12" cy="12" r="3" />
-                    </svg>
-                    <span>Quan sát</span>
-                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Role 1 -->
+                    <div class="hologram-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="relative z-10 text-center">
+                            <div class="text-5xl mb-4">🌱</div>
+                            <h4 class="text-xl font-bold truth-text mb-3" style="font-family: 'Orbitron', sans-serif;">
+                                NGUỒN GỐC
+                            </h4>
+                            <p class="text-gray-300 text-sm leading-relaxed">
+                                Thực tiễn là nguồn gốc của nhận thức. Mọi kiến thức đều xuất phát từ thực tiễn.
+                            </p>
+                            <div class="mt-4 text-xs text-gray-500 italic">
+                                Nếu KOL chưa từng thực sự làm giàu bằng phương pháp họ dạy, lời khuyên thiếu cơ sở.
+                            </div>
+                        </div>
+                    </div>
 
-                <div class="floating-icon" data-concept="logic" style="--delay: 1s; --duration: 4.5s;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="3" />
-                        <path
-                            d="M12 1v6m0 6v6m5.2-13.2-4.2 4.2m0 6 4.2 4.2M1 12h6m6 0h6m-13.2 5.2 4.2-4.2m0-6-4.2-4.2" />
-                    </svg>
-                    <span>Phân tích</span>
-                </div>
+                    <!-- Role 2 -->
+                    <div class="hologram-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="relative z-10 text-center">
+                            <div class="text-5xl mb-4">⚡</div>
+                            <h4 class="text-xl font-bold truth-text mb-3" style="font-family: 'Orbitron', sans-serif;">
+                                ĐỘNG LỰC
+                            </h4>
+                            <p class="text-gray-300 text-sm leading-relaxed">
+                                Thực tiễn thúc đẩy nhận thức phát triển. Vấn đề thực tế buộc ta tìm giải pháp.
+                            </p>
+                            <div class="mt-4 text-xs text-gray-500 italic">
+                                Bị lừa đảo bởi KOL khiến ta học cách phân biệt thông tin đúng sai.
+                            </div>
+                        </div>
+                    </div>
 
-                <div class="floating-icon" data-concept="connection" style="--delay: 1.5s; --duration: 5.5s;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="18" cy="5" r="3" />
-                        <circle cx="6" cy="12" r="3" />
-                        <circle cx="18" cy="19" r="3" />
-                        <path d="m8.59 13.51 6.83 3.98m-.01-10.98-6.82 3.98" />
-                    </svg>
-                    <span>Kết nối</span>
-                </div>
+                    <!-- Role 3 -->
+                    <div class="hologram-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="relative z-10 text-center">
+                            <div class="text-5xl mb-4">🎯</div>
+                            <h4 class="text-xl font-bold truth-text mb-3" style="font-family: 'Orbitron', sans-serif;">
+                                MỤC ĐÍCH
+                            </h4>
+                            <p class="text-gray-300 text-sm leading-relaxed">
+                                Thực tiễn là mục đích của nhận thức. Học để áp dụng, cải thiện cuộc sống.
+                            </p>
+                            <div class="mt-4 text-xs text-gray-500 italic">
+                                Không học để biết suông mà để áp dụng hiệu quả.
+                            </div>
+                        </div>
+                    </div>
 
-                <div class="floating-icon" data-concept="security" style="--delay: 2s; --duration: 4.8s;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-                        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-                    </svg>
-                    <span>Kiểm chứng</span>
+                    <!-- Role 4 -->
+                    <div class="hologram-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="relative z-10 text-center">
+                            <div class="text-5xl mb-4">✓</div>
+                            <h4 class="text-xl font-bold truth-text mb-3" style="font-family: 'Orbitron', sans-serif;">
+                                TIÊU CHUẨN
+                            </h4>
+                            <p class="text-gray-300 text-sm leading-relaxed">
+                                Thực tiễn là tiêu chuẩn của chân lý. Chỉ thực tiễn mới chứng minh đúng sai.
+                            </p>
+                            <div class="mt-4 text-xs text-gray-500 italic">
+                                Phương pháp chỉ đúng khi thực sự mang lại kết quả.
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Part B: The 3 Philosophical Gates -->
-            <div class="philosophy-gates">
-                <div class="gate gate-idealism">
-                    <div class="gate-header">
-                        <h3>DUY TÂM</h3>
-                        <div class="gate-icon">💭</div>
+            <!-- Process Comparison -->
+            <div class="max-w-5xl mx-auto mb-20" data-aos="fade-up">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Wrong Process -->
+                    <div class="bg-red-900 bg-opacity-20 border-2 border-red-500 rounded-lg p-6">
+                        <h4 class="text-2xl font-bold warning-text text-center mb-6" style="font-family: 'Orbitron', sans-serif;">
+                            ❌ KHÔNG NÊN
+                        </h4>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <div class="text-red-500 text-2xl mr-4">1</div>
+                                <p class="text-gray-300">Nghe lời khuyên</p>
+                            </div>
+                            <div class="text-red-500 text-center text-2xl">↓</div>
+                            <div class="flex items-center">
+                                <div class="text-red-500 text-2xl mr-4">2</div>
+                                <p class="text-gray-300">Tin ngay</p>
+                            </div>
+                            <div class="text-red-500 text-center text-2xl">↓</div>
+                            <div class="flex items-center">
+                                <div class="text-red-500 text-2xl mr-4">3</div>
+                                <p class="text-gray-300">Áp dụng mù quáng</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="gate-body">
-                        <p class="gate-description">Tin mù quáng vào Idol</p>
-                        <p class="gate-detail">(<span class="tooltip"
-                                data-text="Dựa vào ý kiến cá nhân, không khách quan">Chủ quan</span>, <span
-                                class="tooltip" data-text="Nhận thức qua giác quan, bề ngoài">cảm tính</span>)</p>
-                    </div>
-                    <div class="gate-status">❌ Sai lầm</div>
-                </div>
 
-                <div class="gate gate-metaphysics">
-                    <div class="gate-header">
-                        <h3>SIÊU HÌNH</h3>
-                        <div class="gate-icon">🔍</div>
+                    <!-- Right Process -->
+                    <div class="bg-green-900 bg-opacity-20 border-2 border-green-500 rounded-lg p-6">
+                        <h4 class="text-2xl font-bold truth-text text-center mb-6" style="font-family: 'Orbitron', sans-serif;">
+                            ✅ NÊN
+                        </h4>
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <div class="text-green-500 text-2xl mr-4">1</div>
+                                <p class="text-gray-300">Nghe lời khuyên</p>
+                            </div>
+                            <div class="text-green-500 text-center text-xl">↓</div>
+                            <div class="flex items-center">
+                                <div class="text-green-500 text-2xl mr-4">2</div>
+                                <p class="text-gray-300">Tìm hiểu từ nhiều nguồn</p>
+                            </div>
+                            <div class="text-green-500 text-center text-xl">↓</div>
+                            <div class="flex items-center">
+                                <div class="text-green-500 text-2xl mr-4">3</div>
+                                <p class="text-gray-300">Thử nghiệm nhỏ</p>
+                            </div>
+                            <div class="text-green-500 text-center text-xl">↓</div>
+                            <div class="flex items-center">
+                                <div class="text-green-500 text-2xl mr-4">4</div>
+                                <p class="text-gray-300">Đánh giá kết quả</p>
+                            </div>
+                            <div class="text-green-500 text-center text-xl">↓</div>
+                            <div class="flex items-center">
+                                <div class="text-green-500 text-2xl mr-4">5</div>
+                                <p class="text-gray-300">Điều chỉnh & Áp dụng</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="gate-body">
-                        <p class="gate-description">Chỉ nhìn thấy bề ngoài</p>
-                        <p class="gate-detail">(<span class="tooltip"
-                                data-text="Không thấy mối liên hệ, sự phát triển">Một chiều</span>, <span
-                                class="tooltip" data-text="Không thấy sự vận động, biến đổi">tĩnh</span>)</p>
-                    </div>
-                    <div class="gate-status">⚠️ Hạn chế</div>
-                </div>
-
-                <div class="gate gate-dialectics">
-                    <div class="gate-header">
-                        <h3>BIỆN CHỨNG</h3>
-                        <div class="gate-icon">⚡</div>
-                    </div>
-                    <div class="gate-body">
-                        <p class="gate-description"><span class="tooltip"
-                                data-text="Hoạt động thực tế để chứng minh đúng/sai">Kiểm chứng thực tiễn</span></p>
-                        <p class="gate-detail">(<span class="tooltip" data-text="Xem xét nhiều góc độ, mối liên hệ">Phân
-                                tích đa chiều</span>)</p>
-                    </div>
-                    <div class="gate-status">✓ Chính xác</div>
                 </div>
             </div>
-        </section>
 
-        <!-- Modal Popup for Icons -->
-        <div id="conceptModal" class="modal hidden">
-            <div class="modal-content">
-                <button class="modal-close">&times;</button>
-                <h3 id="modalTitle" class="modal-title">NHẬN THỨC LÝ TÍNH</h3>
-                <div id="modalBody" class="modal-body">
-                    <p>Phản ánh bản chất, quy luật bên trong.</p>
-                    <p>Không bị đánh lừa bởi hào nhoáng bên ngoài.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Section 4: The Truth Calculator -->
-        <section class="calculator-section">
-            <h2 class="section-title">CÔNG CỤ QUÉT SỰ THẬT</h2>
-            <p class="section-description">Khởi chạy giao thức xác minh. <span class="tooltip"
-                    data-text="Là tiêu chuẩn của chân lý">Thực tiễn</span> là tiêu chuẩn của chân lý.</p>
-
-            <div class="terminal-container">
-                <div class="terminal-header">
-                    <span class="terminal-dot red"></span>
-                    <span class="terminal-dot yellow"></span>
-                    <span class="terminal-dot green"></span>
-                    <span class="terminal-title">truth_verifier.exe</span>
+            <!-- Interactive Checklist Calculator -->
+            <div class="max-w-4xl mx-auto" data-aos="fade-up">
+                <div class="text-center mb-8">
+                    <h3 class="text-3xl font-bold truth-text mb-4" style="font-family: 'Orbitron', sans-serif;">
+                        🔍 CHECKLIST CALCULATOR
+                    </h3>
+                    <p class="text-xl text-gray-400 mb-2">Đánh Giá Độ Tin Cậy Thông Tin</p>
+                    <p class="text-sm text-gray-500 italic">
+                        "Chân lý là sự phù hợp giữa nhận thức với hiện thực khách quan được thực tiễn kiểm nghiệm"
+                    </p>
                 </div>
 
-                <div class="terminal-body">
-                    <div class="terminal-prompt">
-                        <span class="prompt-symbol">$</span>
-                        <span class="prompt-text">Đang khởi tạo giao thức...</span>
-                    </div>
-
-                    <form id="truthForm" class="truth-form">
-                        <div class="checkbox-group">
-                            <label class="checkbox-label">
-                                <input type="checkbox" id="degree" name="degree" class="custom-checkbox">
-                                <span class="checkbox-text">
-                                    <span class="checkbox-icon">[ ]</span>
-                                    Có <span class="tooltip" data-text="Bằng cấp được công nhận chính thức">bằng
-                                        cấp/chứng chỉ</span> xác thực?
-                                </span>
+                <div class="bg-black bg-opacity-70 border-2 border-green-500 rounded-lg p-8">
+                    <!-- Checklist Items -->
+                    <div class="space-y-6 mb-8">
+                        <!-- Step 1: Expertise -->
+                        <div class="bg-gray-900 bg-opacity-50 rounded-lg p-6 border border-gray-700 hover:border-green-500 transition-all">
+                            <h4 class="text-lg font-bold text-green-400 mb-4 flex items-center">
+                                <span class="mr-3">📋</span> BƯỚC 1: KIỂM TRA CHUYÊN MÔN
+                            </h4>
+                            <label class="flex items-start cursor-pointer mb-3 hover:bg-green-900 hover:bg-opacity-20 p-2 rounded transition-all">
+                                <input type="checkbox" class="checklist-item mt-1 mr-3 w-5 h-5 text-green-500" data-category="expertise">
+                                <span class="text-gray-300">KOL có bằng cấp, chứng chỉ liên quan?</span>
                             </label>
-
-                            <label class="checkbox-label">
-                                <input type="checkbox" id="proof" name="proof" class="custom-checkbox">
-                                <span class="checkbox-text">
-                                    <span class="checkbox-icon">[ ]</span>
-                                    Có <span class="tooltip" data-text="Bằng chứng khoa học được kiểm chứng">bằng chứng
-                                        khoa học</span> rõ ràng?
-                                </span>
+                            <label class="flex items-start cursor-pointer mb-3 hover:bg-green-900 hover:bg-opacity-20 p-2 rounded transition-all">
+                                <input type="checkbox" class="checklist-item mt-1 mr-3 w-5 h-5 text-green-500" data-category="expertise">
+                                <span class="text-gray-300">Có kinh nghiệm thực tế trong lĩnh vực?</span>
                             </label>
-
-                            <label class="checkbox-label">
-                                <input type="checkbox" id="conflict" name="conflict" class="custom-checkbox">
-                                <span class="checkbox-text">
-                                    <span class="checkbox-icon">[ ]</span>
-                                    Không có <span class="tooltip" data-text="Không có lợi ích cá nhân ảnh hưởng">xung
-                                        đột lợi ích</span>?
-                                </span>
+                            <label class="flex items-start cursor-pointer hover:bg-green-900 hover:bg-opacity-20 p-2 rounded transition-all">
+                                <input type="checkbox" class="checklist-item mt-1 mr-3 w-5 h-5 text-green-500" data-category="expertise">
+                                <span class="text-gray-300">Có thành tích cụ thể, có thể kiểm chứng?</span>
                             </label>
                         </div>
 
-                        <button type="submit" class="verify-button">
-                            <span class="button-text">XÁC MINH NGAY</span>
-                            <span class="button-glow"></span>
-                        </button>
-                    </form>
+                        <!-- Step 2: Objectivity -->
+                        <div class="bg-gray-900 bg-opacity-50 rounded-lg p-6 border border-gray-700 hover:border-green-500 transition-all">
+                            <h4 class="text-lg font-bold text-green-400 mb-4 flex items-center">
+                                <span class="mr-3">⚖️</span> BƯỚC 2: ĐÁNH GIÁ TÍNH KHÁCH QUAN
+                            </h4>
+                            <label class="flex items-start cursor-pointer mb-3 hover:bg-green-900 hover:bg-opacity-20 p-2 rounded transition-all">
+                                <input type="checkbox" class="checklist-item mt-1 mr-3 w-5 h-5 text-green-500" data-category="objectivity">
+                                <span class="text-gray-300">Không có lợi ích riêng trong việc quảng bá?</span>
+                            </label>
+                            <label class="flex items-start cursor-pointer mb-3 hover:bg-green-900 hover:bg-opacity-20 p-2 rounded transition-all">
+                                <input type="checkbox" class="checklist-item mt-1 mr-3 w-5 h-5 text-green-500" data-category="objectivity">
+                                <span class="text-gray-300">Không được tài trợ/trả tiền để quảng cáo?</span>
+                            </label>
+                            <label class="flex items-start cursor-pointer hover:bg-green-900 hover:bg-opacity-20 p-2 rounded transition-all">
+                                <input type="checkbox" class="checklist-item mt-1 mr-3 w-5 h-5 text-green-500" data-category="objectivity">
+                                <span class="text-gray-300">Có bằng chứng khoa học, nghiên cứu ủng hộ?</span>
+                            </label>
+                        </div>
 
-                    <div id="resultMessage" class="result-message hidden">
-                        <div class="result-content"></div>
+                        <!-- Step 3: Source Verification -->
+                        <div class="bg-gray-900 bg-opacity-50 rounded-lg p-6 border border-gray-700 hover:border-green-500 transition-all">
+                            <h4 class="text-lg font-bold text-green-400 mb-4 flex items-center">
+                                <span class="mr-3">🔬</span> BƯỚC 3: KIỂM CHỨNG NGUỒN
+                            </h4>
+                            <label class="flex items-start cursor-pointer mb-3 hover:bg-green-900 hover:bg-opacity-20 p-2 rounded transition-all">
+                                <input type="checkbox" class="checklist-item mt-1 mr-3 w-5 h-5 text-green-500" data-category="source">
+                                <span class="text-gray-300">Nguồn trích dẫn rõ ràng, đáng tin?</span>
+                            </label>
+                            <label class="flex items-start cursor-pointer mb-3 hover:bg-green-900 hover:bg-opacity-20 p-2 rounded transition-all">
+                                <input type="checkbox" class="checklist-item mt-1 mr-3 w-5 h-5 text-green-500" data-category="source">
+                                <span class="text-gray-300">Có nghiên cứu, số liệu thực tế ủng hộ?</span>
+                            </label>
+                            <label class="flex items-start cursor-pointer hover:bg-green-900 hover:bg-opacity-20 p-2 rounded transition-all">
+                                <input type="checkbox" class="checklist-item mt-1 mr-3 w-5 h-5 text-green-500" data-category="source">
+                                <span class="text-gray-300">Kết quả thực tế khi người khác áp dụng tốt?</span>
+                            </label>
+                        </div>
+
+                        <!-- Step 4: Multiple Sources -->
+                        <div class="bg-gray-900 bg-opacity-50 rounded-lg p-6 border border-gray-700 hover:border-green-500 transition-all">
+                            <h4 class="text-lg font-bold text-green-400 mb-4 flex items-center">
+                                <span class="mr-3">📚</span> BƯỚC 4: SO SÁNH ĐA DẠNG NGUỒN
+                            </h4>
+                            <label class="flex items-start cursor-pointer mb-3 hover:bg-green-900 hover:bg-opacity-20 p-2 rounded transition-all">
+                                <input type="checkbox" class="checklist-item mt-1 mr-3 w-5 h-5 text-green-500" data-category="comparison">
+                                <span class="text-gray-300">Đã so sánh ý kiến từ nhiều người khác nhau?</span>
+                            </label>
+                            <label class="flex items-start cursor-pointer mb-3 hover:bg-green-900 hover:bg-opacity-20 p-2 rounded transition-all">
+                                <input type="checkbox" class="checklist-item mt-1 mr-3 w-5 h-5 text-green-500" data-category="comparison">
+                                <span class="text-gray-300">Đã tham khảo chuyên gia thực sự trong lĩnh vực?</span>
+                            </label>
+                            <label class="flex items-start cursor-pointer hover:bg-green-900 hover:bg-opacity-20 p-2 rounded transition-all">
+                                <input type="checkbox" class="checklist-item mt-1 mr-3 w-5 h-5 text-green-500" data-category="comparison">
+                                <span class="text-gray-300">Đã tìm kiếm các ý kiến phản biện, phê phán?</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Result Display -->
+                    <div class="border-t-2 border-green-500 pt-8">
+                        <div class="text-center mb-4">
+                            <p class="text-gray-400 mb-2">Kết quả đánh giá:</p>
+                            <div id="checklist-progress" class="text-2xl font-bold mb-4">
+                                <span id="checked-count" class="truth-text">0</span>
+                                <span class="text-gray-500">/12</span>
+                            </div>
+                        </div>
+                        
+                        <div id="trust-result" class="text-center p-6 rounded-lg border-2 transition-all duration-500">
+                            <!-- Result will be injected by JavaScript -->
+                        </div>
+
+                        <div class="mt-6 text-center">
+                            <button id="reset-checklist" class="bg-gray-700 hover:bg-gray-600 text-white px-6 py-2 rounded transition-all">
+                                🔄 Làm Lại
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example Warning -->
+                <div class="mt-8 bg-red-900 bg-opacity-20 border border-red-500 rounded-lg p-6" data-aos="fade-up">
+                    <h4 class="text-xl font-bold warning-text mb-4 flex items-center">
+                        <span class="mr-3">⚠️</span> VÍ DỤ VỀ THÔNG TIN SAI LỆCH
+                    </h4>
+                    <div class="space-y-3 text-gray-300">
+                        <p><span class="warning-text font-bold">Tuyên bố:</span> "Bỏ học để khởi nghiệp như tôi, ai cũng giàu được"</p>
+                        <p><span class="text-yellow-500 font-bold">Thực tế:</span> Đây là hiện tượng Survivorship bias - chỉ thấy người thành công, không thấy hàng nghìn người thất bại.</p>
+                        <p><span class="truth-text font-bold">Kiểm chứng:</span> Thống kê cho thấy tỷ lệ startup thành công chỉ dưới 10%. 90% còn lại đều thất bại trong 3 năm đầu.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- AI Disclosure Button -->
-        <button id="aiDisclosureBtn" class="ai-disclosure-button">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="ai-icon">
-                <path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" />
-                <path d="M12 8v8" />
-                <path d="M5 10a7 7 0 0 1 14 0" />
-                <path d="M12 16v6" />
-                <path d="M8 19l-3 3" />
-                <path d="M16 19l3 3" />
-            </svg>
-            <span>CÔNG BỐ AI</span>
-        </button>
+        <div class="section-divider"></div>
 
-        <!-- AI Disclosure Modal -->
-        <div id="aiDisclosureModal" class="ai-modal">
-            <div class="ai-modal-content">
-                <span class="ai-close">&times;</span>
-                <div class="ai-header">
-                    <h2>🔍 CÔNG BỐ SỬ DỤNG AI</h2>
-                    <p class="ai-subtitle">Tuân thủ nguyên tắc liêm chính học thuật</p>
-                </div>
+        <!-- SECTION 5: SOLUTION & CONCLUSION -->
+        <section id="solution" class="min-h-screen py-20 px-4 relative">
+            <div class="scan-line"></div>
+            
+            <!-- Section Title -->
+            <div class="text-center mb-16" data-aos="fade-down">
+                <h2 class="text-4xl md:text-5xl font-bold truth-text mb-4" style="font-family: 'Orbitron', sans-serif;">
+                    SYSTEM UPDATE
+                </h2>
+                <p class="text-2xl text-gray-400">Giải Pháp & Kết Luận</p>
+                <div class="w-32 h-1 bg-green-500 mx-auto mt-4"></div>
+            </div>
 
-                <div class="ai-body">
-                    <div class="ai-section">
-                        <h3>4.1. 📊 Minh Bạch (Transparency)</h3>
-                        <table class="ai-table">
-                            <tr>
-                                <th>Công cụ</th>
-                                <td>ChatGPT 4o, Claude 3.5 Sonnet, Midjourney</td>
-                            </tr>
-                            <tr>
-                                <th>Mục đích</th>
-                                <td>Hỗ trợ code, tạo assets, gợi ý ý tưởng</td>
-                            </tr>
-                            <tr>
-                                <th>Kết quả</th>
-                                <td>Website interactive, SVG icons, nội dung tham khảo</td>
-                            </tr>
-                        </table>
-                    </div>
+            <!-- Solutions for Students -->
+            <div class="max-w-6xl mx-auto mb-20" data-aos="fade-up">
+                <div class="bg-gradient-to-r from-green-900 to-cyan-900 bg-opacity-20 border-2 border-green-500 rounded-lg p-8 mb-12">
+                    <h3 class="text-3xl font-bold truth-text text-center mb-8" style="font-family: 'Orbitron', sans-serif;">
+                        💡 GIẢI PHÁP CHO CÁ NHÂN SINH VIÊN
+                    </h3>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Solution 1 -->
+                        <div class="solution-card bg-black bg-opacity-50 rounded-lg p-6 border border-green-500 hover:shadow-lg hover:shadow-green-500/50 transition-all" data-aos="flip-left" data-aos-delay="100">
+                            <div class="text-4xl mb-4 text-center">🧠</div>
+                            <h4 class="text-xl font-bold truth-text mb-3 text-center" style="font-family: 'Orbitron', sans-serif;">
+                                TƯ DUY PHẢN BIỆN
+                            </h4>
+                            <p class="text-gray-300 text-sm leading-relaxed">
+                                Luôn đặt câu hỏi: <span class="truth-text">'Tại sao?'</span>, <span class="truth-text">'Bằng chứng là gì?'</span>, 
+                                <span class="truth-text">'Nguồn gốc thông tin này từ đâu?'</span>
+                            </p>
+                            <p class="text-gray-500 text-xs mt-3 italic">
+                                Không chấp nhận bất kỳ thông tin nào một cách mù quáng.
+                            </p>
+                        </div>
 
-                    <div class="ai-section">
-                        <h3>4.2. ⚖️ Trách Nhiệm (Accountability)</h3>
-                        <p>✅ Đã kiểm chứng tất cả thông tin triết học với giáo trình Mác-Lênin (Bộ GD&ĐT).</p>
-                        <p>✅ Nhóm chịu trách nhiệm hoàn toàn về độ chính xác của nội dung và logic trình bày.</p>
-                    </div>
+                        <!-- Solution 2 -->
+                        <div class="solution-card bg-black bg-opacity-50 rounded-lg p-6 border border-green-500 hover:shadow-lg hover:shadow-green-500/50 transition-all" data-aos="flip-left" data-aos-delay="200">
+                            <div class="text-4xl mb-4 text-center">🔍</div>
+                            <h4 class="text-xl font-bold truth-text mb-3 text-center" style="font-family: 'Orbitron', sans-serif;">
+                                KIỂM CHỨNG ĐA CHIỀU
+                            </h4>
+                            <p class="text-gray-300 text-sm leading-relaxed">
+                                Không dựa vào một nguồn duy nhất. So sánh từ nhiều nguồn khác nhau, tìm ý kiến của chuyên gia thực thụ.
+                            </p>
+                            <p class="text-gray-500 text-xs mt-3 italic">
+                                Tham khảo chuyên gia thực sự, không chỉ người nổi tiếng.
+                            </p>
+                        </div>
 
-                    <div class="ai-section">
-                        <h3>4.3. 🎨 Sáng Tạo (Creativity)</h3>
-                        <p>AI chỉ đóng vai trò "trợ lý ảo". Cấu trúc bài thuyết trình, kịch bản Scrollytelling và các ví
-                            dụ thực tế (KOL scams) do nhóm tự sáng tạo.</p>
-                    </div>
+                        <!-- Solution 3 -->
+                        <div class="solution-card bg-black bg-opacity-50 rounded-lg p-6 border border-green-500 hover:shadow-lg hover:shadow-green-500/50 transition-all" data-aos="flip-left" data-aos-delay="300">
+                            <div class="text-4xl mb-4 text-center">🧪</div>
+                            <h4 class="text-xl font-bold truth-text mb-3 text-center" style="font-family: 'Orbitron', sans-serif;">
+                                THỰC TIỄN HÓA
+                            </h4>
+                            <p class="text-gray-300 text-sm leading-relaxed">
+                                Trước khi áp dụng rộng rãi, hãy thử nghiệm nhỏ, đánh giá kết quả, rồi mới quyết định tiếp tục.
+                            </p>
+                            <p class="text-gray-500 text-xs mt-3 italic">
+                                Học từ thực tiễn, điều chỉnh cho phù hợp bản thân.
+                            </p>
+                        </div>
 
-                    <div class="ai-section">
-                        <h3>4.4. 🛡️ Liêm Chính (Integrity)</h3>
-                        <div class="signature-box">
-                            <p><strong>Xác nhận bởi nhóm SE1828:</strong></p>
-                            <ul class="team-list">
-                                <li>• Nguyễn Hoàng Phi Long</li>
-                                <li>• Thái Công Đạt</li>
-                                <li>• Nguyễn Quang Duy Quang</li>
-                                <li>• Nguyễn Lê Quốc Đạt</li>
-                                <li>• Nguyễn Gia Bảo</li>
+                        <!-- Solution 4 -->
+                        <div class="solution-card bg-black bg-opacity-50 rounded-lg p-6 border border-green-500 hover:shadow-lg hover:shadow-green-500/50 transition-all" data-aos="flip-left" data-aos-delay="400">
+                            <div class="text-4xl mb-4 text-center">📚</div>
+                            <h4 class="text-xl font-bold truth-text mb-3 text-center" style="font-family: 'Orbitron', sans-serif;">
+                                HỌC TẬP LIÊN TỤC
+                            </h4>
+                            <p class="text-gray-300 text-sm leading-relaxed">
+                                Nâng cao kiến thức chuyên môn trong lĩnh vực bạn quan tâm để có khả năng tự đánh giá thông tin.
+                            </p>
+                            <p class="text-gray-500 text-xs mt-3 italic">
+                                Kiến thức là vũ khí mạnh nhất chống fake news.
+                            </p>
+                        </div>
+
+                        <!-- Solution 5 -->
+                        <div class="solution-card bg-black bg-opacity-50 rounded-lg p-6 border border-green-500 hover:shadow-lg hover:shadow-green-500/50 transition-all" data-aos="flip-left" data-aos-delay="500">
+                            <div class="text-4xl mb-4 text-center">❤️</div>
+                            <h4 class="text-xl font-bold truth-text mb-3 text-center" style="font-family: 'Orbitron', sans-serif;">
+                                QUẢN LÝ CẢM XÚC
+                            </h4>
+                            <p class="text-gray-300 text-sm leading-relaxed">
+                                Tránh đưa ra quyết định quan trọng khi đang bị ảnh hưởng bởi cảm xúc tập thể hoặc áp lực xã hội.
+                            </p>
+                            <p class="text-gray-500 text-xs mt-3 italic">
+                                Nhận biết và kiểm soát phản ứng cảm xúc.
+                            </p>
+                        </div>
+
+                        <!-- Useful Tools -->
+                        <div class="solution-card bg-black bg-opacity-50 rounded-lg p-6 border border-green-500 hover:shadow-lg hover:shadow-green-500/50 transition-all" data-aos="flip-left" data-aos-delay="600">
+                            <div class="text-4xl mb-4 text-center">🛠️</div>
+                            <h4 class="text-xl font-bold truth-text mb-3 text-center" style="font-family: 'Orbitron', sans-serif;">
+                                CÔNG CỤ HỮU ÍCH
+                            </h4>
+                            <ul class="text-gray-300 text-xs space-y-2">
+                                <li>→ Google Scholar: Tìm nghiên cứu</li>
+                                <li>→ Fact-checking websites</li>
+                                <li>→ Expert platforms</li>
+                                <li>→ Critical thinking frameworks</li>
                             </ul>
                         </div>
                     </div>
                 </div>
+
+                <!-- Solutions for Society -->
+                <div class="bg-gradient-to-r from-cyan-900 to-blue-900 bg-opacity-20 border-2 border-cyan-500 rounded-lg p-8" data-aos="fade-up">
+                    <h3 class="text-3xl font-bold text-cyan-400 text-center mb-8" style="font-family: 'Orbitron', sans-serif;">
+                        🏛️ GIẢI PHÁP CHO XÃ HỘI
+                    </h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-black bg-opacity-50 rounded-lg p-6 border border-cyan-500">
+                            <h4 class="text-lg font-bold text-cyan-400 mb-3">📖 Giáo dục tư duy phản biện</h4>
+                            <p class="text-gray-300 text-sm">
+                                Đưa kỹ năng tư duy phản biện vào chương trình giáo dục chính thức từ cấp phổ thông.
+                            </p>
+                        </div>
+                        <div class="bg-black bg-opacity-50 rounded-lg p-6 border border-cyan-500">
+                            <h4 class="text-lg font-bold text-cyan-400 mb-3">⚖️ Quản lý thông tin</h4>
+                            <p class="text-gray-300 text-sm">
+                                Cơ quan chức năng cần xác minh thông tin từ KOLs, xử lý nghiêm các trường hợp cung cấp thông tin sai lệch.
+                            </p>
+                        </div>
+                        <div class="bg-black bg-opacity-50 rounded-lg p-6 border border-cyan-500">
+                            <h4 class="text-lg font-bold text-cyan-400 mb-3">📢 Nâng cao nhận thức cộng đồng</h4>
+                            <p class="text-gray-300 text-sm">
+                                Tổ chức các chiến dịch truyền thông về cách kiểm chứng thông tin, nhận biết fake news.
+                            </p>
+                        </div>
+                        <div class="bg-black bg-opacity-50 rounded-lg p-6 border border-cyan-500">
+                            <h4 class="text-lg font-bold text-cyan-400 mb-3">🛡️ Bảo vệ người tiêu dùng</h4>
+                            <p class="text-gray-300 text-sm">
+                                Quy định rõ ràng về trách nhiệm của influencers/KOLs, đặc biệt trong lĩnh vực tài chính, sức khỏe.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <!-- Footer Section -->
-        <footer class="footer-section">
-            <div class="footer-content">
+            <!-- Key Takeaways -->
+            <div class="max-w-5xl mx-auto mb-20" data-aos="fade-up">
+                <h3 class="text-3xl font-bold text-center truth-text mb-8" style="font-family: 'Orbitron', sans-serif;">
+                    🎯 5 BÀI HỌC QUAN TRỌNG
+                </h3>
+                
+                <div class="space-y-4">
+                    <div class="bg-black bg-opacity-70 border-l-4 border-green-500 rounded-lg p-6 hover:bg-opacity-90 transition-all" data-aos="fade-right">
+                        <div class="flex items-start">
+                            <span class="text-3xl truth-text font-bold mr-4">1</span>
+                            <p class="text-gray-300 leading-relaxed">
+                                <span class="truth-text font-bold">Nhận thức cảm tính</span> giúp chúng ta tiếp cận thông tin nhanh chóng 
+                                nhưng rất dễ dẫn đến sai lầm.
+                            </p>
+                        </div>
+                    </div>
 
-                <p class="copyright">NHÓM THUYẾT TRÌNH TRIẾT HỌC | FPT UNIVERSITY</p>
+                    <div class="bg-black bg-opacity-70 border-l-4 border-green-500 rounded-lg p-6 hover:bg-opacity-90 transition-all" data-aos="fade-right" data-aos-delay="100">
+                        <div class="flex items-start">
+                            <span class="text-3xl truth-text font-bold mr-4">2</span>
+                            <p class="text-gray-300 leading-relaxed">
+                                <span class="truth-text font-bold">Nhận thức lý tính</span> giúp chúng ta phân tích sâu, 
+                                tìm ra bản chất của vấn đề.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-black bg-opacity-70 border-l-4 border-green-500 rounded-lg p-6 hover:bg-opacity-90 transition-all" data-aos="fade-right" data-aos-delay="200">
+                        <div class="flex items-start">
+                            <span class="text-3xl truth-text font-bold mr-4">3</span>
+                            <p class="text-gray-300 leading-relaxed">
+                                <span class="truth-text font-bold">Thực tiễn</span> là tiêu chuẩn duy nhất để kiểm nghiệm chân lý. 
+                                Không có con đường tắt nào thay thế được thực tiễn.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-black bg-opacity-70 border-l-4 border-green-500 rounded-lg p-6 hover:bg-opacity-90 transition-all" data-aos="fade-right" data-aos-delay="300">
+                        <div class="flex items-start">
+                            <span class="text-3xl truth-text font-bold mr-4">4</span>
+                            <p class="text-gray-300 leading-relaxed">
+                                <span class="warning-text font-bold">Niềm tin xã hội</span> và <span class="warning-text font-bold">cảm xúc tập thể</span> 
+                                có thể làm sai lệch nghiêm trọng quá trình nhận thức của chúng ta.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-black bg-opacity-70 border-l-4 border-green-500 rounded-lg p-6 hover:bg-opacity-90 transition-all" data-aos="fade-right" data-aos-delay="400">
+                        <div class="flex items-start">
+                            <span class="text-3xl truth-text font-bold mr-4">5</span>
+                            <p class="text-gray-300 leading-relaxed">
+                                Để có nhận thức đúng đắn, chúng ta cần kết hợp 
+                                <span class="truth-text font-bold">tư duy độc lập</span>, 
+                                <span class="truth-text font-bold">tư duy phản biện</span> và 
+                                <span class="truth-text font-bold">kiểm chứng thực tiễn</span>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Final Quote -->
+            <div class="max-w-4xl mx-auto text-center" data-aos="zoom-in">
+                <div class="bg-gradient-to-br from-green-900 via-cyan-900 to-blue-900 bg-opacity-30 border-4 border-green-500 rounded-lg p-12 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-green-500 to-cyan-500 opacity-10 animate-pulse"></div>
+                    
+                    <div class="relative z-10">
+                        <div class="text-6xl mb-6">💡</div>
+                        <p class="text-gray-400 text-lg mb-4 italic">
+                            "Kiến thức là sức mạnh" - Francis Bacon
+                        </p>
+                        <div class="text-4xl md:text-5xl font-bold truth-text mb-6 leading-tight" style="font-family: 'Orbitron', sans-serif; text-shadow: 0 0 20px #00ff41;">
+                            NHẬN THỨC ĐÚNG ĐẮN<br>LÀ SỨC MẠNH THỰC SỰ
+                        </div>
+                        <p class="text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
+                            Trong thời đại thông tin bùng nổ, khả năng <span class="truth-text font-bold">phân biệt đúng sai</span> 
+                            quan trọng hơn cả việc tiếp nhận thông tin. Hãy là những người tiêu dùng thông tin 
+                            <span class="truth-text font-bold">thông minh</span>, không phải những người tiêu dùng thông tin 
+                            <span class="warning-text font-bold">mù quáng</span>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thank You -->
+            <div class="text-center mt-16" data-aos="fade-up">
+                <h3 class="text-3xl font-bold truth-text mb-4" style="font-family: 'Orbitron', sans-serif;">
+                    CẢM ƠN QUÝ THẦY CÔ VÀ CÁC BẠN ĐÃ LẮNG NGHE
+                </h3>
+                <p class="text-xl text-gray-400">Nhóm em sẵn sàng trả lời các câu hỏi</p>
+                <div class="flex justify-center gap-4 mt-6">
+                    <div class="text-5xl animate-bounce">🙏</div>
+                    <div class="text-5xl animate-bounce" style="animation-delay: 0.1s;">✨</div>
+                    <div class="text-5xl animate-bounce" style="animation-delay: 0.2s;">🎓</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Footer with QR Code -->
+        <footer class="py-12 px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-3 gap-8 items-center">
+                    <!-- Info -->
+                    <div class="text-center md:text-left">
+                        <h3 class="text-xl font-bold truth-text mb-2" style="font-family: 'Orbitron', sans-serif;">
+                            THE TRUTH LENS
+                        </h3>
+                        <p class="text-gray-400 text-sm">Thấu Kính Sự Thật</p>
+                        <p class="text-gray-500 text-xs mt-2">Triết học Mác-Lênin</p>
+                        <p class="text-gray-500 text-xs">Nhận thức trong Thời đại Mạng Xã Hội</p>
+                    </div>
+
+                    <!-- QR Code -->
+                    <div class="text-center">
+                        <div class="inline-block bg-white p-4 rounded-lg border-2 border-green-500">
+                            <div class="w-32 h-32 bg-gray-200 flex items-center justify-center">
+                                <div class="text-center">
+                                    <div class="text-4xl mb-2">📱</div>
+                                    <p class="text-xs text-gray-600">QR CODE</p>
+                                    <p class="text-xs text-gray-500">Scan để xem</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-400 text-sm mt-3">Truy cập web này</p>
+                    </div>
+
+                    <!-- Copyright -->
+                    <div class="text-center md:text-right">
+                        <p class="text-gray-400 text-sm mb-2">© 2026 THE TRUTH LENS</p>
+                        <p class="text-gray-500 text-xs">Made with 💚 for Philosophy</p>
+                        <div class="mt-4 flex justify-center md:justify-end gap-4">
+                            <span class="text-green-500 text-2xl cursor-pointer hover:text-green-400 transition-all">🌐</span>
+                            <span class="text-green-500 text-2xl cursor-pointer hover:text-green-400 transition-all">📧</span>
+                            <span class="text-green-500 text-2xl cursor-pointer hover:text-green-400 transition-all">💬</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-t border-gray-700 mt-8 pt-6 text-center">
+                    <p class="text-gray-500 text-xs">
+                        "Practice is the criterion of truth" | "Thực tiễn là tiêu chuẩn của chân lý"
+                    </p>
+                </div>
             </div>
         </footer>
-
     </div>
 
-    <!-- Particles.js Library -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="script.js"></script>
-</body>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: false,
+            mirror: true
+        });
 
+        // Matrix Rain Effect
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+-=[]{}|;:,.<>?';
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+
+        const drops = [];
+        for (let i = 0; i < columns; i++) {
+            drops[i] = 1;
+        }
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#00ff41';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = letters[Math.floor(Math.random() * letters.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 35);
+
+        // Resize canvas on window resize
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Smooth scroll to history section
+        function scrollToHistory() {
+            document.getElementById('history').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+
+        // Toggle card active state
+        function toggleCard(card) {
+            // Remove active class from all cards
+            document.querySelectorAll('.philosophy-card').forEach(c => {
+                if (c !== card) {
+                    c.classList.remove('active');
+                }
+            });
+            
+            // Toggle active class on clicked card
+            card.classList.toggle('active');
+        }
+
+        // Add keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && window.scrollY < 100) {
+                scrollToHistory();
+            }
+        });
+
+        // Parallax effect for scan lines
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const scanLines = document.querySelectorAll('.scan-line');
+            scanLines.forEach((line, index) => {
+                line.style.transform = `translateY(${scrolled * 0.5}px)`;
+            });
+        });
+
+        // Interactive Truth Lens Slider
+        const sliderLine = document.getElementById('slider-line');
+        const rationalLayer = document.getElementById('rational-layer');
+        const container = sliderLine.parentElement;
+        
+        let isDragging = false;
+
+        function updateSlider(clientX) {
+            const rect = container.getBoundingClientRect();
+            let position = clientX - rect.left;
+            
+            // Constrain position
+            position = Math.max(0, Math.min(position, rect.width));
+            
+            const percentage = (position / rect.width) * 100;
+            
+            // Update slider position
+            sliderLine.style.left = percentage + '%';
+            
+            // Update rational layer clip-path
+            rationalLayer.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+        }
+
+        // Mouse events
+        sliderLine.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            e.preventDefault();
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                updateSlider(e.clientX);
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        // Touch events for mobile
+        sliderLine.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            e.preventDefault();
+        });
+
+        document.addEventListener('touchmove', (e) => {
+            if (isDragging) {
+                updateSlider(e.touches[0].clientX);
+            }
+        });
+
+        document.addEventListener('touchend', () => {
+            isDragging = false;
+        });
+
+        // Click on container to move slider
+        container.addEventListener('click', (e) => {
+            if (e.target !== sliderLine && !sliderLine.contains(e.target)) {
+                updateSlider(e.clientX);
+            }
+        });
+
+        // Animated Progress Bars
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px'
+        };
+
+        const progressObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const bars = entry.target.querySelectorAll('.stat-bar');
+                    bars.forEach((bar, index) => {
+                        setTimeout(() => {
+                            const targetWidth = bar.getAttribute('data-width');
+                            bar.style.transition = 'width 1.5s ease-out';
+                            bar.style.width = targetWidth + '%';
+                        }, index * 200);
+                    });
+                    progressObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe the statistics section
+        const statsSection = document.querySelector('.border-red-500');
+        if (statsSection) {
+            progressObserver.observe(statsSection);
+        }
+
+        // Auto-animate slider on first view
+        let sliderAnimated = false;
+        const sliderObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !sliderAnimated) {
+                    sliderAnimated = true;
+                    
+                    // Animate slider from left to right and back
+                    let position = 0;
+                    let direction = 1;
+                    let animationCount = 0;
+                    
+                    const autoSlide = setInterval(() => {
+                        position += direction * 2;
+                        
+                        if (position >= 100) {
+                            direction = -1;
+                            animationCount++;
+                        } else if (position <= 0) {
+                            direction = 1;
+                            animationCount++;
+                        }
+                        
+                        if (animationCount >= 3) { // Stop after 3 full swipes
+                            clearInterval(autoSlide);
+                            // Reset to middle
+                            sliderLine.style.left = '50%';
+                            rationalLayer.style.clipPath = 'inset(0 50% 0 0)';
+                            return;
+                        }
+                        
+                        sliderLine.style.left = position + '%';
+                        rationalLayer.style.clipPath = `inset(0 ${100 - position}% 0 0)`;
+                    }, 20);
+                    
+                    sliderObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        if (container) {
+            sliderObserver.observe(container);
+        }
+
+        // Add hover effect on table rows
+        const tableRows = document.querySelectorAll('tbody tr');
+        tableRows.forEach(row => {
+            row.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.02)';
+            });
+            row.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+
+        // Pulse effect on warning statistics
+        const warningStats = document.querySelector('.border-red-500');
+        if (warningStats) {
+            setInterval(() => {
+                warningStats.style.boxShadow = '0 0 30px rgba(255, 0, 64, 0.5)';
+                setTimeout(() => {
+                    warningStats.style.boxShadow = 'none';
+                }, 500);
+            }, 3000);
+        }
+
+        // Interactive Checklist Calculator
+        const checklistItems = document.querySelectorAll('.checklist-item');
+        const checkedCountDisplay = document.getElementById('checked-count');
+        const trustResult = document.getElementById('trust-result');
+        const resetButton = document.getElementById('reset-checklist');
+
+        function updateChecklistResult() {
+            const checkedCount = document.querySelectorAll('.checklist-item:checked').length;
+            const totalCount = checklistItems.length;
+            
+            checkedCountDisplay.textContent = checkedCount;
+
+            // Calculate percentage
+            const percentage = (checkedCount / totalCount) * 100;
+
+            // Update result display
+            if (percentage === 100) {
+                trustResult.className = 'text-center p-6 rounded-lg border-2 border-green-500 bg-green-900 bg-opacity-30 slide-in-left';
+                trustResult.innerHTML = `
+                    <div class="text-6xl mb-4 animate-bounce">✅</div>
+                    <h3 class="text-3xl font-bold truth-text mb-3" style="font-family: 'Orbitron', sans-serif;">
+                        TRUSTWORTHY
+                    </h3>
+                    <p class="text-xl text-green-400 mb-2">ĐÁNG TIN CẬY</p>
+                    <p class="text-gray-300 text-sm">
+                        Thông tin này đã vượt qua tất cả các tiêu chí kiểm chứng. 
+                        Bạn có thể an tâm tham khảo!
+                    </p>
+                    <div class="mt-4 text-green-500 text-lg font-bold animate-pulse">
+                        ✓ Thực tiễn là tiêu chuẩn của chân lý
+                    </div>
+                `;
+            } else if (percentage >= 75) {
+                trustResult.className = 'text-center p-6 rounded-lg border-2 border-yellow-500 bg-yellow-900 bg-opacity-30 slide-in-right';
+                trustResult.innerHTML = `
+                    <div class="text-6xl mb-4">⚠️</div>
+                    <h3 class="text-3xl font-bold text-yellow-400 mb-3" style="font-family: 'Orbitron', sans-serif;">
+                        MOSTLY RELIABLE
+                    </h3>
+                    <p class="text-xl text-yellow-400 mb-2">CẦN XEM XÉT THÊM</p>
+                    <p class="text-gray-300 text-sm">
+                        Thông tin này có nhiều điểm đáng tin nhưng vẫn còn thiếu một số yếu tố quan trọng. 
+                        Hãy kiểm chứng thêm trước khi áp dụng!
+                    </p>
+                `;
+            } else if (percentage >= 50) {
+                trustResult.className = 'text-center p-6 rounded-lg border-2 border-orange-500 bg-orange-900 bg-opacity-30 slide-in-left';
+                trustResult.innerHTML = `
+                    <div class="text-6xl mb-4">🔍</div>
+                    <h3 class="text-3xl font-bold text-orange-400 mb-3" style="font-family: 'Orbitron', sans-serif;">
+                        NEEDS VERIFICATION
+                    </h3>
+                    <p class="text-xl text-orange-400 mb-2">CẦN KIỂM CHỨNG</p>
+                    <p class="text-gray-300 text-sm">
+                        Thông tin này còn nhiều điểm chưa rõ ràng. 
+                        Bạn cần tìm hiểu và kiểm chứng kỹ hơn trước khi tin tưởng!
+                    </p>
+                `;
+            } else if (percentage > 0) {
+                trustResult.className = 'text-center p-6 rounded-lg border-2 border-red-500 bg-red-900 bg-opacity-30 slide-in-right';
+                trustResult.innerHTML = `
+                    <div class="text-6xl mb-4 animate-pulse">❌</div>
+                    <h3 class="text-3xl font-bold warning-text mb-3" style="font-family: 'Orbitron', sans-serif;">
+                        HIGHLY QUESTIONABLE
+                    </h3>
+                    <p class="text-xl text-red-400 mb-2">RẤT KHẢ NGHI</p>
+                    <p class="text-gray-300 text-sm">
+                        Thông tin này thiếu quá nhiều căn cứ đáng tin cậy. 
+                        <span class="warning-text font-bold">KHÔNG NÊN TIN THEO!</span>
+                    </p>
+                `;
+            } else {
+                trustResult.className = 'text-center p-6 rounded-lg border-2 border-gray-500 bg-gray-900 bg-opacity-30';
+                trustResult.innerHTML = `
+                    <div class="text-6xl mb-4">🤔</div>
+                    <h3 class="text-2xl font-bold text-gray-400 mb-3" style="font-family: 'Orbitron', sans-serif;">
+                        ĐANG CHỜ ĐÁNH GIÁ
+                    </h3>
+                    <p class="text-gray-400 text-sm">
+                        Hãy tích các ô bên trên để đánh giá độ tin cậy của thông tin
+                    </p>
+                `;
+            }
+        }
+
+        // Add event listeners to checkboxes
+        checklistItems.forEach(item => {
+            item.addEventListener('change', updateChecklistResult);
+        });
+
+        // Reset button
+        resetButton.addEventListener('click', () => {
+            checklistItems.forEach(item => {
+                item.checked = false;
+            });
+            updateChecklistResult();
+            
+            // Visual feedback
+            resetButton.textContent = '✓ Đã Làm Lại';
+            resetButton.classList.add('bg-green-600');
+            setTimeout(() => {
+                resetButton.textContent = '🔄 Làm Lại';
+                resetButton.classList.remove('bg-green-600');
+            }, 1000);
+        });
+
+        // Initialize
+        updateChecklistResult();
+
+        // Scroll reveal animations for solution cards
+        const solutionCards = document.querySelectorAll('.solution-card');
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '0';
+                    setTimeout(() => {
+                        entry.target.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                        entry.target.style.opacity = '1';
+                    }, 100);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        solutionCards.forEach(card => {
+            cardObserver.observe(card);
+        });
+
+        // Add keyboard shortcut for navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 'h') {
+                e.preventDefault();
+                document.getElementById('hook').scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        // Smooth scroll for all internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Console easter egg
+        console.log('%c🔍 THE TRUTH LENS', 'color: #00ff41; font-size: 24px; font-weight: bold;');
+        console.log('%cNhận thức đúng đắn là sức mạnh thực sự', 'color: #00ff41; font-size: 14px;');
+        console.log('%cPractice is the criterion of truth', 'color: #00fffc; font-style: italic;');
+    </script>
+</body>
 </html>
