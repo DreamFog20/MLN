@@ -1123,7 +1123,7 @@
             </div>
 
             <!-- Interactive Checklist Calculator -->
-            <div class="max-w-4xl mx-auto" data-aos="fade-up">
+            <div class="max-w-7xl mx-auto" data-aos="fade-up">
                 <div class="text-center mb-8">
                     <h3 class="text-3xl font-bold truth-text mb-4" style="font-family: 'Orbitron', sans-serif;">
                         🔍 CHECKLIST CALCULATOR
@@ -1135,103 +1135,109 @@
                 </div>
 
                 <div class="bg-black bg-opacity-70 border-2 border-green-500 rounded-lg p-8">
-                    <!-- Checklist Items -->
-                    <div class="space-y-6 mb-8">
-                        <!-- Step 1: Expertise -->
-                        <div class="bg-gray-900 bg-opacity-50 rounded-lg p-6 border border-gray-700 hover:border-green-500 transition-all">
-                            <h4 class="text-lg font-bold text-green-400 mb-4 flex items-center">
-                                <span class="mr-3">📋</span> BƯỚC 1: KIỂM TRA CHUYÊN MÔN
-                            </h4>
-                            <label class="flex items-start cursor-pointer mb-3 hover:bg-green-900 hover:bg-opacity-20 p-2 rounded transition-all">
-                                <input type="checkbox" class="checklist-item mt-1 mr-3 w-5 h-5 text-green-500" data-category="expertise">
-                                <span class="text-gray-300">KOL có bằng cấp, chứng chỉ liên quan?</span>
-                            </label>
-                            <label class="flex items-start cursor-pointer mb-3 hover:bg-green-900 hover:bg-opacity-20 p-2 rounded transition-all">
-                                <input type="checkbox" class="checklist-item mt-1 mr-3 w-5 h-5 text-green-500" data-category="expertise">
-                                <span class="text-gray-300">Có kinh nghiệm thực tế trong lĩnh vực?</span>
-                            </label>
-                            <label class="flex items-start cursor-pointer hover:bg-green-900 hover:bg-opacity-20 p-2 rounded transition-all">
-                                <input type="checkbox" class="checklist-item mt-1 mr-3 w-5 h-5 text-green-500" data-category="expertise">
-                                <span class="text-gray-300">Có thành tích cụ thể, có thể kiểm chứng?</span>
-                            </label>
-                        </div>
+                    <!-- Grid Layout: Steps + Result -->
+                    <div class="grid lg:grid-cols-3 gap-6">
+                        <!-- Left Column: Steps 1-2 -->
+                        <div class="space-y-4">
+                            <!-- Step 1: Expertise -->
+                            <div class="bg-gray-900 bg-opacity-50 rounded-lg p-4 border border-gray-700 hover:border-green-500 transition-all">
+                                <h4 class="text-base font-bold text-green-400 mb-3 flex items-center">
+                                    <span class="mr-2">📋</span> BƯỚC 1: KIỂM TRA CHUYÊN MÔN
+                                </h4>
+                                <label class="flex items-start cursor-pointer mb-2 hover:bg-green-900 hover:bg-opacity-20 p-2 rounded transition-all">
+                                    <input type="checkbox" class="checklist-item mt-1 mr-2 w-4 h-4 text-green-500" data-category="expertise">
+                                    <span class="text-gray-300 text-sm">KOL có bằng cấp, chứng chỉ liên quan?</span>
+                                </label>
+                                <label class="flex items-start cursor-pointer mb-2 hover:bg-green-900 hover:bg-opacity-20 p-2 rounded transition-all">
+                                    <input type="checkbox" class="checklist-item mt-1 mr-2 w-4 h-4 text-green-500" data-category="expertise">
+                                    <span class="text-gray-300 text-sm">Có kinh nghiệm thực tế trong lĩnh vực?</span>
+                                </label>
+                                <label class="flex items-start cursor-pointer hover:bg-green-900 hover:bg-opacity-20 p-2 rounded transition-all">
+                                    <input type="checkbox" class="checklist-item mt-1 mr-2 w-4 h-4 text-green-500" data-category="expertise">
+                                    <span class="text-gray-300 text-sm">Có thành tích cụ thể, có thể kiểm chứng?</span>
+                                </label>
+                            </div>
 
-                        <!-- Step 2: Objectivity -->
-                        <div class="bg-gray-900 bg-opacity-50 rounded-lg p-6 border border-gray-700 hover:border-green-500 transition-all">
-                            <h4 class="text-lg font-bold text-green-400 mb-4 flex items-center">
-                                <span class="mr-3">⚖️</span> BƯỚC 2: ĐÁNH GIÁ TÍNH KHÁCH QUAN
-                            </h4>
-                            <label class="flex items-start cursor-pointer mb-3 hover:bg-green-900 hover:bg-opacity-20 p-2 rounded transition-all">
-                                <input type="checkbox" class="checklist-item mt-1 mr-3 w-5 h-5 text-green-500" data-category="objectivity">
-                                <span class="text-gray-300">Không có lợi ích riêng trong việc quảng bá?</span>
-                            </label>
-                            <label class="flex items-start cursor-pointer mb-3 hover:bg-green-900 hover:bg-opacity-20 p-2 rounded transition-all">
-                                <input type="checkbox" class="checklist-item mt-1 mr-3 w-5 h-5 text-green-500" data-category="objectivity">
-                                <span class="text-gray-300">Không được tài trợ/trả tiền để quảng cáo?</span>
-                            </label>
-                            <label class="flex items-start cursor-pointer hover:bg-green-900 hover:bg-opacity-20 p-2 rounded transition-all">
-                                <input type="checkbox" class="checklist-item mt-1 mr-3 w-5 h-5 text-green-500" data-category="objectivity">
-                                <span class="text-gray-300">Có bằng chứng khoa học, nghiên cứu ủng hộ?</span>
-                            </label>
-                        </div>
-
-                        <!-- Step 3: Source Verification -->
-                        <div class="bg-gray-900 bg-opacity-50 rounded-lg p-6 border border-gray-700 hover:border-green-500 transition-all">
-                            <h4 class="text-lg font-bold text-green-400 mb-4 flex items-center">
-                                <span class="mr-3">🔬</span> BƯỚC 3: KIỂM CHỨNG NGUỒN
-                            </h4>
-                            <label class="flex items-start cursor-pointer mb-3 hover:bg-green-900 hover:bg-opacity-20 p-2 rounded transition-all">
-                                <input type="checkbox" class="checklist-item mt-1 mr-3 w-5 h-5 text-green-500" data-category="source">
-                                <span class="text-gray-300">Nguồn trích dẫn rõ ràng, đáng tin?</span>
-                            </label>
-                            <label class="flex items-start cursor-pointer mb-3 hover:bg-green-900 hover:bg-opacity-20 p-2 rounded transition-all">
-                                <input type="checkbox" class="checklist-item mt-1 mr-3 w-5 h-5 text-green-500" data-category="source">
-                                <span class="text-gray-300">Có nghiên cứu, số liệu thực tế ủng hộ?</span>
-                            </label>
-                            <label class="flex items-start cursor-pointer hover:bg-green-900 hover:bg-opacity-20 p-2 rounded transition-all">
-                                <input type="checkbox" class="checklist-item mt-1 mr-3 w-5 h-5 text-green-500" data-category="source">
-                                <span class="text-gray-300">Kết quả thực tế khi người khác áp dụng tốt?</span>
-                            </label>
-                        </div>
-
-                        <!-- Step 4: Multiple Sources -->
-                        <div class="bg-gray-900 bg-opacity-50 rounded-lg p-6 border border-gray-700 hover:border-green-500 transition-all">
-                            <h4 class="text-lg font-bold text-green-400 mb-4 flex items-center">
-                                <span class="mr-3">📚</span> BƯỚC 4: SO SÁNH ĐA DẠNG NGUỒN
-                            </h4>
-                            <label class="flex items-start cursor-pointer mb-3 hover:bg-green-900 hover:bg-opacity-20 p-2 rounded transition-all">
-                                <input type="checkbox" class="checklist-item mt-1 mr-3 w-5 h-5 text-green-500" data-category="comparison">
-                                <span class="text-gray-300">Đã so sánh ý kiến từ nhiều người khác nhau?</span>
-                            </label>
-                            <label class="flex items-start cursor-pointer mb-3 hover:bg-green-900 hover:bg-opacity-20 p-2 rounded transition-all">
-                                <input type="checkbox" class="checklist-item mt-1 mr-3 w-5 h-5 text-green-500" data-category="comparison">
-                                <span class="text-gray-300">Đã tham khảo chuyên gia thực sự trong lĩnh vực?</span>
-                            </label>
-                            <label class="flex items-start cursor-pointer hover:bg-green-900 hover:bg-opacity-20 p-2 rounded transition-all">
-                                <input type="checkbox" class="checklist-item mt-1 mr-3 w-5 h-5 text-green-500" data-category="comparison">
-                                <span class="text-gray-300">Đã tìm kiếm các ý kiến phản biện, phê phán?</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Result Display -->
-                    <div class="border-t-2 border-green-500 pt-8">
-                        <div class="text-center mb-4">
-                            <p class="text-gray-400 mb-2">Kết quả đánh giá:</p>
-                            <div id="checklist-progress" class="text-2xl font-bold mb-4">
-                                <span id="checked-count" class="truth-text">0</span>
-                                <span class="text-gray-500">/12</span>
+                            <!-- Step 2: Objectivity -->
+                            <div class="bg-gray-900 bg-opacity-50 rounded-lg p-4 border border-gray-700 hover:border-green-500 transition-all">
+                                <h4 class="text-base font-bold text-green-400 mb-3 flex items-center">
+                                    <span class="mr-2">⚖️</span> BƯỚC 2: ĐÁNH GIÁ TÍNH KHÁCH QUAN
+                                </h4>
+                                <label class="flex items-start cursor-pointer mb-2 hover:bg-green-900 hover:bg-opacity-20 p-2 rounded transition-all">
+                                    <input type="checkbox" class="checklist-item mt-1 mr-2 w-4 h-4 text-green-500" data-category="objectivity">
+                                    <span class="text-gray-300 text-sm">Không có lợi ích riêng trong việc quảng bá?</span>
+                                </label>
+                                <label class="flex items-start cursor-pointer mb-2 hover:bg-green-900 hover:bg-opacity-20 p-2 rounded transition-all">
+                                    <input type="checkbox" class="checklist-item mt-1 mr-2 w-4 h-4 text-green-500" data-category="objectivity">
+                                    <span class="text-gray-300 text-sm">Không được tài trợ/trả tiền để quảng cáo?</span>
+                                </label>
+                                <label class="flex items-start cursor-pointer hover:bg-green-900 hover:bg-opacity-20 p-2 rounded transition-all">
+                                    <input type="checkbox" class="checklist-item mt-1 mr-2 w-4 h-4 text-green-500" data-category="objectivity">
+                                    <span class="text-gray-300 text-sm">Có bằng chứng khoa học, nghiên cứu ủng hộ?</span>
+                                </label>
                             </div>
                         </div>
-                        
-                        <div id="trust-result" class="text-center p-6 rounded-lg border-2 transition-all duration-500">
-                            <!-- Result will be injected by JavaScript -->
+
+                        <!-- Middle Column: Steps 3-4 -->
+                        <div class="space-y-4">
+                            <!-- Step 3: Source Verification -->
+                            <div class="bg-gray-900 bg-opacity-50 rounded-lg p-4 border border-gray-700 hover:border-green-500 transition-all">
+                                <h4 class="text-base font-bold text-green-400 mb-3 flex items-center">
+                                    <span class="mr-2">🔬</span> BƯỚC 3: KIỂM CHỨNG NGUỒN
+                                </h4>
+                                <label class="flex items-start cursor-pointer mb-2 hover:bg-green-900 hover:bg-opacity-20 p-2 rounded transition-all">
+                                    <input type="checkbox" class="checklist-item mt-1 mr-2 w-4 h-4 text-green-500" data-category="source">
+                                    <span class="text-gray-300 text-sm">Nguồn trích dẫn rõ ràng, đáng tin?</span>
+                                </label>
+                                <label class="flex items-start cursor-pointer mb-2 hover:bg-green-900 hover:bg-opacity-20 p-2 rounded transition-all">
+                                    <input type="checkbox" class="checklist-item mt-1 mr-2 w-4 h-4 text-green-500" data-category="source">
+                                    <span class="text-gray-300 text-sm">Có nghiên cứu, số liệu thực tế ủng hộ?</span>
+                                </label>
+                                <label class="flex items-start cursor-pointer hover:bg-green-900 hover:bg-opacity-20 p-2 rounded transition-all">
+                                    <input type="checkbox" class="checklist-item mt-1 mr-2 w-4 h-4 text-green-500" data-category="source">
+                                    <span class="text-gray-300 text-sm">Kết quả thực tế khi người khác áp dụng tốt?</span>
+                                </label>
+                            </div>
+
+                            <!-- Step 4: Multiple Sources -->
+                            <div class="bg-gray-900 bg-opacity-50 rounded-lg p-4 border border-gray-700 hover:border-green-500 transition-all">
+                                <h4 class="text-base font-bold text-green-400 mb-3 flex items-center">
+                                    <span class="mr-2">📚</span> BƯỚC 4: SO SÁNH ĐA DẠNG NGUỒN
+                                </h4>
+                                <label class="flex items-start cursor-pointer mb-2 hover:bg-green-900 hover:bg-opacity-20 p-2 rounded transition-all">
+                                    <input type="checkbox" class="checklist-item mt-1 mr-2 w-4 h-4 text-green-500" data-category="comparison">
+                                    <span class="text-gray-300 text-sm">Đã so sánh ý kiến từ nhiều người khác nhau?</span>
+                                </label>
+                                <label class="flex items-start cursor-pointer mb-2 hover:bg-green-900 hover:bg-opacity-20 p-2 rounded transition-all">
+                                    <input type="checkbox" class="checklist-item mt-1 mr-2 w-4 h-4 text-green-500" data-category="comparison">
+                                    <span class="text-gray-300 text-sm">Đã tham khảo chuyên gia thực sự trong lĩnh vực?</span>
+                                </label>
+                                <label class="flex items-start cursor-pointer hover:bg-green-900 hover:bg-opacity-20 p-2 rounded transition-all">
+                                    <input type="checkbox" class="checklist-item mt-1 mr-2 w-4 h-4 text-green-500" data-category="comparison">
+                                    <span class="text-gray-300 text-sm">Đã tìm kiếm các ý kiến phản biện, phê phán?</span>
+                                </label>
+                            </div>
                         </div>
 
-                        <div class="mt-6 text-center">
-                            <button id="reset-checklist" class="bg-gray-700 hover:bg-gray-600 text-white px-6 py-2 rounded transition-all">
-                                🔄 Làm Lại
-                            </button>
+                        <!-- Right Column: Result Display -->
+                        <div class="bg-gray-900 bg-opacity-50 rounded-lg p-6 border-2 border-green-500 flex flex-col justify-center">
+                            <div class="text-center mb-4">
+                                <p class="text-gray-400 mb-2 text-sm">Kết quả đánh giá:</p>
+                                <div id="checklist-progress" class="text-3xl font-bold mb-4">
+                                    <span id="checked-count" class="truth-text">0</span>
+                                    <span class="text-gray-500">/12</span>
+                                </div>
+                            </div>
+                            
+                            <div id="trust-result" class="text-center p-4 rounded-lg border-2 transition-all duration-500 mb-4">
+                                <!-- Result will be injected by JavaScript -->
+                            </div>
+
+                            <div class="text-center">
+                                <button id="reset-checklist" class="bg-gray-700 hover:bg-gray-600 text-white px-6 py-2 rounded transition-all text-sm">
+                                    🔄 Làm Lại
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
